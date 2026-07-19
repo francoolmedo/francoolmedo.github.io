@@ -223,6 +223,7 @@ footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:v
       <div class="lang-sw">
         <button id="btn-es" onclick="setLang('es')">ES</button>
         <button id="btn-en" onclick="setLang('en')">EN</button>
+        <button id="btn-de" onclick="setLang('de')">DE</button>
       </div>
     </div>
   </div>
@@ -644,6 +645,7 @@ es: {
   chip_vision:"Visión artificial", chip_telem:"Telemetría", chip_sim:"Simulación", chip_multi:"Multicapa", chip_3dp:"Impresión 3D", chip_pneu:"Neumática", chip_doc:"Documentación", chip_emb:"Embebidos",
   sk_t:"Habilidades técnicas",
   sk1:"PCB & Circuitos", sk2:"Embebidos & Firmware", sk3:"Automatización industrial", sk4:"CAD & Mecánica", sk5:"Software", sk6:"Idiomas",
+  sk1_2:"PCB multicapa", sk1_3:"Esquemáticos / footprints", sk3_1:"PLC Siemens (Ladder)", sk3_3:"Tableros eléctricos", sk3_4:"Sensores / actuadores", sk4_3:"Impresión 3D", sk5_4:"GUIs web embebidas", sk6_1:"Español (nativo)", sk6_2:"Inglés", sk6_3:"Alemán",
   ed_t:"Educación",
   ed1_t:"Ingeniería Electrónica (en curso)",
   ed1_d:"Estudiante avanzado (4.º año). Formación en teoría de circuitos, dispositivos electrónicos, técnicas digitales, medios de enlace y electrónica aplicada.",
@@ -726,6 +728,7 @@ en: {
   chip_vision:"Machine vision", chip_telem:"Telemetry", chip_sim:"Simulation", chip_multi:"Multilayer", chip_3dp:"3D printing", chip_pneu:"Pneumatics", chip_doc:"Documentation", chip_emb:"Embedded",
   sk_t:"Technical skills",
   sk1:"PCB & Circuits", sk2:"Embedded & Firmware", sk3:"Industrial automation", sk4:"CAD & Mechanical", sk5:"Software", sk6:"Languages",
+  sk1_2:"Multilayer PCB", sk1_3:"Schematics / footprints", sk3_1:"Siemens PLC (Ladder)", sk3_3:"Electrical panels", sk3_4:"Sensors / actuators", sk4_3:"3D printing", sk5_4:"Embedded web GUIs", sk6_1:"Spanish (native)", sk6_2:"English", sk6_3:"German",
   ed_t:"Education",
   ed1_t:"Electronic Engineering (in progress)",
   ed1_d:"Advanced student (4th year). Coursework in circuit theory, electronic devices, digital techniques, communication links and applied electronics.",
@@ -735,6 +738,89 @@ en: {
   ct_d:"Open to part-time positions and projects in electronics, embedded systems or automation. Immediate availability, remote or on-site in Córdoba.",
   ct_send:"Send message",
   foot:"© 2026 Franco Olmedo — Designed with engineering precision."
+},
+de: {
+  nav_about:"Über mich", nav_exp:"Erfahrung", nav_proj:"Projekte", nav_skills:"Kenntnisse", nav_edu:"Ausbildung", nav_contact:"Kontakt",
+  hero_tag:"elektroniktechniker · student des elektronikingenieurwesens",
+  hero_role:"Elektronik & Eingebettete Systeme",
+  hero_sub:"Entwicklung und Fertigung mehrlagiger Leiterplatten, Mikrocontroller-Firmware, Industrieautomatisierung und Ingenieursoftware. Vom Schaltplan zum fertigen Produkt.",
+  hero_cta1:"Projekte ansehen", hero_cta2:"Kontakt", hero_cv:"Lebenslauf herunterladen",
+  st_years:"Jahre Erfahrung", st_proj:"Projekte", st_tech:"Technologien", st_eng:"Englisch",
+  ab_t:"Über mich",
+  ab_p1:"Ich bin Elektroniktechniker mit Auszeichnung (ITS Villada) und fortgeschrittener Student des Elektronikingenieurwesens an der UTN Córdoba (FRC). Seit 2019 arbeite ich an realen Elektronik- und Integrationsprojekten — zunächst freiberuflich, seit 2022 als Junior-Elektronikingenieur bei Contraut SAS.",
+  ab_p2:"Meine Arbeit deckt den gesamten Zyklus ab: Anforderungsanalyse, Schaltungs- und Schaltplanentwurf, Routing mehrlagiger Leiterplatten, eingebettete Firmware (PIC, dsPIC, ATmega, ESP32, Xilinx), Prototyping, Fertigung und Inbetriebnahme vor Ort. Außerdem entwickle ich die Software zur Hardware: industrielle GUIs, Web-Telemetrie und Desktop-Tools.",
+  ab_p3:"Mich zeichnet ingenieurmäßige Sorgfalt aus: vollständige Dokumentation, Bedienungsanleitungen, Tests und Verifikation. Jede Lieferung sauber abgeschlossen — nie halbfertig.",
+  f_loc:"Standort", f_role:"Aktuelle Rolle", f_role_v:"Jr. Elektronikingenieur", f_study:"Studium", f_lang:"Sprachen", f_lang_v:"ES · EN (C1) · DE (A2)", f_avail:"Verfügbarkeit", f_avail_v:"Teilzeit / Remote",
+  ex_t:"Erfahrung", present:"heute",
+  ex1_r:"Junior-Elektronikingenieur",
+  ex1_d:"Entwicklung und Fertigung eigener Leiterplatten für CNC-Umgebungen: Schaltungen, Prototyping, Analyse, Fertigung und Test. Programmierung der Mikrocontroller (PIC, ATmega, Xilinx). Schlüsselfertige Automatisierungsprojekte: Kartoffelsortierer mit Bildverarbeitung, Steuerung einer Pyrolyseanlage, Prüfstände und Messsysteme für Kunden wie FAESA und die Werft Astillero Río Santiago.",
+  ex2_c:"Freiberuflich", ex2_r:"Entwickler & Techniker",
+  ex2_d:"Automatisierung und Inbetriebnahme von 3 CNC-Maschinen: Schaltschrankbau, Kommunikation Steuerung–PC, Programmierung und Parametrierung des Spindelantriebs.",
+  ex3_r:"SPS-Entwickler & Programmierer",
+  ex3_d:"Entwurf und Installation eines SPS-Systems mit Siemens S7-200 zur Automatisierung einer Honmaschine für LKW-Motoren (4–6 Zylinder): induktive Sensoren, Luftmesslehre, Servomotoren und Spindeln. Erstellung der Bedien- und Funktionshandbücher.",
+  ex4_c:"Freiberuflich", ex4_r:"Entwickler & Techniker",
+  ex4_d:"Gemeinsam mit einem Team aus Kinesiologen und Physiotherapeuten Entwicklung und Fertigung eines Kopfhörer-Aufsatzes mit LED-System zur Unterstützung von Patienten mit Parkinson und/oder partieller Lähmung.",
+  chip_panel:"Schaltschrank", chip_sens:"Sensorik", chip_servo:"Servomotoren", chip_med:"Medizingerät", chip_proto:"Prototyping",
+  pr_t:"Ausgewählte Projekte",
+  pr_sub:"Eine Auswahl beruflicher und persönlicher Arbeiten: Hardware, Firmware, Software und industrielle Integration.",
+  cat_sw:"Software", cat_auto:"Automatisierung", cat_pcb:"Leiterplatte", cat_art:"Kunst + Technik", cat_cad:"3D-CAD", cat_plc:"SPS", cat_rd:"F&E",
+  more:"[+] Details anzeigen", less:"[–] Details ausblenden",
+  p1_r:"Eigenes Produkt · Electronik Lösungen",
+  p1_d:"Selbst entwickelte All-in-One-Desktop-EDA-Suite: Schaltplanerfassung (ANSI/IEC), mehrlagiges Leiterplattendesign, SPICE- und MCU-Firmware-Simulation, 3D-Ansicht und Lernmodus. Ein einziges Werkzeug für das, was heute Altium + Proteus + QElectroTech erfordert.",
+  p1_b1:"Stack: Python 3.11, PySide6/Qt, NumPy, SciPy, Matplotlib, ReportLab — plattformübergreifend (Windows/Linux/macOS).",
+  p1_b2:"SPICE-Simulation (DC/AC/transient) und Ausführung von .hex-Firmware auf virtueller MCU.",
+  p1_b3:"Verifikationssuite mit 111 automatisierten Tests, alle grün.",
+  p1_b4:"Import/Export: Gerber, DXF/DWG, KiCad, PDF, Excel; Bauteilbibliothek mit eigenem Editor.",
+  p2_t:"Papómetro U9 — Sortierung per Bildverarbeitung",
+  p2_d:"Kartoffelsortiermaschine mit Gewichtsschätzung per Computer Vision: Kontursegmentierung, Volumenschätzung und Klassifizierung in 5 Kategorien mit Sammlung in physischen Schubladen.",
+  p2_b1:"Verteilte Architektur: RPi mit Touch-GUI + Kamera-RPi + dsPIC33F für Servos, Förderbänder, Waage und Klappen.",
+  p2_b2:"Ernteprotokoll nach Woche/Jahr, geführte Kalibrierung und Selbsttest beim Start.",
+  p2_b3:"Vollständiges Bedienerhandbuch, Installationsanleitung und automatisiertes Deployment im Feld.",
+  p3_t:"MixOil V5 — Steuerung einer Pyrolyseanlage",
+  p3_d:"Steuerungs-, Erfassungs- und Telemetriesystem für eine Pyrolyseanlage: Echtzeitüberwachung der Ofentemperaturen, Wiegesystem, Web-GUI zur Überwachung und Prozesssimulation für Testläufe.",
+  p3_b1:"Web-GUI mit Live-Diagrammen (Ofen TIR/TCF) und historischer Protokollierung.",
+  p3_b2:"Integrierte Steuerungs-, Waagen- und Diagrammmodule; Simulation kompletter 15-Stunden-Zyklen.",
+  p3_b3:"Technische Verbesserungsberichte, validiert mit Anlagendaten.",
+  p4_t:"Industrielle Leiterplatten für CNC-Umgebungen",
+  p4_d:"Eigene Leiterplattenfamilie bei Contraut: Steuerzentrale, HF-Steuerung, MSP430-Breakouts und SATA-GETAC-Adapter, integriert in CNC-Maschinen und Prüfstände.",
+  p4_b1:"Altium-Design: Schaltpläne, mehrlagiges Routing, eigene Footprints und Bestückungsdruck, Fertigungs-BOMs.",
+  p4_b2:"Fertigung lokal und in China; Bestückung, Analyse, Test und Inbetriebnahme.",
+  p4_b3:"PIC-/ATmega-/Xilinx-Firmware je nach Boardfunktion.",
+  p5_t:"„Respiración“ — Kinetische Kunstinstallation",
+  p5_r:"Unabhängiges Kunst-Technik-Projekt",
+  p5_d:"Elektronische Installation, die das Atmen simuliert: Pneumatiksystem mit 3D-modelliertem Manifold und Bypass-Box, Servos über PCA9685 und MicroPython-Firmware mit Präsenzerkennung.",
+  p5_b1:"3D-Modellierung und Druck von Manifold, Lamellen, Gehäuse und Sensorhalterungen.",
+  p5_b2:"MicroPython-Firmware: Servosteuerung über PCA9685, Präsenztests und Bewegungsroutinen.",
+  p5_b3:"Systemsimulator, Entwurfsskizzen und Produktionskalkulation.",
+  p6_t:"3D-CAD-Design & Prototyping",
+  p6_r:"Eigene Projekte",
+  p6_d:"Mechanisches Design von Gehäusen und Funktionsteilen: flaches SSD/HDD-Gehäuse (fotorealistisches Rendering), Raspberry-Pi-3B-Gehäuse mit I2S-Mikrofon und LEDs, Matrix-Tastaturen und Sonderteile.",
+  p6_b1:"Parametrische Modellierung mit STL/STEP-Export für den 3D-Druck.",
+  p6_b2:"Fotorealistische Renderings für Produktpräsentationen.",
+  p6_b3:"Elektromechanische Integration: Toleranzen, Schnappverbindungen und Montage realer Module.",
+  p7_t:"Honmaschine — SPS-Automatisierung",
+  p7_d:"Komplette Automatisierung einer Honmaschine für LKW-Motoren (4–6 Zylinder) mit Siemens S7-200: Ladder-Programme (horizontal/vertikal), Schaltschrank, Industriesensorik und vollständige Dokumentation.",
+  p7_b1:"Induktive Sensoren, Luftmesslehre, Servomotoren und Spindeln.",
+  p7_b2:"Dokumentierte Ladder-Programme (horizontal & vertikal) mit I/O-Übersicht.",
+  p7_b3:"Funktions- und Benutzerhandbuch an den Kunden übergeben.",
+  p8_t:"REESpirator — Notfallbeatmungsgerät",
+  p8_d:"Mitarbeit im CovidLab: Notbeatmungsprojekt mit der UNRC während der Pandemie. Steuerungselektronik, technische Dokumentation und Engineering-Ergebnisse des Prototyps.",
+  p8_b1:"Multidisziplinäre Zusammenarbeit Universität–Maker während der Gesundheitskrise.",
+  p8_b2:"Abschlussdokumentation des REESpirator und Ergebnisse in Etappen (Problem → Erkenntnisse).",
+  p8_b3:"Firmware und Ventil-/Sensorelektronik des Prototyps respirador23.",
+  chip_vision:"Bildverarbeitung", chip_telem:"Telemetrie", chip_sim:"Simulation", chip_multi:"Mehrlagig", chip_3dp:"3D-Druck", chip_pneu:"Pneumatik", chip_doc:"Dokumentation", chip_emb:"Embedded",
+  sk_t:"Technische Kenntnisse",
+  sk1:"Leiterplatten & Schaltungen", sk2:"Embedded & Firmware", sk3:"Industrieautomatisierung", sk4:"CAD & Mechanik", sk5:"Software", sk6:"Sprachen",
+  sk1_2:"Mehrlagige Leiterplatten", sk1_3:"Schaltpläne / Footprints", sk3_1:"Siemens-SPS (Ladder)", sk3_3:"Schaltschränke", sk3_4:"Sensorik / Aktorik", sk4_3:"3D-Druck", sk5_4:"Eingebettete Web-GUIs", sk6_1:"Spanisch (Muttersprache)", sk6_2:"Englisch", sk6_3:"Deutsch",
+  ed_t:"Ausbildung",
+  ed1_t:"Elektronikingenieurwesen (laufend)",
+  ed1_d:"Fortgeschrittener Student (4. Jahr). Schwerpunkte: Schaltungstheorie, elektronische Bauelemente, Digitaltechnik, Nachrichtentechnik und angewandte Elektronik.",
+  ed2_t:"Elektroniktechniker",
+  ed2_d:"Abschluss mit Auszeichnung. Vollständige technische Ausbildung: analoge, digitale und industrielle Elektronik, Elektrotechnik, Telekommunikation und Elektronik-Informatik.",
+  ct_t:"Lassen Sie uns zusammenarbeiten",
+  ct_d:"Offen für Teilzeitstellen und Projekte in Elektronik, eingebetteten Systemen oder Automatisierung. Sofort verfügbar, remote oder vor Ort in Córdoba.",
+  ct_send:"Nachricht senden",
+  foot:"© 2026 Franco Olmedo — Mit ingenieurmäßiger Präzision gestaltet."
 }};
 
 let LANG = 'es';
@@ -764,19 +850,21 @@ function setLang(l){
   });
   document.getElementById('btn-es').classList.toggle('on', l==='es');
   document.getElementById('btn-en').classList.toggle('on', l==='en');
-  document.querySelectorAll('.cvlink').forEach(a=>{ a.setAttribute('href', l==='es' ? 'cv-es.pdf' : 'cv-en.pdf'); });
-  document.title = l==='es' ? 'Franco Olmedo — Electrónica & Sistemas Embebidos' : 'Franco Olmedo — Electronics & Embedded Systems';
-  
-  const placeholders = document.querySelectorAll('input[placeholder], textarea[placeholder]');
-  if(l === 'en') {
-      document.querySelector('input[name="name"]').placeholder = "Your name";
-      document.querySelector('input[name="_replyto"]').placeholder = "Your email";
-      document.querySelector('textarea[name="message"]').placeholder = "How can I help you?";
-  } else {
-      document.querySelector('input[name="name"]').placeholder = "Tu nombre";
-      document.querySelector('input[name="_replyto"]').placeholder = "Tu email";
-      document.querySelector('textarea[name="message"]').placeholder = "¿En qué te puedo ayudar?";
-  }
+  document.getElementById('btn-de').classList.toggle('on', l==='de');
+  document.querySelectorAll('.cvlink').forEach(a=>{ a.setAttribute('href', {es:'cv-es.pdf', en:'cv-en.pdf', de:'cv-de.pdf'}[l] || 'cv-en.pdf'); });
+  document.title = l==='es' ? 'Franco Olmedo — Electrónica & Sistemas Embebidos'
+                 : l==='de' ? 'Franco Olmedo — Elektronik & Eingebettete Systeme'
+                 : 'Franco Olmedo — Electronics & Embedded Systems';
+
+  const PH = {
+    es:{name:"Tu nombre", mail:"Tu email", msg:"¿En qué te puedo ayudar?"},
+    en:{name:"Your name", mail:"Your email", msg:"How can I help you?"},
+    de:{name:"Ihr Name", mail:"Ihre E-Mail", msg:"Wie kann ich Ihnen helfen?"}
+  };
+  const ph = PH[l] || PH.es;
+  document.querySelector('input[name="name"]').placeholder = ph.name;
+  document.querySelector('input[name="_replyto"]').placeholder = ph.mail;
+  document.querySelector('textarea[name="message"]').placeholder = ph.msg;
 }
 
 document.querySelectorAll('.ptoggle').forEach(b=>{
