@@ -76,6 +76,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,14,20,.82)
   .stat i{font-size:10.5px}
 }
 @media(max-width:380px){.hero-tag{font-size:12.5px;letter-spacing:.4px}}
+.hero-status{display:inline-flex;align-items:center;gap:9px;margin-top:22px;font-family:var(--mono);font-size:12.5px;color:var(--txt2);border:1px solid var(--line2);padding:7px 14px 7px 12px;border-radius:20px;background:rgba(61,220,151,.04)}
+.hero-status .pulse{width:7px;height:7px;flex-shrink:0;border-radius:50%;background:var(--acc);position:relative}
+.hero-status .pulse::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--acc);animation:pulse 2s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2);opacity:0}}
 /* circuit svg */
 .circuit{position:absolute;right:-40px;top:50%;transform:translateY(-50%);width:46%;max-width:560px;opacity:.85;pointer-events:none}
 @media(max-width:960px){.circuit{display:none}}
@@ -132,6 +136,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,14,20,.82)
 .pcard.wide .pimg img{height:380px;object-fit:cover}
 .pcard:hover .pimg img{transform:scale(1.025)}
 .pimg .cat{position:absolute;top:14px;left:14px;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:1.5px;background:rgba(10,14,20,.9);border:1px solid var(--acc);color:var(--acc);padding:4px 9px;border-radius:2px;text-transform:uppercase}
+.pimg[data-gal]{cursor:zoom-in}
+.pimg .gcount{position:absolute;bottom:14px;right:14px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.5px;background:rgba(10,14,20,.85);border:1px solid var(--line2);color:var(--txt);padding:5px 10px;border-radius:2px;display:flex;align-items:center;gap:6px;transition:border-color .2s,color .2s}
+.pimg .gcount::before{content:'⛶';font-size:12px}
+.pimg[data-gal]:hover .gcount{border-color:var(--acc);color:var(--acc)}
+
+/* ---------- LIGHTBOX ---------- */
+.lb{position:fixed;inset:0;z-index:200;background:rgba(6,9,14,.96);display:none;align-items:center;justify-content:center;touch-action:none}
+.lb.open{display:flex}
+.lb-stage{position:relative;width:100%;height:100%;overflow:hidden;display:flex;align-items:center;justify-content:center;cursor:grab}
+.lb-stage.grabbing{cursor:grabbing}
+.lb-stage img{max-width:88vw;max-height:82vh;user-select:none;-webkit-user-drag:none;will-change:transform;transition:transform .06s linear}
+.lb-top{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:18px 24px;font-family:var(--mono);color:var(--txt2);font-size:12.5px;z-index:2;pointer-events:none}
+.lb-top span{background:rgba(10,14,20,.7);border:1px solid var(--line2);padding:5px 11px;border-radius:2px;pointer-events:auto}
+.lb-x{background:rgba(10,14,20,.7);border:1px solid var(--line2);color:var(--txt);width:38px;height:38px;border-radius:2px;cursor:pointer;font-size:18px;pointer-events:auto;transition:border-color .2s,color .2s}
+.lb-x:hover{border-color:var(--acc);color:var(--acc)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(10,14,20,.7);border:1px solid var(--line2);color:var(--txt);width:44px;height:44px;border-radius:2px;cursor:pointer;font-size:20px;z-index:2;transition:border-color .2s,color .2s}
+.lb-nav:hover{border-color:var(--acc);color:var(--acc)}
+.lb-prev{left:18px}.lb-next{right:18px}
+.lb-hint{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;color:var(--txt3);background:rgba(10,14,20,.7);border:1px solid var(--line2);padding:5px 11px;border-radius:2px;pointer-events:none}
+@media(max-width:700px){.lb-nav{width:38px;height:38px;font-size:16px}.lb-hint{display:none}}
 .pbody{padding:24px 26px 26px;display:flex;flex-direction:column;flex:1}
 .pbody h3{font-size:20px;letter-spacing:-.3px}
 .pbody .role{font-family:var(--mono);font-size:12px;color:var(--txt3);margin-top:4px}
@@ -268,6 +292,7 @@ footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:v
     <p class="hero-tag mono">// <span data-i18n="hero_tag"></span></p>
     <h1>Franco Olmedo<br><span data-i18n="hero_role"></span></h1>
     <p class="hero-sub" data-i18n="hero_sub"></p>
+    <div class="hero-status"><span class="pulse"></span><span data-i18n="hero_status"></span></div>
     <div class="hero-cta">
       <a class="btn btn-p" href="#proj" data-i18n="hero_cta1"></a>
       <a class="btn btn-o cvlink" href="cv-es.pdf" target="_blank" data-i18n="hero_cv"></a>
@@ -338,6 +363,12 @@ footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:v
     <div class="sh rv"><span class="num">02</span><h2 data-i18n="ex_t"></h2></div>
     <div class="tl">
       <div class="tl-item rv">
+        <span class="tl-date">2026 — <span data-i18n="present"></span></span>
+        <h3>POL SRL</h3><h4 data-i18n="ex0_r"></h4>
+        <p data-i18n="ex0_d"></p>
+        <div class="chips"><span class="chip" data-i18n="chip_auto2"></span><span class="chip" data-i18n="chip_pm"></span><span class="chip" data-i18n="chip_web"></span><span class="chip" data-i18n="chip_db"></span><span class="chip" data-i18n="chip_bio"></span></div>
+      </div>
+      <div class="tl-item rv">
         <span class="tl-date">2022 — <span data-i18n="present"></span></span>
         <h3>Contraut SAS</h3><h4 data-i18n="ex1_r"></h4>
         <p data-i18n="ex1_d"></p>
@@ -386,7 +417,7 @@ footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:v
       </article>
 
       <article class="pcard rv">
-        <div class="pimg"><img src="assets/papometro_vision.jpg" alt="Papómetro visión artificial"><span class="cat" data-i18n="cat_auto"></span></div>
+        <div class="pimg" data-gal="p2"><img src="assets/gallery/agroplant_01_titulo.jpg" alt="AgroPlant — Clasificador de papa semilla"><span class="cat" data-i18n="cat_auto"></span><span class="gcount">9</span></div>
         <div class="pbody">
           <h3 data-i18n="p2_t"></h3>
           <p class="role mono">Contraut SAS</p>
@@ -428,7 +459,7 @@ footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:v
       </article>
 
       <article class="pcard rv">
-        <div class="pimg"><img src="assets/obra_bosquejo.jpg" alt="Obra Respiración"><span class="cat" data-i18n="cat_art"></span></div>
+        <div class="pimg" data-gal="p5"><img src="assets/gallery/obra_02_carcasa3d.jpg" alt="Obra Respiración"><span class="cat" data-i18n="cat_art"></span><span class="gcount">5</span></div>
         <div class="pbody">
           <h3 data-i18n="p5_t"></h3>
           <p class="role mono" data-i18n="p5_r"></p>
@@ -509,6 +540,20 @@ footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:v
           </ul></div>
           <button class="ptoggle" data-i18n="more"></button>
           <div class="chips"><span class="chip" data-i18n="chip_med"></span><span class="chip" data-i18n="chip_emb"></span><span class="chip" data-i18n="chip_doc"></span></div>
+        </div>
+      </article>
+
+      <article class="pcard rv">
+        <div class="pimg" data-gal="p9"><img src="assets/gallery/robot_01_ensamblado.jpg" alt="Robot aspirador autónomo" style="object-fit:contain;background:#0c1119"><span class="cat" data-i18n="cat_robot"></span><span class="gcount">2</span></div>
+        <div class="pbody">
+          <h3 data-i18n="p9_t"></h3>
+          <p class="role mono" data-i18n="p9_r"></p>
+          <p data-i18n="p9_d"></p>
+          <div class="pmore"><ul>
+            <li data-i18n="p9_b1"></li><li data-i18n="p9_b2"></li><li data-i18n="p9_b3"></li>
+          </ul></div>
+          <button class="ptoggle" data-i18n="more"></button>
+          <div class="chips"><span class="chip">SolidWorks</span><span class="chip" data-i18n="chip_3dp"></span><span class="chip">L298N</span><span class="chip" data-i18n="chip_emb"></span></div>
         </div>
       </article>
 
@@ -618,6 +663,19 @@ footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:v
   <div class="mnav-ring" id="mnavRing"><div class="mnav-fab" id="mnavFab">⋮</div></div>
 </div>
 
+<div class="lb" id="lb">
+  <div class="lb-top">
+    <span id="lbCounter">1 / 1</span>
+    <button class="lb-x" id="lbClose" aria-label="Cerrar">✕</button>
+  </div>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Anterior">‹</button>
+  <div class="lb-stage" id="lbStage">
+    <img id="lbImg" src="" alt="">
+  </div>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Siguiente">›</button>
+  <span class="lb-hint" id="lbHint">rueda = zoom · arrastrar = mover · doble clic = reset</span>
+</div>
+
 <footer><span data-i18n="foot"></span></footer>
 
 <script>
@@ -628,6 +686,7 @@ es: {
   hero_role:"Electrónica & Sistemas Embebidos",
   hero_sub:"Diseño y producción de PCB multicapa, firmware para microcontroladores, automatización industrial y software de ingeniería. Del esquemático al producto funcionando.",
   hero_cta1:"Ver proyectos", hero_cta2:"Contactame", hero_cv: "Descargar CV",
+  hero_status:"Actualmente en Contraut SAS y POL SRL",
   st_years:"años de experiencia", st_proj:"proyectos", st_tech:"tecnologías", st_eng:"inglés",
   ab_t:"Sobre mí",
   ab_p1:"Soy técnico electrónico egresado con méritos del ITS Villada y estudiante avanzado de Ingeniería Electrónica en la UTN Facultad Regional Córdoba. Desde 2019 trabajo en proyectos reales de electrónica e integración: primero freelance, y desde 2022 como Ingeniero Electrónico Junior en Contraut SAS.",
@@ -635,6 +694,8 @@ es: {
   ab_p3:"Me caracteriza la prolijidad ingenieril: documentación completa, manuales de operador, ensayos y verificación. Busco que cada entrega quede bien terminada, no a medias.",
   f_loc:"Ubicación", f_role:"Rol actual", f_role_v:"Ing. Electrónico Jr.", f_study:"Estudios", f_lang:"Idiomas", f_lang_v:"ES · EN (C1) · DE (A2)", f_avail:"Disponibilidad", f_avail_v:"Part-time / remoto",
   ex_t:"Experiencia", present:"presente",
+  ex0_r:"Pasante — Automatización e Ingeniería Ambiental",
+  ex0_d:"Pasantía en POL SRL (ingeniería ambiental): automatización de procesos, gestión de proyectos, diseño de páginas web y manejo de bases de datos. Desarrollo de proyectos con biodigestores, biochar y lombrifiltro para tratamiento de efluentes.",
   ex1_r:"Ingeniero Electrónico Junior",
   ex1_d:"Diseño y producción de PCBs propias que integran entornos CNC: circuitos, prototipado, análisis, producción y testing. Programación de los microcontroladores de cada placa (PIC, ATmega, Xilinx). Proyectos de automatización llave en mano: clasificadora de papas por visión artificial, control de planta de pirólisis, bancos de ensayo y sistemas de adquisición para clientes como FAESA y Astillero Río Santiago.",
   ex2_c:"Freelance", ex2_r:"Diseñador y Técnico",
@@ -644,9 +705,10 @@ es: {
   ex4_c:"Freelance", ex4_r:"Diseñador y Técnico",
   ex4_d:"Junto a un equipo de kinesiólogos y fisioterapeutas desarrollamos y produjimos una adaptación de auriculares con sistema de LEDs para asistir a pacientes con Parkinson y/o parálisis parcial.",
   chip_panel:"Tablero eléctrico", chip_sens:"Sensórica", chip_servo:"Servomotores", chip_med:"Dispositivo médico", chip_proto:"Prototipado",
+  chip_auto2:"Automatización", chip_pm:"Gestión de proyectos", chip_web:"Diseño web", chip_db:"Bases de datos", chip_bio:"Biodigestores",
   pr_t:"Proyectos destacados",
   pr_sub:"Una selección de trabajos profesionales y personales: hardware, firmware, software e integración industrial.",
-  cat_sw:"Software", cat_auto:"Automatización", cat_pcb:"PCB", cat_art:"Arte + Tecnología", cat_cad:"CAD 3D", cat_plc:"PLC", cat_rd:"I+D",
+  cat_sw:"Software", cat_auto:"Automatización", cat_pcb:"PCB", cat_art:"Arte + Tecnología", cat_cad:"CAD 3D", cat_plc:"PLC", cat_rd:"I+D", cat_robot:"Robótica",
   more:"[+] ver detalles", less:"[–] ocultar detalles",
   p1_r:"Producto propio · Electronik Lösungen",
   p1_d:"Suite EDA de escritorio todo-en-uno de desarrollo propio: captura de esquemáticos (ANSI/IEC), diseño de PCB multicapa, simulación SPICE y de firmware de MCU, visor 3D de placa y modo educativo. Pensada para cubrir en un solo software lo que hoy requiere Altium + Proteus + QElectroTech.",
@@ -654,11 +716,11 @@ es: {
   p1_b2:"Simulación SPICE (DC/AC/transitorio) y ejecución de firmware .hex sobre MCU virtual.",
   p1_b3:"Suite de verificación con 111 tests automatizados en verde.",
   p1_b4:"Import/Export: Gerber, DXF/DWG, KiCad, PDF, Excel; biblioteca de componentes con editor propio.",
-  p2_t:"Papómetro U9 — Clasificadora por visión",
-  p2_d:"Máquina clasificadora de papas por peso estimado mediante visión por computadora: segmentación del contorno, estimación volumétrica y clasificación en 5 categorías con acumulación en cajones físicos.",
+  p2_t:"AgroPlant — Clasificador de Papa Semilla por Visión Robótica",
+  p2_d:"Equipo clasificador de papa semilla instalado en planta: visión por computadora para estimar peso y grado, segmentación del contorno, estimación volumétrica y clasificación en 5 categorías con acumulación en cajones físicos.",
   p2_b1:"Arquitectura distribuida: RPi con GUI táctil de operación + RPi de cámara y procesamiento + dsPIC33F para servos, cintas, balanza y compuertas.",
   p2_b2:"Registro de cosechas por semana/año, calibración guiada y autochequeo al arranque.",
-  p2_b3:"Manual de operador completo, instalación y despliegue automatizado en campo.",
+  p2_b3:"Manual de operador completo, instalación y puesta en marcha en planta del cliente.",
   p3_t:"MixOil V5 — Control de planta de pirólisis",
   p3_d:"Sistema de control, adquisición y telemetría para una planta de pirólisis: monitoreo de temperaturas de horno en tiempo real, sistema de balanza, GUI web de supervisión y simulación del proceso para ensayos.",
   p3_b1:"GUI web con gráficos en vivo (TIR/TCF del horno) y registro histórico de ensayos.",
@@ -691,6 +753,12 @@ es: {
   p8_b1:"Colaboración multidisciplinaria universidad-makers en contexto de emergencia sanitaria.",
   p8_b2:"Documentación final del REESpirator y entregables por etapas (problema → aprendizajes).",
   p8_b3:"Firmware y electrónica de válvulas/sensores del prototipo respirador23.",
+  p9_t:"Robot aspirador autónomo",
+  p9_r:"Proyecto personal — Técnico Electrónico",
+  p9_d:"Robot aspirador diseñado y construido de cero durante la etapa técnica: chasis y hélices de aspiración impresos en 3D (modelado en SolidWorks), driver de motores L298N a medida y control con microcontrolador propio.",
+  p9_b1:"Diseño mecánico completo en SolidWorks: chasis, parachoques con microswitches de choque, soportes de motor y compartimento de batería.",
+  p9_b2:"Placa driver L298N diseñada a medida para el control de los dos motores DC.",
+  p9_b3:"Firmware embebido para sensado de choque, control de motores y aspiración.",
   chip_vision:"Visión artificial", chip_telem:"Telemetría", chip_sim:"Simulación", chip_multi:"Multicapa", chip_3dp:"Impresión 3D", chip_pneu:"Neumática", chip_doc:"Documentación", chip_emb:"Embebidos",
   sk_t:"Habilidades técnicas",
   sk1:"PCB & Circuitos", sk2:"Embebidos & Firmware", sk3:"Automatización industrial", sk4:"CAD & Mecánica", sk5:"Software", sk6:"Idiomas",
@@ -711,6 +779,7 @@ en: {
   hero_role:"Electronics & Embedded Systems",
   hero_sub:"Multilayer PCB design and production, microcontroller firmware, industrial automation and engineering software. From schematic to working product.",
   hero_cta1:"View projects", hero_cta2:"Get in touch", hero_cv:"Download CV",
+  hero_status:"Currently at Contraut SAS and POL SRL",
   st_years:"years of experience", st_proj:"projects", st_tech:"technologies", st_eng:"english",
   ab_t:"About me",
   ab_p1:"I'm an electronics technician, graduated with merits from ITS Villada, and an advanced Electronic Engineering student at UTN Córdoba (FRC). I've been working on real electronics and integration projects since 2019 — first freelance, and since 2022 as a Junior Electronic Engineer at Contraut SAS.",
@@ -718,6 +787,8 @@ en: {
   ab_p3:"I'm defined by engineering tidiness: complete documentation, operator manuals, testing and verification. Every delivery finished properly — never halfway.",
   f_loc:"Location", f_role:"Current role", f_role_v:"Jr. Electronic Engineer", f_study:"Studies", f_lang:"Languages", f_lang_v:"ES · EN (C1) · DE (A2)", f_avail:"Availability", f_avail_v:"Part-time / remote",
   ex_t:"Experience", present:"present",
+  ex0_r:"Intern — Automation & Environmental Engineering",
+  ex0_d:"Internship at POL SRL (environmental engineering): process automation, project management, web design and database management. Development of biodigester, biochar and vermifilter projects for wastewater treatment.",
   ex1_r:"Junior Electronic Engineer",
   ex1_d:"Design and production of in-house PCBs integrating CNC environments: circuits, prototyping, analysis, production and testing. Firmware for each board's microcontrollers (PIC, ATmega, Xilinx). Turn-key automation projects: a machine-vision potato classifier, pyrolysis plant control, test benches and acquisition systems for clients such as FAESA and Astillero Río Santiago.",
   ex2_c:"Freelance", ex2_r:"Designer & Technician",
@@ -727,9 +798,10 @@ en: {
   ex4_c:"Freelance", ex4_r:"Designer & Technician",
   ex4_d:"Together with a team of kinesiologists and physiotherapists, developed and produced a headset adaptation with an LED system to assist patients with Parkinson's and/or partial paralysis.",
   chip_panel:"Electrical panel", chip_sens:"Sensors", chip_servo:"Servomotors", chip_med:"Medical device", chip_proto:"Prototyping",
+  chip_auto2:"Automation", chip_pm:"Project management", chip_web:"Web design", chip_db:"Databases", chip_bio:"Biodigesters",
   pr_t:"Featured projects",
   pr_sub:"A selection of professional and personal work: hardware, firmware, software and industrial integration.",
-  cat_sw:"Software", cat_auto:"Automation", cat_pcb:"PCB", cat_art:"Art + Tech", cat_cad:"3D CAD", cat_plc:"PLC", cat_rd:"R&D",
+  cat_sw:"Software", cat_auto:"Automation", cat_pcb:"PCB", cat_art:"Art + Tech", cat_cad:"3D CAD", cat_plc:"PLC", cat_rd:"R&D", cat_robot:"Robotics",
   more:"[+] show details", less:"[–] hide details",
   p1_r:"Own product · Electronik Lösungen",
   p1_d:"Self-developed all-in-one desktop EDA suite: schematic capture (ANSI/IEC), multilayer PCB design, SPICE and MCU-firmware simulation, 3D board viewer and an educational mode. Built to cover in a single tool what currently takes Altium + Proteus + QElectroTech.",
@@ -737,11 +809,11 @@ en: {
   p1_b2:"SPICE simulation (DC/AC/transient) plus .hex firmware execution on a virtual MCU.",
   p1_b3:"Verification suite with 111 automated tests, all green.",
   p1_b4:"Import/Export: Gerber, DXF/DWG, KiCad, PDF, Excel; component library with a built-in editor.",
-  p2_t:"Papómetro U9 — Vision-based classifier",
-  p2_d:"Potato-classifying machine using computer vision to estimate weight: contour segmentation, volumetric estimation and classification into 5 categories accumulated in physical drawers.",
+  p2_t:"AgroPlant — Seed Potato Classifier by Robotic Vision",
+  p2_d:"Seed-potato classifier installed on-site at a client's plant: computer vision to estimate weight and grade, contour segmentation, volumetric estimation and classification into 5 categories accumulated in physical drawers.",
   p2_b1:"Distributed architecture: touchscreen-GUI RPi + camera/processing RPi + dsPIC33F driving servos, belts, scale and gates.",
   p2_b2:"Harvest logging by week/year, guided calibration and startup self-check.",
-  p2_b3:"Full operator manual, installation guide and automated field deployment.",
+  p2_b3:"Full operator manual, installation and commissioning at the client's plant.",
   p3_t:"MixOil V5 — Pyrolysis plant control",
   p3_d:"Control, acquisition and telemetry system for a pyrolysis plant: real-time furnace temperature monitoring, weighing system, web supervision GUI and process simulation for test runs.",
   p3_b1:"Web GUI with live charts (furnace TIR/TCF) and historical test logging.",
@@ -774,6 +846,12 @@ en: {
   p8_b1:"Multidisciplinary university–maker collaboration during the health emergency.",
   p8_b2:"Final REESpirator documentation and staged deliverables (problem → learnings).",
   p8_b3:"Firmware and valve/sensor electronics of the respirador23 prototype.",
+  p9_t:"Autonomous robot vacuum",
+  p9_r:"Personal project — Electronics Technician",
+  p9_d:"Robot vacuum designed and built from scratch during my technical studies: 3D-printed chassis and suction impellers (modeled in SolidWorks), a custom L298N motor driver board and firmware on its own microcontroller.",
+  p9_b1:"Full mechanical design in SolidWorks: chassis, bumper with collision microswitches, motor mounts and battery compartment.",
+  p9_b2:"Custom-designed L298N driver board to control the two DC motors.",
+  p9_b3:"Embedded firmware for collision sensing, motor control and suction.",
   chip_vision:"Machine vision", chip_telem:"Telemetry", chip_sim:"Simulation", chip_multi:"Multilayer", chip_3dp:"3D printing", chip_pneu:"Pneumatics", chip_doc:"Documentation", chip_emb:"Embedded",
   sk_t:"Technical skills",
   sk1:"PCB & Circuits", sk2:"Embedded & Firmware", sk3:"Industrial automation", sk4:"CAD & Mechanical", sk5:"Software", sk6:"Languages",
@@ -794,6 +872,7 @@ de: {
   hero_role:"Elektronik & Eingebettete Systeme",
   hero_sub:"Entwicklung und Fertigung mehrlagiger Leiterplatten, Mikrocontroller-Firmware, Industrieautomatisierung und Ingenieursoftware. Vom Schaltplan zum fertigen Produkt.",
   hero_cta1:"Projekte ansehen", hero_cta2:"Kontakt", hero_cv:"Lebenslauf herunterladen",
+  hero_status:"Aktuell bei Contraut SAS und POL SRL",
   st_years:"Jahre Erfahrung", st_proj:"Projekte", st_tech:"Technologien", st_eng:"Englisch",
   ab_t:"Über mich",
   ab_p1:"Ich bin Elektroniktechniker mit Auszeichnung (ITS Villada) und fortgeschrittener Student des Elektronikingenieurwesens an der UTN Córdoba (FRC). Seit 2019 arbeite ich an realen Elektronik- und Integrationsprojekten — zunächst freiberuflich, seit 2022 als Junior-Elektronikingenieur bei Contraut SAS.",
@@ -801,6 +880,8 @@ de: {
   ab_p3:"Mich zeichnet ingenieurmäßige Sorgfalt aus: vollständige Dokumentation, Bedienungsanleitungen, Tests und Verifikation. Jede Lieferung sauber abgeschlossen — nie halbfertig.",
   f_loc:"Standort", f_role:"Aktuelle Rolle", f_role_v:"Jr. Elektronikingenieur", f_study:"Studium", f_lang:"Sprachen", f_lang_v:"ES · EN (C1) · DE (A2)", f_avail:"Verfügbarkeit", f_avail_v:"Teilzeit / Remote",
   ex_t:"Erfahrung", present:"heute",
+  ex0_r:"Praktikant — Automatisierung & Umwelttechnik",
+  ex0_d:"Praktikum bei POL SRL (Umwelttechnik): Prozessautomatisierung, Projektmanagement, Webdesign und Datenbankverwaltung. Entwicklung von Projekten mit Biodigestoren, Biokohle und Wurmfiltern zur Abwasserbehandlung.",
   ex1_r:"Junior-Elektronikingenieur",
   ex1_d:"Entwicklung und Fertigung eigener Leiterplatten für CNC-Umgebungen: Schaltungen, Prototyping, Analyse, Fertigung und Test. Programmierung der Mikrocontroller (PIC, ATmega, Xilinx). Schlüsselfertige Automatisierungsprojekte: Kartoffelsortierer mit Bildverarbeitung, Steuerung einer Pyrolyseanlage, Prüfstände und Messsysteme für Kunden wie FAESA und die Werft Astillero Río Santiago.",
   ex2_c:"Freiberuflich", ex2_r:"Entwickler & Techniker",
@@ -810,9 +891,10 @@ de: {
   ex4_c:"Freiberuflich", ex4_r:"Entwickler & Techniker",
   ex4_d:"Gemeinsam mit einem Team aus Kinesiologen und Physiotherapeuten Entwicklung und Fertigung eines Kopfhörer-Aufsatzes mit LED-System zur Unterstützung von Patienten mit Parkinson und/oder partieller Lähmung.",
   chip_panel:"Schaltschrank", chip_sens:"Sensorik", chip_servo:"Servomotoren", chip_med:"Medizingerät", chip_proto:"Prototyping",
+  chip_auto2:"Automatisierung", chip_pm:"Projektmanagement", chip_web:"Webdesign", chip_db:"Datenbanken", chip_bio:"Biodigestoren",
   pr_t:"Ausgewählte Projekte",
   pr_sub:"Eine Auswahl beruflicher und persönlicher Arbeiten: Hardware, Firmware, Software und industrielle Integration.",
-  cat_sw:"Software", cat_auto:"Automatisierung", cat_pcb:"Leiterplatte", cat_art:"Kunst + Technik", cat_cad:"3D-CAD", cat_plc:"SPS", cat_rd:"F&E",
+  cat_sw:"Software", cat_auto:"Automatisierung", cat_pcb:"Leiterplatte", cat_art:"Kunst + Technik", cat_cad:"3D-CAD", cat_plc:"SPS", cat_rd:"F&E", cat_robot:"Robotik",
   more:"[+] Details anzeigen", less:"[–] Details ausblenden",
   p1_r:"Eigenes Produkt · Electronik Lösungen",
   p1_d:"Selbst entwickelte All-in-One-Desktop-EDA-Suite: Schaltplanerfassung (ANSI/IEC), mehrlagiges Leiterplattendesign, SPICE- und MCU-Firmware-Simulation, 3D-Ansicht und Lernmodus. Ein einziges Werkzeug für das, was heute Altium + Proteus + QElectroTech erfordert.",
@@ -820,11 +902,11 @@ de: {
   p1_b2:"SPICE-Simulation (DC/AC/transient) und Ausführung von .hex-Firmware auf virtueller MCU.",
   p1_b3:"Verifikationssuite mit 111 automatisierten Tests, alle grün.",
   p1_b4:"Import/Export: Gerber, DXF/DWG, KiCad, PDF, Excel; Bauteilbibliothek mit eigenem Editor.",
-  p2_t:"Papómetro U9 — Sortierung per Bildverarbeitung",
-  p2_d:"Kartoffelsortiermaschine mit Gewichtsschätzung per Computer Vision: Kontursegmentierung, Volumenschätzung und Klassifizierung in 5 Kategorien mit Sammlung in physischen Schubladen.",
+  p2_t:"AgroPlant — Kartoffelsortierer per Robotersicht",
+  p2_d:"Beim Kunden installierter Pflanzkartoffel-Sortierer: Computer Vision zur Schätzung von Gewicht und Güteklasse, Kontursegmentierung, Volumenschätzung und Klassifizierung in 5 Kategorien mit Sammlung in physischen Schubladen.",
   p2_b1:"Verteilte Architektur: RPi mit Touch-GUI + Kamera-RPi + dsPIC33F für Servos, Förderbänder, Waage und Klappen.",
   p2_b2:"Ernteprotokoll nach Woche/Jahr, geführte Kalibrierung und Selbsttest beim Start.",
-  p2_b3:"Vollständiges Bedienerhandbuch, Installationsanleitung und automatisiertes Deployment im Feld.",
+  p2_b3:"Vollständiges Bedienerhandbuch, Installation und Inbetriebnahme beim Kunden.",
   p3_t:"MixOil V5 — Steuerung einer Pyrolyseanlage",
   p3_d:"Steuerungs-, Erfassungs- und Telemetriesystem für eine Pyrolyseanlage: Echtzeitüberwachung der Ofentemperaturen, Wiegesystem, Web-GUI zur Überwachung und Prozesssimulation für Testläufe.",
   p3_b1:"Web-GUI mit Live-Diagrammen (Ofen TIR/TCF) und historischer Protokollierung.",
@@ -857,6 +939,12 @@ de: {
   p8_b1:"Multidisziplinäre Zusammenarbeit Universität–Maker während der Gesundheitskrise.",
   p8_b2:"Abschlussdokumentation des REESpirator und Ergebnisse in Etappen (Problem → Erkenntnisse).",
   p8_b3:"Firmware und Ventil-/Sensorelektronik des Prototyps respirador23.",
+  p9_t:"Autonomer Saugroboter",
+  p9_r:"Persönliches Projekt — Elektroniktechniker",
+  p9_d:"Von Grund auf während meiner technischen Ausbildung entworfener und gebauter Saugroboter: 3D-gedrucktes Chassis und Sauggebläse (in SolidWorks modelliert), eigens entworfene L298N-Motortreiberplatine und Firmware auf eigenem Mikrocontroller.",
+  p9_b1:"Vollständiges mechanisches Design in SolidWorks: Chassis, Stoßstange mit Kollisions-Mikroschaltern, Motorhalterungen und Batteriefach.",
+  p9_b2:"Eigens entworfene L298N-Treiberplatine zur Steuerung der beiden Gleichstrommotoren.",
+  p9_b3:"Eingebettete Firmware für Kollisionserkennung, Motorsteuerung und Saugfunktion.",
   chip_vision:"Bildverarbeitung", chip_telem:"Telemetrie", chip_sim:"Simulation", chip_multi:"Mehrlagig", chip_3dp:"3D-Druck", chip_pneu:"Pneumatik", chip_doc:"Dokumentation", chip_emb:"Embedded",
   sk_t:"Technische Kenntnisse",
   sk1:"Leiterplatten & Schaltungen", sk2:"Embedded & Firmware", sk3:"Industrieautomatisierung", sk4:"CAD & Mechanik", sk5:"Software", sk6:"Sprachen",
@@ -923,6 +1011,97 @@ document.querySelectorAll('.ptoggle').forEach(b=>{
     b.textContent = card.classList.contains('open') ? I18N[LANG].less : I18N[LANG].more;
   });
 });
+
+/* ---------- GALLERY LIGHTBOX (zoom + pan) ---------- */
+const GALLERIES = {
+  p2: ['agroplant_01_titulo.jpg','agroplant_02_hmi_onsite.jpg','agroplant_03_sensor_proto.jpg','agroplant_04_pcb.jpg','agroplant_05_vision_box.jpg','agroplant_06_vision_test.jpg','agroplant_07_hmi_grado.jpg','agroplant_08_planta_molino.jpg','agroplant_09_panel.jpg'],
+  p5: ['obra_01_cad.jpg','obra_02_carcasa3d.jpg','obra_03_control.jpg','obra_04_ensamble.jpg','obra_05_completo.jpg'],
+  p9: ['robot_01_ensamblado.jpg','robot_02_desensamblado.jpg']
+};
+(function(){
+  const lb = document.getElementById('lb'), stage = document.getElementById('lbStage'), img = document.getElementById('lbImg');
+  const counter = document.getElementById('lbCounter');
+  let gal = [], idx = 0, scale = 1, tx = 0, ty = 0, dragging = false, sx = 0, sy = 0, stx = 0, sty = 0;
+
+  function render(){
+    img.src = 'assets/gallery/' + gal[idx];
+    counter.textContent = (idx+1) + ' / ' + gal.length;
+    scale = 1; tx = 0; ty = 0; applyT();
+  }
+  function applyT(){ img.style.transform = `translate(${tx}px,${ty}px) scale(${scale})`; }
+  function open(key, startImg){
+    gal = GALLERIES[key]; if(!gal) return;
+    idx = startImg || 0;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    render();
+  }
+  function close(){ lb.classList.remove('open'); document.body.style.overflow = ''; }
+  function next(){ idx = (idx+1) % gal.length; render(); }
+  function prev(){ idx = (idx-1+gal.length) % gal.length; render(); }
+
+  document.querySelectorAll('.pimg[data-gal]').forEach(el=>{
+    el.addEventListener('click', ()=> open(el.getAttribute('data-gal'), 0));
+  });
+  document.getElementById('lbClose').addEventListener('click', close);
+  document.getElementById('lbNext').addEventListener('click', e=>{ e.stopPropagation(); next(); });
+  document.getElementById('lbPrev').addEventListener('click', e=>{ e.stopPropagation(); prev(); });
+  lb.addEventListener('click', e=>{ if(e.target === lb) close(); });
+  document.addEventListener('keydown', e=>{
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') close();
+    if(e.key==='ArrowRight') next();
+    if(e.key==='ArrowLeft') prev();
+  });
+
+  // wheel = zoom centered roughly on cursor
+  stage.addEventListener('wheel', e=>{
+    e.preventDefault();
+    const delta = e.deltaY > 0 ? -0.18 : 0.18;
+    scale = Math.min(5, Math.max(1, scale + delta));
+    if(scale === 1){ tx = 0; ty = 0; }
+    applyT();
+  }, {passive:false});
+
+  // drag to pan (mouse + touch via pointer events)
+  stage.addEventListener('pointerdown', e=>{
+    if(scale <= 1) return;
+    dragging = true; stage.classList.add('grabbing');
+    sx = e.clientX; sy = e.clientY; stx = tx; sty = ty;
+    stage.setPointerCapture(e.pointerId);
+  });
+  stage.addEventListener('pointermove', e=>{
+    if(!dragging) return;
+    tx = stx + (e.clientX - sx); ty = sty + (e.clientY - sy);
+    applyT();
+  });
+  ['pointerup','pointercancel','pointerleave'].forEach(ev=>{
+    stage.addEventListener(ev, ()=>{ dragging = false; stage.classList.remove('grabbing'); });
+  });
+
+  // double-click / double-tap = toggle zoom
+  img.addEventListener('dblclick', ()=>{
+    scale = scale > 1 ? 1 : 2.4; tx = 0; ty = 0; applyT();
+  });
+
+  // basic pinch-to-zoom on touch
+  let pinchStart = null;
+  stage.addEventListener('touchstart', e=>{
+    if(e.touches.length === 2){
+      const [a,b] = e.touches;
+      pinchStart = { d: Math.hypot(a.clientX-b.clientX, a.clientY-b.clientY), scale };
+    }
+  }, {passive:true});
+  stage.addEventListener('touchmove', e=>{
+    if(e.touches.length === 2 && pinchStart){
+      e.preventDefault();
+      const [a,b] = e.touches;
+      const d = Math.hypot(a.clientX-b.clientX, a.clientY-b.clientY);
+      scale = Math.min(5, Math.max(1, pinchStart.scale * (d / pinchStart.d)));
+      applyT();
+    }
+  }, {passive:false});
+})();
 
 const io = new IntersectionObserver(es=>{
   es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
