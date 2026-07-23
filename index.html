@@ -9,17 +9,17 @@
 <meta property="og:description" content="PCB multicapa, firmware embebido, automatización industrial y software de ingeniería. Del esquemático al producto funcionando.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://francoolmedo.github.io/assets/electronart_app.png">
-<meta name="theme-color" content="#0a0e14">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230a0e14'/%3E%3Cpath d='M14 20 H34 M14 20 V48 M14 33 H30' stroke='%233ddc97' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='46' cy='44' r='6' fill='none' stroke='%2338bdf8' stroke-width='4'/%3E%3Cpath d='M46 20 V38' stroke='%2338bdf8' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#120d0a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23120d0a'/%3E%3Cpath d='M14 20 H34 M14 20 V48 M14 33 H30' stroke='%23ffb454' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='46' cy='44' r='6' fill='none' stroke='%23ff6b57' stroke-width='4'/%3E%3Cpath d='M46 20 V38' stroke='%23ff6b57' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0a0e14; --bg2:#0e141d; --panel:#111926; --panel2:#15202f;
-  --line:#1d2a3a; --line2:#28394e;
-  --txt:#dbe4f0; --txt2:#8fa3ba; --txt3:#5c7089;
-  --acc:#3ddc97; --acc2:#38bdf8; --accD:#0f2e24;
+  --bg:#120d0a; --bg2:#171009; --panel:#1d140d; --panel2:#241a10;
+  --line:#3a2a1d; --line2:#4e3a28;
+  --txt:#f0e4db; --txt2:#baa38f; --txt3:#89725c;
+  --acc:#ffb454; --acc2:#ff6b57; --accD:#6b3810;
   --mono:'JetBrains Mono',monospace; --sans:'Inter',sans-serif; --serif:'Fraunces','Inter',serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -84,16 +84,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,14,20,.82)
 .hero-status .pulse::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--acc);animation:pulse 2s ease-out infinite}
 @keyframes pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2);opacity:0}}
 /* circuit svg */
-.circuit{position:absolute;right:-40px;top:50%;transform:translateY(-50%);width:46%;max-width:560px;opacity:.85;pointer-events:none}
+.circuit{position:absolute;right:-40px;top:50%;transform:translateY(calc(-50% + var(--parallax,0px)));width:46%;max-width:560px;opacity:.85;pointer-events:none}
 @media(max-width:960px){.circuit{display:none}}
 .tr{fill:none;stroke:var(--line2);stroke-width:2}
-.tr.glow{stroke:var(--acc);stroke-width:2.2;stroke-dasharray:340;stroke-dashoffset:340;animation:trace 5s ease-in-out infinite}
-.tr.glow.b{stroke:var(--acc2);animation-delay:1.6s}
-.tr.glow.c{animation-delay:3s}
-@keyframes trace{0%{stroke-dashoffset:340;opacity:0}12%{opacity:1}55%{stroke-dashoffset:0;opacity:1}80%{opacity:0}100%{stroke-dashoffset:0;opacity:0}}
+.tr.glow{stroke:var(--acc);stroke-width:2.2}
+.tr.glow.b{stroke:var(--acc2)}
+.tr.glow.c{stroke:var(--acc)}
 .pad{fill:var(--panel2);stroke:var(--line2);stroke-width:1.6}
 .pad.hot{stroke:var(--acc);animation:blink 2.4s ease-in-out infinite}
 @keyframes blink{0%,100%{fill:var(--panel2)}50%{fill:var(--accD)}}
+.circuit .pulse-dot{filter:blur(.2px)}
 
 /* ---------- SECTION HEADERS ---------- */
 .sh{margin-bottom:60px}
@@ -329,11 +329,11 @@ footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:v
   </div>
   <svg class="circuit" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <path class="tr" d="M40 80 H180 V160 H300"/>
-    <path class="tr glow" d="M40 80 H180 V160 H300"/>
+    <path class="tr glow" id="circA" d="M40 80 H180 V160 H300"/>
     <path class="tr" d="M40 250 H140 V330 H260 V410"/>
-    <path class="tr glow b" d="M40 250 H140 V330 H260 V410"/>
+    <path class="tr glow b" id="circB" d="M40 250 H140 V330 H260 V410"/>
     <path class="tr" d="M460 60 V180 H360 V260"/>
-    <path class="tr glow c" d="M460 60 V180 H360 V260"/>
+    <path class="tr glow c" id="circC" d="M460 60 V180 H360 V260"/>
     <path class="tr" d="M300 160 H420 V330 H340"/>
     <path class="tr" d="M120 440 H260"/>
     <rect class="pad" x="290" y="150" width="20" height="20" rx="3"/>
@@ -345,7 +345,6 @@ footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:v
     <rect class="pad hot" x="330" y="320" width="20" height="20" rx="3"/>
     <rect class="pad" x="110" y="430" width="20" height="20" rx="3"/>
     <rect x="200" y="205" width="110" height="76" rx="6" fill="var(--panel)" stroke="var(--line2)" stroke-width="2"/>
-    <text x="255" y="248" text-anchor="middle" fill="var(--acc)" font-family="JetBrains Mono" font-size="13" font-weight="600">dsPIC33F</text>
     <line x1="200" y1="220" x2="182" y2="220" stroke="var(--line2)" stroke-width="2"/>
     <line x1="200" y1="240" x2="182" y2="240" stroke="var(--line2)" stroke-width="2"/>
     <line x1="200" y1="260" x2="182" y2="260" stroke="var(--line2)" stroke-width="2"/>
@@ -356,6 +355,9 @@ footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:v
     <text x="170" y="264" text-anchor="end" fill="var(--txt3)" font-family="JetBrains Mono" font-size="8" letter-spacing="1">GND</text>
     <text x="340" y="224" fill="var(--txt3)" font-family="JetBrains Mono" font-size="8" letter-spacing="1">SIG</text>
     <text x="340" y="264" fill="var(--txt3)" font-family="JetBrains Mono" font-size="8" letter-spacing="1">CLK</text>
+    <circle class="pulse-dot" id="circDotA" r="4" fill="var(--acc)"/>
+    <circle class="pulse-dot" id="circDotB" r="4" fill="var(--acc2)"/>
+    <circle class="pulse-dot" id="circDotC" r="4" fill="var(--acc)"/>
   </svg>
 </header>
 
@@ -1213,6 +1215,44 @@ document.querySelectorAll('.lvl').forEach(el=>{
     });
   }, {rootMargin:'-45% 0px -50% 0px'});
   secIds.filter(id=>id!=='top').forEach(id=>{ const el=document.getElementById(id); if(el) spy.observe(el); });
+})();
+
+/* ---- Hero circuit: corriente "conduciendo" que reacciona al scroll ---- */
+(function(){
+  const heroEl = document.querySelector('.hero');
+  const paths = {
+    A: document.getElementById('circA'),
+    B: document.getElementById('circB'),
+    C: document.getElementById('circC')
+  };
+  const dots = {
+    A: document.getElementById('circDotA'),
+    B: document.getElementById('circDotB'),
+    C: document.getElementById('circDotC')
+  };
+  if(!heroEl || !paths.A || !paths.B || !paths.C) return;
+
+  const lens = {};
+  for(const k in paths){ lens[k] = paths[k].getTotalLength(); paths[k].style.strokeDasharray = lens[k]; }
+
+  let t = 0;
+  function frame(){
+    const max = document.body.scrollHeight - window.innerHeight;
+    const scrollFrac = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+    t += 0.006;
+    const speedBoost = scrollFrac * 3;
+    ['A','B','C'].forEach((k, i)=>{
+      const len = lens[k];
+      const prog = (t * (0.6 + i*0.15) + speedBoost + i*0.33) % 1;
+      paths[k].style.strokeDashoffset = len * (1 - ((t*(0.5+i*0.1) + speedBoost + i*0.3) % 1));
+      const pt = paths[k].getPointAtLength(prog * len);
+      dots[k].setAttribute('cx', pt.x); dots[k].setAttribute('cy', pt.y);
+      dots[k].style.opacity = 0.55 + 0.45*Math.sin(t*8 + i);
+    });
+    heroEl.style.setProperty('--parallax', (scrollFrac*30) + 'px');
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
 })();
 
 setLang(LANG);
