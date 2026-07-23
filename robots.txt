@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://francoolmedo.github.io/sitemap.xml
+Sitemap: https://electroniklosungen.com.ar/sitemap.xml
