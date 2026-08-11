@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://electroniklosungen.com.ar/sitemap.xml
+Sitemap: https://franco.electroniklosungen.com.ar/sitemap.xml

@@ -8,8 +8,8 @@
 <meta property="og:title" content="Franco Olmedo — Electrónica & Sistemas Embebidos">
 <meta property="og:description" content="PCB multicapa, firmware embebido, automatización industrial y software de ingeniería. Del esquemático al producto funcionando.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://electroniklosungen.com.ar/">
-<meta property="og:image" content="https://electroniklosungen.com.ar/assets/electronart_app.png">
+<meta property="og:url" content="https://franco.electroniklosungen.com.ar/">
+<meta property="og:image" content="https://franco.electroniklosungen.com.ar/assets/electronart_app.png">
 <meta name="theme-color" content="#120d0a">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23120d0a'/%3E%3Cpath d='M14 20 H34 M14 20 V48 M14 33 H30' stroke='%23ffb454' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='46' cy='44' r='6' fill='none' stroke='%23ff6b57' stroke-width='4'/%3E%3Cpath d='M46 20 V38' stroke='%23ff6b57' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -140,6 +140,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,14,20,.82)
 .pcard::after{content:'';position:absolute;top:-1px;left:-1px;width:18px;height:18px;border-top:2px solid var(--line2);border-left:2px solid var(--line2);opacity:0;transition:opacity .25s}
 .pcard:hover{border-color:var(--acc);box-shadow:0 14px 32px rgba(0,0,0,.4)}
 .pcard:hover::after{opacity:1;border-color:var(--acc)}
+.pcard-ea { border-radius: 0; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%); border-color: #3A404F; }
+.pcard-ea:hover { border-color: #C9A227; }
+.pcard-ea .pimg .cat { font-family: 'Bahnschrift', var(--sans); border-radius: 0; color: #C9A227; border-color: #C9A227; background: #0C0E12; }
+.ea-link { display: inline-block; margin-top: 15px; color: #C9A227; font-family: 'Bahnschrift', var(--sans); text-decoration: none; border: 1px solid #3A404F; padding: 6px 12px; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%); transition: .2s; }
+.ea-link:hover { border-color: #C9A227; background: rgba(201,162,39,0.07); }
 .pcard.wide{grid-column:1/-1}
 .pimg{position:relative;background:#060a10;border-bottom:1px solid var(--line);overflow:hidden}
 .pimg img{width:100%;height:280px;object-fit:cover;object-position:top;display:block;transition:transform .5s}
@@ -428,8 +433,8 @@ footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:v
     <div class="sh rv"><span class="num">03</span><h2 data-i18n="pr_t"></h2><p data-i18n="pr_sub"></p></div>
     <div class="pgrid">
 
-      <article class="pcard wide rv">
-        <div class="pimg"><img src="assets/electronart_app.png" alt="ElectronArt EDA"><span class="cat" data-i18n="cat_sw"></span></div>
+      <article class="pcard pcard-ea wide rv">
+        <div class="pimg"><a href="https://electroniklosungen.com.ar" target="_blank"><img src="assets/electronart_app.png" alt="ElectronArt EDA"></a><span class="cat" data-i18n="cat_sw"></span></div>
         <div class="pbody">
           <h3>ElectronArt — EDA Suite</h3>
           <p class="role mono" data-i18n="p1_r"></p>
@@ -438,7 +443,8 @@ footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:v
             <li data-i18n="p1_b1"></li><li data-i18n="p1_b2"></li><li data-i18n="p1_b3"></li><li data-i18n="p1_b4"></li>
           </ul></div>
           <button class="ptoggle" data-i18n="more"></button>
-          <div class="chips"><span class="chip">Python 3.11</span><span class="chip">PySide6</span><span class="chip">NumPy / SciPy</span><span class="chip">SPICE</span><span class="chip">3D</span></div>
+          <div style="margin-top:14px"><a href="https://electroniklosungen.com.ar" target="_blank" class="ea-link" data-i18n="p1_link"></a></div>
+          <div class="chips" style="margin-top:16px"><span class="chip">Python</span><span class="chip">PySide6</span><span class="chip">NumPy / SciPy</span><span class="chip">SPICE</span><span class="chip">3D</span></div>
         </div>
       </article>
 
@@ -669,6 +675,7 @@ footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:v
         <p data-i18n="ct_d"></p>
         <div class="cinfo-links">
           <a href="mailto:olmedo.franco.fo@gmail.com"><i>@</i>olmedo.franco.fo@gmail.com</a>
+          <a href="https://www.linkedin.com/in/franco-olmedo-967405194/" target="_blank" rel="noopener"><i>in</i>LinkedIn</a>
           <span><i>tel</i>+54 9 351 248-7080</span>
           <span><i>loc</i>Villa Allende, Córdoba, AR</span>
           <a class="cvlink" href="cv-es.pdf" target="_blank"><i style="font-family:serif">↓</i><span data-i18n="hero_cv"></span></a>
@@ -748,12 +755,13 @@ es: {
   ex_extras_t:"Extras", ex_extras_sub:"Piezas sueltas: PCBs individuales, renders y modelos 3D que no tienen su propio proyecto.",
   ex_extras_empty:"Próximamente — se está armando esta galería.",
   more:"[+] ver detalles", less:"[–] ocultar detalles",
-  p1_r:"Producto propio · Electronik Lösungen",
-  p1_d:"Suite EDA de escritorio todo-en-uno de desarrollo propio: captura de esquemáticos (ANSI/IEC), diseño de PCB multicapa, simulación SPICE y de firmware de MCU, visor 3D de placa y modo educativo. Pensada para cubrir en un solo software lo que hoy requiere Altium + Proteus + QElectroTech.",
-  p1_b1:"Stack: Python 3.11, PySide6/Qt, NumPy, SciPy, Matplotlib, ReportLab — multiplataforma (Windows/Linux/macOS).",
-  p1_b2:"Simulación SPICE (DC/AC/transitorio) y ejecución de firmware .hex sobre MCU virtual.",
-  p1_b3:"Suite de verificación con 111 tests automatizados en verde.",
-  p1_b4:"Import/Export: Gerber, DXF/DWG, KiCad, PDF, Excel; biblioteca de componentes con editor propio.",
+  p1_r:"Producto comercializado · Electronik Lösungen",
+  p1_d:"Suite EDA de escritorio todo-en-uno escrita en Python y PySide6: captura de esquemáticos, diseño de PCB multicapa, simulación SPICE, visor 3D y módulo eléctrico IEC 60617/PLC. Un producto comercial con licencias offline (Ed25519) en tres idiomas.",
+  p1_b1:"Autorouter multicapa que cierra el 100% de las conexiones en placa de ejemplo.",
+  p1_b2:"Exportación para manufactura: Gerber con arcos reales, IPC-2581, ODB++ y STEP 3D.",
+  p1_b3:"Suite de verificación sólida con 252 tests automatizados.",
+  p1_b4:"Disponible a la venta en tres planes para uso comercial.",
+  p1_link:"Visitar el sitio de ElectronArt ↗",
   p2_t:"AgroPlant — Clasificador de Papa Semilla por Visión Robótica",
   p2_d:"Equipo clasificador de papa semilla instalado en planta: visión por computadora para estimar peso y grado, segmentación del contorno, estimación volumétrica y clasificación en 5 categorías con acumulación en cajones físicos.",
   p2_b1:"Arquitectura distribuida: RPi con GUI táctil de operación + RPi de cámara y procesamiento + dsPIC33F para servos, cintas, balanza y compuertas.",
@@ -843,12 +851,13 @@ en: {
   ex_extras_t:"Extras", ex_extras_sub:"Standalone pieces: individual PCBs, renders and 3D models that don't have their own project.",
   ex_extras_empty:"Coming soon — this gallery is being put together.",
   more:"[+] show details", less:"[–] hide details",
-  p1_r:"Own product · Electronik Lösungen",
-  p1_d:"Self-developed all-in-one desktop EDA suite: schematic capture (ANSI/IEC), multilayer PCB design, SPICE and MCU-firmware simulation, 3D board viewer and an educational mode. Built to cover in a single tool what currently takes Altium + Proteus + QElectroTech.",
-  p1_b1:"Stack: Python 3.11, PySide6/Qt, NumPy, SciPy, Matplotlib, ReportLab — cross-platform (Windows/Linux/macOS).",
-  p1_b2:"SPICE simulation (DC/AC/transient) plus .hex firmware execution on a virtual MCU.",
-  p1_b3:"Verification suite with 111 automated tests, all green.",
-  p1_b4:"Import/Export: Gerber, DXF/DWG, KiCad, PDF, Excel; component library with a built-in editor.",
+  p1_r:"Commercial product · Electronik Lösungen",
+  p1_d:"All-in-one desktop EDA suite written in Python and PySide6: schematic capture, multilayer PCB design, SPICE simulation, 3D viewer and IEC 60617/PLC electrical module. A commercial product with offline Ed25519 licenses in three languages.",
+  p1_b1:"Multilayer autorouter achieving 100% completion on sample board.",
+  p1_b2:"Manufacturing export: Gerber with real arcs, IPC-2581, ODB++ and STEP 3D.",
+  p1_b3:"Solid verification suite with 252 automated tests.",
+  p1_b4:"Available for purchase across three commercial plans.",
+  p1_link:"Visit ElectronArt website ↗",
   p2_t:"AgroPlant — Seed Potato Classifier by Robotic Vision",
   p2_d:"Seed-potato classifier installed on-site at a client's plant: computer vision to estimate weight and grade, contour segmentation, volumetric estimation and classification into 5 categories accumulated in physical drawers.",
   p2_b1:"Distributed architecture: touchscreen-GUI RPi + camera/processing RPi + dsPIC33F driving servos, belts, scale and gates.",
@@ -938,12 +947,13 @@ de: {
   ex_extras_t:"Extras", ex_extras_sub:"Einzelstücke: einzelne Leiterplatten, Renderings und 3D-Modelle ohne eigenes Projekt.",
   ex_extras_empty:"Demnächst — diese Galerie wird gerade zusammengestellt.",
   more:"[+] Details anzeigen", less:"[–] Details ausblenden",
-  p1_r:"Eigenes Produkt · Electronik Lösungen",
-  p1_d:"Selbst entwickelte All-in-One-Desktop-EDA-Suite: Schaltplanerfassung (ANSI/IEC), mehrlagiges Leiterplattendesign, SPICE- und MCU-Firmware-Simulation, 3D-Ansicht und Lernmodus. Ein einziges Werkzeug für das, was heute Altium + Proteus + QElectroTech erfordert.",
-  p1_b1:"Stack: Python 3.11, PySide6/Qt, NumPy, SciPy, Matplotlib, ReportLab — plattformübergreifend (Windows/Linux/macOS).",
-  p1_b2:"SPICE-Simulation (DC/AC/transient) und Ausführung von .hex-Firmware auf virtueller MCU.",
-  p1_b3:"Verifikationssuite mit 111 automatisierten Tests, alle grün.",
-  p1_b4:"Import/Export: Gerber, DXF/DWG, KiCad, PDF, Excel; Bauteilbibliothek mit eigenem Editor.",
+  p1_r:"Kommerzielles Produkt · Electronik Lösungen",
+  p1_d:"All-in-One Desktop EDA-Suite in Python und PySide6: Schaltplanerfassung, mehrlagiges Leiterplattendesign, SPICE-Simulation, 3D-Ansicht und IEC 60617/SPS-Elektromodul. Ein kommerzielles Produkt mit Offline-Ed25519-Lizenzen in drei Sprachen.",
+  p1_b1:"Mehrlagiger Autorouter, der 100% der Verbindungen auf der Beispielplatine schließt.",
+  p1_b2:"Fertigungsexport: Gerber mit echten Bögen, IPC-2581, ODB++ und STEP 3D.",
+  p1_b3:"Solide Verifikations-Suite mit 252 automatisierten Tests.",
+  p1_b4:"Erhältlich in drei kommerziellen Plänen.",
+  p1_link:"ElectronArt Webseite besuchen ↗",
   p2_t:"AgroPlant — Kartoffelsortierer per Robotersicht",
   p2_d:"Beim Kunden installierter Pflanzkartoffel-Sortierer: Computer Vision zur Schätzung von Gewicht und Güteklasse, Kontursegmentierung, Volumenschätzung und Klassifizierung in 5 Kategorien mit Sammlung in physischen Schubladen.",
   p2_b1:"Verteilte Architektur: RPi mit Touch-GUI + Kamera-RPi + dsPIC33F für Servos, Förderbänder, Waage und Klappen.",
