@@ -1,1272 +1,194 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Franco Olmedo — Electrónica & Sistemas Embebidos</title>
-<meta name="description" content="Portfolio de Franco Olmedo — Técnico Electrónico, estudiante de Ingeniería Electrónica (UTN FRC). PCB, sistemas embebidos, automatización industrial y software.">
-<meta property="og:title" content="Franco Olmedo — Electrónica & Sistemas Embebidos">
-<meta property="og:description" content="PCB multicapa, firmware embebido, automatización industrial y software de ingeniería. Del esquemático al producto funcionando.">
-<meta property="og:type" content="website">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Franco Olmedo — Técnico electrónico: placas, firmware y tableros</title>
+<meta name="description" content="Técnico electrónico en Córdoba. Diseño placas, firmware (ESP32, dsPIC, STM32) y tableros IEC. Clasificador de papa U9 en planta, control de pirólisis MixOil y ElectronArt, EDA en castellano.">
+<link rel="canonical" href="https://franco.electroniklosungen.com.ar/">
+<link rel="alternate" hreflang="es" href="https://franco.electroniklosungen.com.ar/">
+<link rel="alternate" hreflang="en" href="https://franco.electroniklosungen.com.ar/en/">
+<link rel="alternate" hreflang="de" href="https://franco.electroniklosungen.com.ar/de/">
+<link rel="alternate" hreflang="x-default" href="https://franco.electroniklosungen.com.ar/">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Franco Olmedo — Técnico electrónico: placas, firmware y tableros">
+<meta property="og:description" content="Técnico electrónico en Córdoba. Diseño placas, firmware (ESP32, dsPIC, STM32) y tableros IEC. Clasificador de papa U9 en planta, control de pirólisis MixOil y ElectronArt, EDA en castellano.">
 <meta property="og:url" content="https://franco.electroniklosungen.com.ar/">
-<meta property="og:image" content="https://franco.electroniklosungen.com.ar/assets/electronart_app.png">
-<meta name="theme-color" content="#120d0a">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23120d0a'/%3E%3Cpath d='M14 20 H34 M14 20 V48 M14 33 H30' stroke='%23ffb454' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='46' cy='44' r='6' fill='none' stroke='%23ff6b57' stroke-width='4'/%3E%3Cpath d='M46 20 V38' stroke='%23ff6b57' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#120d0a; --bg2:#171009; --panel:#1d140d; --panel2:#241a10;
-  --line:#3a2a1d; --line2:#4e3a28;
-  --txt:#f0e4db; --txt2:#baa38f; --txt3:#89725c;
-  --acc:#ffb454; --acc2:#ff6b57; --accD:#6b3810;
-  --mono:'JetBrains Mono',monospace; --sans:'Inter',sans-serif; --serif:'Fraunces','Inter',serif;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
-::selection{background:var(--acc);color:#04120c}
+<meta property="og:locale" content="es_AR">
+<meta property="og:image" content="https://franco.electroniklosungen.com.ar/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Clasificador U9 en la planta de AgroPlant, junio de 2025. La pantalla avisa que el cajón de grado 1 está lleno.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f2efe6">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:Archivo;src:url(assets/fonts/archivo-latin-wdth-normal.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+@font-face{font-family:"Plex Mono";src:url(assets/fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+:root{--paper:#f2efe6;--paper2:#e8e4d6;--ink:#17181b;--ink2:#4b4943;--rule:#c8c2b0;--cu:#983e12;--cu2:#f0a46b;--ok:#1b6a41;--run:#8a5300;
+--sans:Archivo,"Helvetica Neue",Arial,sans-serif;--mono:"Plex Mono",ui-monospace,Menlo,Consolas,monospace;color-scheme:light}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:84px}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.55 var(--sans);font-stretch:100%}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--cu)}
+:focus-visible{outline:2px solid var(--cu);outline-offset:3px}
+h1,h2,h3,p,dl,dd,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 16px}
+@media(min-width:760px){.wrap{padding:0 32px}}
+.skip{position:absolute;left:8px;top:-60px;background:var(--ink);color:var(--paper);padding:10px 14px;z-index:9}
+.skip:focus{top:8px}
+.mono,.kicker,.case-n,.meta dt,.tblock dt,figcaption,.status,.y,.tools dt,.ct-list dt,.foot,.ev,.net,.langs{font-family:var(--mono);font-size:13px;letter-spacing:.02em}
 
-/* grid backdrop */
-body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
-  background-size:56px 56px;opacity:.14}
-/* fine grain, paper/print feel */
-body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-main,nav,footer{position:relative;z-index:1}
+/* cabecera: hoja de plano con marcas de zona */
+.top{background:var(--paper);border-bottom:1px solid var(--ink);position:relative}
+.top::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;pointer-events:none;
+ background:repeating-linear-gradient(90deg,var(--ink) 0 1px,transparent 1px 80px);opacity:.55}
+@media(min-width:760px){.top{position:sticky;top:0;z-index:5}}
+.top-in{display:flex;flex-wrap:wrap;align-items:center;gap:6px 20px;padding-top:12px;padding-bottom:14px}
+.brand{font-weight:750;font-stretch:112%;font-size:17px;text-decoration:none;display:flex;align-items:center;gap:8px;margin-right:auto;min-height:44px}
+.pin1{width:14px;height:14px;border:1.5px solid var(--ink);position:relative}
+.pin1::after{content:"";position:absolute;left:2px;top:2px;width:4px;height:4px;border-radius:50%;background:var(--cu)}
+.nav{display:flex;flex-wrap:wrap;gap:0 18px;order:3;width:100%}
+.nav a{display:inline-block;padding:8px 0;text-decoration:none;font-weight:500;font-size:15px}
+.nav a:hover{text-decoration:underline}
+@media(min-width:760px){.nav{order:0;width:auto}}
+.langs{display:flex;border:1px solid var(--ink)}
+.langs a{display:block;padding:9px 10px;text-decoration:none;min-width:40px;text-align:center}
+.langs li+li a{border-left:1px solid var(--ink)}
+.langs a[aria-current]{background:var(--ink);color:var(--paper)}
 
-.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
-section{padding:112px 0}
-.mono{font-family:var(--mono)}
+/* portada */
+.hero{display:grid;gap:32px;padding-top:40px;padding-bottom:56px}
+@media(min-width:960px){.hero{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;padding-top:72px;padding-bottom:88px;align-items:start}}
+.kicker{color:var(--cu);text-transform:uppercase;letter-spacing:.08em}
+h1{font-size:clamp(46px,11vw,112px);line-height:.92;font-weight:800;font-stretch:72%;letter-spacing:-.01em;text-transform:uppercase;margin-top:14px}
+.lead{font-size:clamp(21px,2.6vw,28px);line-height:1.3;font-weight:500;font-stretch:96%;margin-top:22px;max-width:30ch}
+.sub{color:var(--ink2);margin-top:16px;max-width:58ch}
+.ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 20px;font-weight:600;font-size:16px;text-decoration:none;border:1.5px solid var(--ink)}
+.btn-1{background:var(--ink);color:var(--paper)}
+.btn-1:hover{background:var(--cu);border-color:var(--cu);color:#fff}
+.btn-2:hover{background:var(--ink);color:var(--paper)}
+.btn-3{border-color:transparent;padding:0 6px;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:420px){.hero .btn-1,.hero .btn-2{flex:1 1 100%;justify-content:center}}
+.tblock{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));margin-top:36px;border-top:1px solid var(--ink);border-left:1px solid var(--ink)}
+.tblock div{border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:8px 10px 10px}
+.tblock dt,.meta dt,.tools dt,.ct-list dt{color:var(--ink2);text-transform:uppercase;font-size:11.5px;letter-spacing:.08em}
+.tblock dd{font-size:15px;font-weight:500;margin-top:2px}
 
-/* ---------- NAV ---------- */
-nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,14,20,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{font-family:var(--mono);font-weight:600;font-size:15px;color:var(--txt);text-decoration:none;letter-spacing:.5px}
-.logo b{color:var(--acc)}
-.nav-links{display:flex;gap:26px;align-items:center}
-.nav-links a{color:var(--txt2);text-decoration:none;font-size:13.5px;font-weight:500;transition:color .2s}
-.nav-links a:hover{color:var(--acc)}
-.lang-sw{display:flex;border:1px solid var(--line2);border-radius:6px;overflow:hidden}
-.lang-sw button{background:transparent;border:0;color:var(--txt3);font-family:var(--mono);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer;transition:.2s}
-.lang-sw button.on{background:var(--acc);color:#04120c}
-@media(max-width:820px){.nav-links a{display:none}}
+/* figuras */
+.fig a{display:block;background:var(--paper2)}
+figcaption{color:var(--ink2);margin-top:8px;font-size:12.5px;line-height:1.45}
+.ref{color:var(--cu);margin-right:4px}
+.hero-fig{max-width:460px}
+@media(min-width:960px){.hero-fig{max-width:none}}
+.hero-fig img{width:100%;border:1px solid var(--ink)}
 
-/* ---------- HERO ---------- */
-.hero{min-height:100vh;display:flex;align-items:center;position:relative;padding-top:64px}
-.hero-tag{font-family:var(--mono);color:var(--acc);font-size:14px;letter-spacing:1px;margin-bottom:18px}
-.hero h1{font-family:var(--serif);font-size:clamp(40px,7vw,78px);font-weight:600;line-height:1.05;letter-spacing:-1px}
-.hero h1 span{color:var(--acc)}
-.hero-sub{margin-top:22px;max-width:640px;color:var(--txt2);font-size:17.5px}
-.hero-cta{margin-top:38px;display:flex;gap:14px;flex-wrap:wrap}
-.btn{display:inline-block;padding:13px 24px 13px 26px;font-weight:600;font-size:13.5px;letter-spacing:.2px;text-decoration:none;transition:border-color .2s,color .2s,box-shadow .2s;border:1px solid transparent;cursor:pointer;border-radius:3px;clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,0 100%)}
-.btn-p{background:var(--acc);color:#04120c}
-.btn-p:hover{box-shadow:0 4px 0 0 var(--accD),0 6px 18px rgba(0,0,0,.35)}
-.btn-o{border-color:var(--line2);color:var(--txt);background:rgba(255,255,255,.015)}
-.btn-o:hover{border-color:var(--acc);color:var(--acc)}
-.hero-stats{margin-top:64px;display:flex;gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;max-width:640px;background:rgba(17,25,38,.6)}
-.stat{flex:1;min-width:0;padding:22px 10px;text-align:center;border-right:1px solid var(--line)}
-.stat:last-child{border-right:0}
-.stat b{display:block;font-family:var(--mono);font-size:28px;color:var(--acc);font-weight:600}
-.stat i{font-style:normal;font-size:12px;color:var(--txt3);letter-spacing:.5px;text-transform:uppercase}
-@media(max-width:600px){
-  .hero-stats{display:grid;grid-template-columns:repeat(2,1fr);max-width:100%}
-  .stat{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 8px}
-  .stat:nth-child(2n){border-right:0}
-  .stat:nth-last-child(-n+2){border-bottom:0}
-  .stat b{font-size:22px}
-  .stat i{font-size:10.5px}
-}
-@media(max-width:380px){.hero-tag{font-size:12.5px;letter-spacing:.4px}}
-.hero-status{display:inline-flex;align-items:center;gap:9px;margin-top:22px;font-family:var(--mono);font-size:12.5px;color:var(--txt2);border:1px solid var(--line2);padding:7px 14px 7px 12px;border-radius:20px;background:rgba(61,220,151,.04)}
-.hero-status .pulse{width:7px;height:7px;flex-shrink:0;border-radius:50%;background:var(--acc);position:relative}
-.hero-status .pulse::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--acc);animation:pulse 2s ease-out infinite}
-@keyframes pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2);opacity:0}}
-/* circuit svg */
-.circuit{position:absolute;right:-40px;top:50%;transform:translateY(calc(-50% + var(--parallax,0px)));width:46%;max-width:560px;opacity:.85;pointer-events:none}
-@media(max-width:960px){.circuit{display:none}}
-.tr{fill:none;stroke:var(--line2);stroke-width:2}
-.tr.glow{stroke:var(--acc);stroke-width:2.2}
-.tr.glow.b{stroke:var(--acc2)}
-.tr.glow.c{stroke:var(--acc)}
-.pad{fill:var(--panel2);stroke:var(--line2);stroke-width:1.6}
-.pad.hot{stroke:var(--acc);animation:blink 2.4s ease-in-out infinite}
-@keyframes blink{0%,100%{fill:var(--panel2)}50%{fill:var(--accD)}}
-.circuit .pulse-dot{filter:blur(.2px)}
+/* secciones */
+.sec{--g:16px;padding-top:56px;padding-bottom:56px;background:linear-gradient(var(--ink),var(--ink)) no-repeat center top/calc(100% - 2*var(--g)) 1px}
+@media(min-width:760px){.sec{--g:32px}}
+@media(min-width:960px){.sec{padding-top:88px;padding-bottom:88px}}
+.sec-h{display:grid;gap:10px;margin-bottom:36px}
+@media(min-width:960px){.sec-h{grid-template-columns:auto minmax(0,1fr) minmax(0,1fr);align-items:baseline;gap:24px;margin-bottom:56px}}
+.net{display:inline-block;justify-self:start;background:var(--ink);color:var(--paper);padding:3px 18px 3px 9px;
+ clip-path:polygon(0 0,calc(100% - 9px) 0,100% 50%,calc(100% - 9px) 100%,0 100%)}
+h2{font-size:clamp(34px,6vw,60px);line-height:1;font-weight:800;font-stretch:72%;text-transform:uppercase}
+.sec-sub{color:var(--ink2);max-width:52ch}
 
-/* ---------- SECTION HEADERS ---------- */
-.sh{margin-bottom:60px}
-.sh .num{font-family:var(--mono);color:var(--acc);font-size:12.5px;letter-spacing:2px;display:flex;align-items:center;gap:10px}
-.sh .num::before{content:'';width:9px;height:9px;flex-shrink:0;border-radius:50%;border:1.4px solid var(--acc);position:relative;background:
-    radial-gradient(circle,var(--acc) 1.4px,transparent 1.6px)}
-.sh .num::after{content:'';flex:0 0 46px;height:1px;background:linear-gradient(90deg,var(--line2),transparent)}
-.sh h2{font-family:var(--serif);font-size:clamp(28px,4vw,42px);font-weight:600;letter-spacing:-.5px;margin-top:10px}
-.sh p{color:var(--txt2);margin-top:10px;max-width:620px}
+/* casos */
+.case{display:grid;gap:24px;padding:32px 0 40px;border-top:1px solid var(--rule)}
+.case:first-of-type{border-top:0;padding-top:0}
+@media(min-width:960px){.case{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px;padding:48px 0 56px}.case-txt{position:sticky;top:96px;align-self:start}}
+.case-n{color:var(--ink2)}
+h3{font-size:clamp(25px,3.2vw,34px);line-height:1.08;font-weight:750;font-stretch:85%;margin-top:6px}
+.status{display:inline-flex;align-items:center;gap:8px;margin-top:12px;border:1px solid var(--ink);padding:3px 10px}
+.led{width:8px;height:8px;border-radius:50%;background:var(--ink2);box-shadow:0 0 0 2px var(--paper),0 0 0 3px currentColor}
+.st_op .led{background:var(--ok)}.st_op{color:var(--ok)}
+.st_run .led{background:var(--run)}.st_run{color:var(--run)}
+.st_sale .led{background:var(--cu)}.st_sale{color:var(--cu)}
+.meta{margin-top:18px;border-top:1px solid var(--rule)}
+.meta div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;padding:7px 0;border-bottom:1px solid var(--rule)}
+.meta dt{padding-top:3px}
+.meta dd{font-size:15px}
+.case-lead{font-size:20px;line-height:1.35;font-weight:600;font-stretch:95%;margin-top:22px}
+.pts{margin-top:14px}
+.pts li{position:relative;padding-left:22px;margin-top:9px;color:var(--ink2)}
+.pts li::before{content:"";position:absolute;left:2px;top:.62em;width:7px;height:7px;border:1.5px solid var(--cu);border-radius:50%}
+.ext{display:inline-block;margin-top:20px;font-weight:600;padding:6px 0}
+.case-figs{display:grid;grid-template-columns:1fr 1fr;gap:20px 12px;align-content:start}
+.case-figs .fig img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.case-figs .fig.w{grid-column:1/-1}
+.case-figs .fig.w img{aspect-ratio:auto}
+.case-figs.one{grid-template-columns:1fr}
+@media(min-width:960px){.case-figs.c3{grid-template-columns:repeat(3,1fr)}}
 
-/* ---------- ABOUT ---------- */
-.about-g{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:start}
-.about-g p{color:var(--txt2);margin-bottom:16px;font-size:16px}
-.about-facts{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:26px}
-.fact{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px dashed var(--line2);font-size:13.5px}
-.fact:last-child{border-bottom:0}
-.fact span{color:var(--txt3)}
-.fact b{font-family:var(--mono);font-weight:500;color:var(--txt)}
-@media(max-width:820px){.about-g{grid-template-columns:1fr}}
-
-/* ---------- TIMELINE ---------- */
-.tl{position:relative;margin-left:8px;padding-left:34px;border-left:2px solid var(--line2)}
-.tl-item{position:relative;padding-bottom:44px}
-.tl-item:last-child{padding-bottom:0}
-.tl-item::before{content:'';position:absolute;left:-38px;top:5px;width:10px;height:10px;background:var(--bg);border:2px solid var(--acc);transform:rotate(45deg)}
-.tl-item::after{content:'';position:absolute;left:-27px;top:9px;width:14px;height:1px;background:var(--line2)}
-.tl-date{font-family:var(--mono);font-size:12.5px;color:var(--acc);letter-spacing:.5px}
-.tl-item h3{font-family:var(--serif);font-weight:600;font-size:20px;margin-top:6px}
-.tl-item h4{font-size:13.5px;color:var(--txt3);font-weight:500;margin-top:2px}
-.tl-item p{color:var(--txt2);font-size:14.5px;margin-top:10px;max-width:700px}
-.chips{margin-top:12px;display:flex;flex-wrap:wrap;gap:7px}
-.chip{font-family:var(--mono);font-size:11px;color:var(--acc2);background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.22);border-radius:2px;padding:3px 8px;position:relative;letter-spacing:.2px}
-.chip::before{content:'▪';color:var(--acc2);margin-right:5px;font-size:8px;opacity:.7}
-
-/* ---------- PROJECTS ---------- */
-.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
-@media(max-width:820px){.pgrid{grid-template-columns:1fr}}
-.pcard{border:1px solid var(--line);border-radius:8px;overflow:hidden;transition:border-color .25s,box-shadow .25s;display:flex;flex-direction:column;position:relative;
-  background:
-    radial-gradient(circle at calc(100% - 15px) 15px, var(--line2) 1.5px, transparent 1.7px),
-    radial-gradient(circle at 15px calc(100% - 15px), var(--line2) 1.5px, transparent 1.7px),
-    var(--panel)}
-.pcard::after{content:'';position:absolute;top:-1px;left:-1px;width:18px;height:18px;border-top:2px solid var(--line2);border-left:2px solid var(--line2);opacity:0;transition:opacity .25s}
-.pcard:hover{border-color:var(--acc);box-shadow:0 14px 32px rgba(0,0,0,.4)}
-.pcard:hover::after{opacity:1;border-color:var(--acc)}
-.pcard-ea { border-radius: 0; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%); border-color: #3A404F; }
-.pcard-ea:hover { border-color: #C9A227; }
-.pcard-ea .pimg .cat { font-family: 'Bahnschrift', var(--sans); border-radius: 0; color: #C9A227; border-color: #C9A227; background: #0C0E12; }
-.ea-link { display: inline-block; margin-top: 15px; color: #C9A227; font-family: 'Bahnschrift', var(--sans); text-decoration: none; border: 1px solid #3A404F; padding: 6px 12px; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%); transition: .2s; }
-.ea-link:hover { border-color: #C9A227; background: rgba(201,162,39,0.07); }
-.pcard.wide{grid-column:1/-1}
-.pimg{position:relative;background:#060a10;border-bottom:1px solid var(--line);overflow:hidden}
-.pimg img{width:100%;height:280px;object-fit:cover;object-position:top;display:block;transition:transform .5s}
-.pcard.wide .pimg img{height:380px;object-fit:cover}
-.pcard.tall .pimg img{height:400px}
-@media(max-width:820px){.pcard.tall .pimg img{height:280px}}
-.pcard:hover .pimg img{transform:scale(1.025)}
-.pimg .cat{position:absolute;top:14px;left:14px;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:1.5px;background:rgba(10,14,20,.9);border:1px solid var(--acc);color:var(--acc);padding:4px 9px;border-radius:2px;text-transform:uppercase}
-.pimg[data-gal]{cursor:zoom-in}
-.pimg .gcount{position:absolute;bottom:14px;right:14px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.5px;background:rgba(10,14,20,.85);border:1px solid var(--line2);color:var(--txt);padding:5px 10px;border-radius:2px;display:flex;align-items:center;gap:6px;transition:border-color .2s,color .2s}
-.pimg .gcount::before{content:'⛶';font-size:12px}
-.pimg[data-gal]:hover .gcount{border-color:var(--acc);color:var(--acc)}
-
-/* ---------- LIGHTBOX ---------- */
-.lb{position:fixed;inset:0;z-index:200;background:rgba(6,9,14,.96);display:none;align-items:center;justify-content:center;touch-action:none}
-.lb.open{display:flex}
-.lb-stage{position:relative;width:100%;height:100%;overflow:hidden;display:flex;align-items:center;justify-content:center;cursor:grab}
-.lb-stage.grabbing{cursor:grabbing}
-.lb-stage img{max-width:88vw;max-height:82vh;user-select:none;-webkit-user-drag:none;will-change:transform;transition:transform .06s linear}
-.lb-top{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:18px 24px;font-family:var(--mono);color:var(--txt2);font-size:12.5px;z-index:2;pointer-events:none}
-.lb-top span{background:rgba(10,14,20,.7);border:1px solid var(--line2);padding:5px 11px;border-radius:2px;pointer-events:auto}
-.lb-x{background:rgba(10,14,20,.7);border:1px solid var(--line2);color:var(--txt);width:38px;height:38px;border-radius:2px;cursor:pointer;font-size:18px;pointer-events:auto;transition:border-color .2s,color .2s}
-.lb-x:hover{border-color:var(--acc);color:var(--acc)}
-.lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(10,14,20,.7);border:1px solid var(--line2);color:var(--txt);width:44px;height:44px;border-radius:2px;cursor:pointer;font-size:20px;z-index:2;transition:border-color .2s,color .2s}
-.lb-nav:hover{border-color:var(--acc);color:var(--acc)}
-.lb-prev{left:18px}.lb-next{right:18px}
-.lb-hint{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;color:var(--txt3);background:rgba(10,14,20,.7);border:1px solid var(--line2);padding:5px 11px;border-radius:2px;pointer-events:none}
-@media(max-width:700px){.lb-nav{width:38px;height:38px;font-size:16px}.lb-hint{display:none}}
-.pbody{padding:24px 26px 26px;display:flex;flex-direction:column;flex:1}
-.pbody h3{font-family:var(--serif);font-size:21px;font-weight:600;letter-spacing:-.2px}
-.pbody .role{font-family:var(--mono);font-size:12px;color:var(--txt3);margin-top:4px}
-.pbody p{color:var(--txt2);font-size:14.5px;margin-top:12px;flex:1}
-.pmore{margin-top:14px;border-top:1px dashed var(--line2);padding-top:14px;display:none}
-.pmore ul{list-style:none}
-.pmore li{color:var(--txt2);font-size:13.5px;padding:4px 0 4px 18px;position:relative}
-.pmore li::before{content:'▸';position:absolute;left:0;color:var(--acc)}
-.pcard.open .pmore{display:block}
-.ptoggle{margin-top:16px;background:none;border:0;color:var(--acc);font-family:var(--mono);font-size:12.5px;font-weight:600;cursor:pointer;text-align:left;padding:0}
-.ptoggle:hover{text-decoration:underline}
-
-/* ---------- EXTRAS ---------- */
-.egrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-@media(max-width:900px){.egrid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:600px){.egrid{grid-template-columns:repeat(2,1fr)}}
-.etile{position:relative;aspect-ratio:4/3;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#060a10;cursor:zoom-in}
-.etile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
-.etile:hover img{transform:scale(1.06)}
-.etile:hover{border-color:var(--acc)}
-.etile .ecap{position:absolute;left:0;right:0;bottom:0;padding:8px 10px 7px;font-family:var(--mono);font-size:11px;color:var(--txt);background:linear-gradient(0deg,rgba(6,10,16,.92),transparent);letter-spacing:.2px}
-.extras-empty{border:1px dashed var(--line2);border-radius:8px;padding:34px;text-align:center;color:var(--txt3);font-family:var(--mono);font-size:13px}
-
-/* ---------- SKILLS ---------- */
-.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-@media(max-width:900px){.sgrid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.sgrid{grid-template-columns:1fr}}
-.scard{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:24px;transition:border-color .25s}
-.scard:hover{border-color:var(--line2)}
-.scard h3{font-size:14px;letter-spacing:.3px;display:flex;align-items:center;gap:10px;text-transform:uppercase;color:var(--txt2)}
-.scard h3 .dot{width:7px;height:7px;background:var(--acc);display:inline-block;transform:rotate(45deg)}
-.scard ul{list-style:none;margin-top:14px}
-.scard li{font-size:13.5px;color:var(--txt2);padding:8px 0;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px}
-.scard li:last-child{border-bottom:0}
-.lvl{font-family:var(--mono);font-size:10.5px;color:var(--txt3);flex-shrink:0}
-.lvl.meter{display:inline-flex;gap:3px;align-items:center}
-.lvl.meter .seg{width:11px;height:4px;background:var(--line2);border-radius:0}
-.lvl.meter .seg.on{background:var(--acc)}
-.lvl.badge-lvl{border:1px solid rgba(56,189,248,.3);color:var(--acc2);background:rgba(56,189,248,.06);padding:1px 7px;border-radius:2px;font-size:10px;letter-spacing:.4px}
-
-/* ---------- EDU ---------- */
-.edu-g{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-@media(max-width:820px){.edu-g{grid-template-columns:1fr}}
-.ecard{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:28px;transition:border-color .25s}
-.ecard:hover{border-color:var(--line2)}
-.ecard .tl-date{display:block;margin-bottom:8px}
-.ecard h3{font-family:var(--serif);font-weight:600;font-size:19px}
-.ecard h4{color:var(--acc);font-size:13.5px;font-weight:600;margin-top:4px}
-.ecard p{color:var(--txt2);font-size:14px;margin-top:10px}
-
-/* ---------- CONTACT ---------- */
-.contact-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  overflow: hidden;
-}
-@media(max-width:820px) {
-  .contact-wrap { grid-template-columns: 1fr; }
-}
-.contact-info {
-  background: linear-gradient(140deg,var(--panel) 0%,var(--accD) 160%);
-  padding: 56px 48px;
-}
-.contact-info h2{font-family:var(--serif);font-weight:600;font-size:clamp(26px,4vw,38px);letter-spacing:-.5px}
-.contact-info p{color:var(--txt2);margin:14px 0 30px}
-.cinfo-links{display:flex;flex-direction:column;gap:16px;font-family:var(--mono);font-size:14px}
-.cinfo-links a,.cinfo-links span{color:var(--txt);text-decoration:none; display:flex; align-items:center; gap:12px}
-.cinfo-links a:hover{color:var(--acc)}
-.cinfo-links i{font-style:normal;color:var(--acc);width:24px;text-align:center}
-
-.contact-form {
-  padding: 56px 48px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.contact-form input, .contact-form textarea {
-  width: 100%;
-  background: var(--bg);
-  border: 1px solid var(--line2);
-  color: var(--txt);
-  padding: 12px 16px;
-  border-radius: 3px;
-  font-family: var(--sans);
-  font-size: 14.5px;
-  transition: .2s;
-}
-.contact-form input:focus, .contact-form textarea:focus {
-  outline: none;
-  border-color: var(--acc);
-}
-.contact-form textarea {
-  resize: vertical;
-  min-height: 120px;
+/* tabla tipo BOM */
+.bom{width:100%;border-collapse:collapse;font-size:15.5px}
+.bom th{text-align:left;font:400 11.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);padding:8px 12px 8px 0;border-bottom:1px solid var(--ink)}
+.bom td{padding:14px 16px 14px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.bom .y{white-space:nowrap}
+.bom .ev{color:var(--ink2);font-size:12.5px}
+@media(max-width:699px){
+ .bom thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+ .bom tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:14px 0;border-bottom:1px solid var(--rule)}
+ .bom td{display:block;padding:0;border:0}
+ .bom td:nth-child(2){grid-column:1/-1;grid-row:2}
+ .bom td:nth-child(3){grid-row:3;font-size:14px;color:var(--ink2)}
+ .bom td.ev{grid-row:3;text-align:right}
 }
 
-footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:var(--txt3);font-size:12.5px;font-family:var(--mono)}
+/* experiencia */
+.cols{display:grid;gap:40px}
+@media(min-width:960px){.cols{grid-template-columns:1fr 1fr;gap:64px}}
+.tl li{display:grid;grid-template-columns:84px minmax(0,1fr);gap:12px;padding:14px 0;border-top:1px solid var(--rule)}
+.tl li:first-child{border-top:1px solid var(--ink)}
+.tl .y{padding-top:3px;color:var(--ink2)}
+.tl b{font-weight:650}
+.tl p{color:var(--ink2);margin-top:2px}
+.h-sm{font-size:22px;font-stretch:85%;margin:0 0 12px}
+.tl+.h-sm{margin-top:40px}
+.tools div{padding:10px 0;border-top:1px solid var(--rule)}
+.tools dd{margin-top:2px}
 
-/* reveal */
-.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
-.rv.in{opacity:1;transform:none}
-
-/* ---------- MOBILE FLOATING NAV ---------- */
-.mnav{position:fixed;right:18px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:80;display:none}
-@media(max-width:820px){.mnav{display:block}}
-.mnav-ring{width:54px;height:54px;border-radius:50%;padding:3px;background:conic-gradient(var(--acc) var(--prog,0%),var(--line2) 0);box-shadow:0 10px 28px rgba(0,0,0,.5);transition:background .1s linear}
-.mnav-fab{width:100%;height:100%;border-radius:50%;background:var(--bg);border:1px solid var(--line);color:var(--acc);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;cursor:pointer;letter-spacing:2px}
-.mnav-menu{position:absolute;bottom:66px;right:0;background:var(--panel);border:1px solid var(--line2);border-radius:12px;padding:8px;min-width:176px;box-shadow:0 16px 40px rgba(0,0,0,.55);opacity:0;transform:translateY(8px) scale(.96);pointer-events:none;transition:opacity .18s ease,transform .18s ease}
-.mnav-menu.open{opacity:1;transform:none;pointer-events:auto}
-.mnav-menu a{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;color:var(--txt2);text-decoration:none;font-size:13.5px}
-.mnav-menu a .d{width:6px;height:6px;border-radius:50%;background:var(--txt3);flex-shrink:0}
-.mnav-menu a.active{color:var(--acc);background:rgba(61,220,151,.08)}
-.mnav-menu a.active .d{background:var(--acc)}
+/* contacto */
+.contact{background:var(--ink);color:var(--paper)}
+.contact .net{background:var(--paper);color:var(--ink)}
+.contact a:hover{color:var(--cu2)}
+.ct-grid{display:grid;gap:40px}
+@media(min-width:960px){.ct-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px}}
+.ct-lead{font-size:clamp(26px,3.6vw,40px);line-height:1.12;font-weight:700;font-stretch:85%;max-width:22ch}
+.ct-sub{margin-top:14px;color:#d6d1c3;max-width:52ch}
+.contact .btn{border-color:var(--paper)}
+.contact .btn-1{background:var(--paper);color:var(--ink)}
+.contact .btn-1:hover{background:var(--cu2);border-color:var(--cu2);color:var(--ink)}
+.contact .btn-2:hover{background:var(--paper);color:var(--ink)}
+.ct-list div{padding:12px 0;border-top:1px solid #4a4a4a}
+.ct-list dt{color:#bdb7a8}
+.ct-list dd{font-size:17px;margin-top:2px;overflow-wrap:anywhere}
+.ct-list a{display:inline-block;padding:4px 0}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;padding-top:24px;padding-bottom:32px;color:var(--ink2);font-size:12.5px}
 </style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Franco Olmedo","url":"https://franco.electroniklosungen.com.ar/","email":"mailto:olmedo.franco.fo@gmail.com","telephone":"+54 9 351 248-7080","jobTitle":"Técnico electrónico","worksFor":{"@type":"Organization","name":"POL S.R.L."},"alumniOf":{"@type":"EducationalOrganization","name":"Instituto Técnico Salesiano Villada"},"address":{"@type":"PostalAddress","addressLocality":"Villa Allende","addressRegion":"Córdoba","addressCountry":"AR"},"sameAs":["https://www.linkedin.com/in/franco-olmedo-967405194/","https://electroniklosungen.com.ar"]}</script>
 </head>
 <body>
-
-<nav>
-  <div class="wrap nav-in">
-    <a class="logo" href="#top">franco<b>.</b>olmedo<b>_</b></a>
-    <div class="nav-links">
-      <a href="#about" data-i18n="nav_about"></a>
-      <a href="#exp" data-i18n="nav_exp"></a>
-      <a href="#proj" data-i18n="nav_proj"></a>
-      <a href="#extras" data-i18n="nav_extras"></a>
-      <a href="#skills" data-i18n="nav_skills"></a>
-      <a href="#edu" data-i18n="nav_edu"></a>
-      <a href="#contact" data-i18n="nav_contact"></a>
-      <div class="lang-sw">
-        <button id="btn-es" onclick="setLang('es')">ES</button>
-        <button id="btn-en" onclick="setLang('en')">EN</button>
-        <button id="btn-de" onclick="setLang('de')">DE</button>
-      </div>
-    </div>
-  </div>
-</nav>
-
-<main id="top">
-<!-- HERO -->
-<header class="hero">
-  <div class="wrap" style="width:100%">
-    <p class="hero-tag mono">// <span data-i18n="hero_tag"></span></p>
-    <h1>Franco Olmedo<br><span data-i18n="hero_role"></span></h1>
-    <p class="hero-sub" data-i18n="hero_sub"></p>
-    <div class="hero-status"><span class="pulse"></span><span data-i18n="hero_status"></span></div>
-    <div class="hero-cta">
-      <a class="btn btn-p" href="#proj" data-i18n="hero_cta1"></a>
-      <a class="btn btn-o cvlink" href="cv-es.pdf" target="_blank" data-i18n="hero_cv"></a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat"><b>7+</b><i data-i18n="st_years"></i></div>
-      <div class="stat"><b>15+</b><i data-i18n="st_proj"></i></div>
-      <div class="stat"><b>10+</b><i data-i18n="st_tech"></i></div>
-      <div class="stat"><b>C1</b><i data-i18n="st_eng"></i></div>
-    </div>
-  </div>
-  <svg class="circuit" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path class="tr" d="M40 80 H180 V160 H300"/>
-    <path class="tr glow" id="circA" d="M40 80 H180 V160 H300"/>
-    <path class="tr" d="M40 250 H140 V330 H260 V410"/>
-    <path class="tr glow b" id="circB" d="M40 250 H140 V330 H260 V410"/>
-    <path class="tr" d="M460 60 V180 H360 V260"/>
-    <path class="tr glow c" id="circC" d="M460 60 V180 H360 V260"/>
-    <path class="tr" d="M300 160 H420 V330 H340"/>
-    <path class="tr" d="M120 440 H260"/>
-    <rect class="pad" x="290" y="150" width="20" height="20" rx="3"/>
-    <rect class="pad hot" x="250" y="400" width="20" height="20" rx="3"/>
-    <rect class="pad" x="350" y="250" width="20" height="20" rx="3"/>
-    <rect class="pad hot" x="30" y="70" width="20" height="20" rx="3"/>
-    <rect class="pad" x="30" y="240" width="20" height="20" rx="3"/>
-    <rect class="pad" x="450" y="50" width="20" height="20" rx="3"/>
-    <rect class="pad hot" x="330" y="320" width="20" height="20" rx="3"/>
-    <rect class="pad" x="110" y="430" width="20" height="20" rx="3"/>
-    <rect x="200" y="205" width="110" height="76" rx="6" fill="var(--panel)" stroke="var(--line2)" stroke-width="2"/>
-    <line x1="200" y1="220" x2="182" y2="220" stroke="var(--line2)" stroke-width="2"/>
-    <line x1="200" y1="240" x2="182" y2="240" stroke="var(--line2)" stroke-width="2"/>
-    <line x1="200" y1="260" x2="182" y2="260" stroke="var(--line2)" stroke-width="2"/>
-    <line x1="310" y1="220" x2="328" y2="220" stroke="var(--line2)" stroke-width="2"/>
-    <line x1="310" y1="240" x2="328" y2="240" stroke="var(--line2)" stroke-width="2"/>
-    <line x1="310" y1="260" x2="328" y2="260" stroke="var(--line2)" stroke-width="2"/>
-    <text x="170" y="216" text-anchor="end" fill="var(--txt3)" font-family="JetBrains Mono" font-size="8" letter-spacing="1">VCC</text>
-    <text x="170" y="264" text-anchor="end" fill="var(--txt3)" font-family="JetBrains Mono" font-size="8" letter-spacing="1">GND</text>
-    <text x="340" y="224" fill="var(--txt3)" font-family="JetBrains Mono" font-size="8" letter-spacing="1">SIG</text>
-    <text x="340" y="264" fill="var(--txt3)" font-family="JetBrains Mono" font-size="8" letter-spacing="1">CLK</text>
-    <circle class="pulse-dot" id="circDotA" r="4" fill="var(--acc)"/>
-    <circle class="pulse-dot" id="circDotB" r="4" fill="var(--acc2)"/>
-    <circle class="pulse-dot" id="circDotC" r="4" fill="var(--acc)"/>
-  </svg>
-</header>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="wrap">
-    <div class="sh rv"><span class="num">01</span><h2 data-i18n="ab_t"></h2></div>
-    <div class="about-g">
-      <div class="rv">
-        <p data-i18n="ab_p1"></p>
-        <p data-i18n="ab_p2"></p>
-        <p data-i18n="ab_p3"></p>
-      </div>
-      <div class="about-facts rv">
-        <div class="fact"><span data-i18n="f_loc"></span><b>Villa Allende, Córdoba (AR)</b></div>
-        <div class="fact"><span data-i18n="f_role"></span><b data-i18n="f_role_v"></b></div>
-        <div class="fact"><span data-i18n="f_study"></span><b>UTN FRC</b></div>
-        <div class="fact"><span data-i18n="f_lang"></span><b data-i18n="f_lang_v"></b></div>
-        <div class="fact"><span data-i18n="f_avail"></span><b data-i18n="f_avail_v"></b></div>
-      </div>
-    </div>
-  </div>
+<a class="skip" href="#main">Ir al contenido</a>
+<header class="top"><div class="wrap top-in"><a class="brand" href="./"><span class="pin1" aria-hidden="true"></span>Franco Olmedo</a><nav aria-label="Secciones"><ul class="nav"><li><a href="#trabajos">Trabajos</a></li><li><a href="#otros">Otros</a></li><li><a href="#experiencia">Experiencia</a></li><li><a href="#contacto">Contacto</a></li></ul></nav><ul class="langs" aria-label="Idioma / Language / Sprache"><li><a href="./" hreflang="es" lang="es" aria-current="page">ES</a></li><li><a href="en/" hreflang="en" lang="en">EN</a></li><li><a href="de/" hreflang="de" lang="de">DE</a></li></ul></div></header>
+<main id="main">
+<section class="hero wrap" aria-labelledby="h-nombre"><div class="hero-txt"><p class="kicker">Técnico electrónico · Córdoba, Argentina</p><h1 id="h-nombre">Franco Olmedo</h1><p class="lead">Diseño placas, escribo firmware y armo tableros. Después los instalo y los pongo en marcha en planta.</p><p class="sub">Estudio Ingeniería Electrónica en la FCEFyN (UNC). Trabajo en POL S.R.L., una empresa de residuos y economía circular. Desde 2019 entrego equipos para la industria y el agro.</p><div class="ctas"><a class="btn btn-1" href="https://wa.me/5493512487080?text=Hola%20Franco%2C%20te%20escribo%20desde%20tu%20portfolio." rel="noopener">Escribir por WhatsApp</a><a class="btn btn-2" href="mailto:olmedo.franco.fo@gmail.com">Enviar un mail</a><a class="btn btn-3" href="https://electroniklosungen.com.ar" rel="noopener">Ver ElectronArt <span aria-hidden="true">→</span></a></div><dl class="tblock"><div><dt>Base</dt><dd>Villa Allende, Córdoba</dd></div><div><dt>Hoy</dt><dd>POL S.R.L.</dd></div><div><dt>Estudio</dt><dd>Ing. Electrónica · FCEFyN–UNC</dd></div><div><dt>Idiomas</dt><dd>ES · EN C1 · DE A2</dd></div></dl></div><div class="hero-fig"><figure class="fig"><a href="assets/img/u9-hmi-grado-1280.webp" aria-label="Abrir imagen en tamaño completo: Clasificador U9 en la planta de AgroPlant, junio de 2025. La pantalla avisa que el cajón de grado 1 está lleno."><img src="assets/img/u9-hmi-grado-640.webp" srcset="assets/img/u9-hmi-grado-640.webp 640w, assets/img/u9-hmi-grado-1280.webp 1280w" sizes="(min-width: 1000px) 640px, 100vw" width="640" height="853" alt="Clasificador U9 en la planta de AgroPlant, junio de 2025. La pantalla avisa que el cajón de grado 1 está lleno." fetchpriority="high" decoding="async"></a><figcaption><span class="ref">Fig. 01</span> Clasificador U9 en la planta de AgroPlant, junio de 2025. La pantalla avisa que el cajón de grado 1 está lleno.</figcaption></figure></div></section>
+<section id="trabajos" class="sec wrap" aria-labelledby="h-trab"><div class="sec-h"><p class="net" aria-hidden="true">01</p><h2 id="h-trab">Trabajos</h2><p class="sec-sub">Cada trabajo de esta lista tiene fotos, capturas o datos reales. Lo que no tiene evidencia publicada está en «Otros».</p></div>
+<article class="case" id="u9" aria-labelledby="h-u9"><div class="case-txt"><p class="case-n">01 / 05</p><h3 id="h-u9">Clasificador de papa semilla U9</h3><p class="status st_op"><span class="led" aria-hidden="true"></span>En operación</p><dl class="meta"><div><dt>Cliente</dt><dd>AgroPlant</dd></div><div><dt>Dónde</dt><dd>Contraut SAS</dd></div><div><dt>Año</dt><dd>2025</dd></div><div><dt>Técnica</dt><dd>OpenCV · 2× Raspberry Pi · dsPIC33F</dd></div></dl><p class="case-lead">La máquina pesa cada papa con una cámara y la manda a uno de 6 cajones.</p><ul class="pts"><li>Una Raspberry Pi toma la imagen, segmenta el contorno y calcula el volumen. Con el volumen estima el peso.</li><li>Un dsPIC33F mueve los servos, las cintas y las compuertas. También lee la balanza de calibración.</li><li>Una segunda Raspberry Pi corre la pantalla táctil del operador.</li><li>Clasifica en 6 grados por peso: de 0–5 g hasta más de 60 g.</li><li>Registra cada cosecha por semana y año. Avisa cuando un cajón llega a su límite.</li><li>Al arrancar, el equipo hace un autochequeo. La calibración es guiada paso a paso.</li><li>Entregué el manual de operador e hice la puesta en marcha en la planta del cliente.</li></ul></div><div class="case-figs c3"><figure class="fig"><a href="assets/img/u9-camara-1280.webp" aria-label="Abrir imagen en tamaño completo: Cabina de visión con iluminación LED propia."><img src="assets/img/u9-camara-640.webp" srcset="assets/img/u9-camara-640.webp 640w, assets/img/u9-camara-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="480" alt="Cabina de visión con iluminación LED propia." loading="lazy" decoding="async"></a><figcaption><span class="ref">Fig. 02</span> Cabina de visión con iluminación LED propia.</figcaption></figure><figure class="fig"><a href="assets/img/u9-segmentacion-1280.webp" aria-label="Abrir imagen en tamaño completo: Segmentación del contorno y eje mayor de una papa."><img src="assets/img/u9-segmentacion-640.webp" srcset="assets/img/u9-segmentacion-640.webp 640w, assets/img/u9-segmentacion-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="640" alt="Segmentación del contorno y eje mayor de una papa." loading="lazy" decoding="async"></a><figcaption><span class="ref">Fig. 03</span> Segmentación del contorno y eje mayor de una papa.</figcaption></figure><figure class="fig"><a href="assets/img/u9-placas-1280.webp" aria-label="Abrir imagen en tamaño completo: Placas de interfaz, RTC, conversores y Raspberry Pi en el gabinete."><img src="assets/img/u9-placas-640.webp" srcset="assets/img/u9-placas-640.webp 640w, assets/img/u9-placas-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="853" alt="Placas de interfaz, RTC, conversores y Raspberry Pi en el gabinete." loading="lazy" decoding="async"></a><figcaption><span class="ref">Fig. 04</span> Placas de interfaz, RTC, conversores y Raspberry Pi en el gabinete.</figcaption></figure><figure class="fig"><a href="assets/img/u9-tablero-1280.webp" aria-label="Abrir imagen en tamaño completo: Tablero de control con borneras y protecciones."><img src="assets/img/u9-tablero-640.webp" srcset="assets/img/u9-tablero-640.webp 640w, assets/img/u9-tablero-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="853" alt="Tablero de control con borneras y protecciones." loading="lazy" decoding="async"></a><figcaption><span class="ref">Fig. 05</span> Tablero de control con borneras y protecciones.</figcaption></figure><figure class="fig"><a href="assets/img/u9-planta-1280.webp" aria-label="Abrir imagen en tamaño completo: Equipo en la planta del cliente."><img src="assets/img/u9-planta-640.webp" srcset="assets/img/u9-planta-640.webp 640w, assets/img/u9-planta-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="853" alt="Equipo en la planta del cliente." loading="lazy" decoding="async"></a><figcaption><span class="ref">Fig. 06</span> Equipo en la planta del cliente.</figcaption></figure><figure class="fig"><a href="assets/img/u9-ensayo-1280.webp" aria-label="Abrir imagen en tamaño completo: Ensayo de una papa en la cabina."><img src="assets/img/u9-ensayo-640.webp" srcset="assets/img/u9-ensayo-640.webp 640w, assets/img/u9-ensayo-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="480" alt="Ensayo de una papa en la cabina." loading="lazy" decoding="async"></a><figcaption><span class="ref">Fig. 07</span> Ensayo de una papa en la cabina.</figcaption></figure></div></article>
+<article class="case" id="electronart" aria-labelledby="h-electronart"><div class="case-txt"><p class="case-n">02 / 05</p><h3 id="h-electronart">ElectronArt — EDA en castellano</h3><p class="status st_sale"><span class="led" aria-hidden="true"></span>A la venta</p><dl class="meta"><div><dt>Cliente</dt><dd>Producto propio</dd></div><div><dt>Dónde</dt><dd>Electronik Lösungen</dd></div><div><dt>Técnica</dt><dd>Python · PySide6 · NumPy/SciPy · SPICE</dd></div></dl><p class="case-lead">Un solo programa para pasar del esquemático a los archivos de fábrica.</p><ul class="pts"><li>Incluye esquemático, simulación SPICE, PCB multicapa y vista 3D.</li><li>Exporta Gerber con arcos reales, IPC-2581, ODB++ y STEP.</li><li>Tiene un módulo eléctrico con símbolos IEC 60617 para tableros y PLC.</li><li>La interfaz está en 3 idiomas. La licencia funciona sin conexión y usa firma Ed25519.</li><li>252 ensayos automáticos verifican cada versión antes de publicarla.</li></ul><p><a class="ext" href="https://electroniklosungen.com.ar" rel="noopener">electroniklosungen.com.ar <span aria-hidden="true">↗</span></a></p></div><div class="case-figs"><figure class="fig w"><a href="assets/img/ea-esquematico-1280.webp" aria-label="Abrir imagen en tamaño completo: Editor de esquemático de ElectronArt."><img src="assets/img/ea-esquematico-640.webp" srcset="assets/img/ea-esquematico-640.webp 640w, assets/img/ea-esquematico-1280.webp 1280w" sizes="(min-width: 1000px) 640px, 100vw" width="640" height="405" alt="Editor de esquemático de ElectronArt." loading="lazy" decoding="async"></a><figcaption><span class="ref">Fig. 08</span> Editor de esquemático de ElectronArt.</figcaption></figure><figure class="fig w"><a href="assets/img/ea-fft-1280.webp" aria-label="Abrir imagen en tamaño completo: Análisis de Fourier sobre una simulación SPICE."><img src="assets/img/ea-fft-640.webp" srcset="assets/img/ea-fft-640.webp 640w, assets/img/ea-fft-1280.webp 1280w" sizes="(min-width: 1000px) 640px, 100vw" width="640" height="348" alt="Análisis de Fourier sobre una simulación SPICE." loading="lazy" decoding="async"></a><figcaption><span class="ref">Fig. 09</span> Análisis de Fourier sobre una simulación SPICE.</figcaption></figure></div></article>
+<article class="case" id="mixoil" aria-labelledby="h-mixoil"><div class="case-txt"><p class="case-n">03 / 05</p><h3 id="h-mixoil">MixOil V5 — control de una planta de pirólisis</h3><p class="status st_run"><span class="led" aria-hidden="true"></span>En curso</p><dl class="meta"><div><dt>Cliente</dt><dd>POL S.R.L.</dd></div><div><dt>Año</dt><dd>2026</dd></div><div><dt>Técnica</dt><dd>Python · adquisición de datos · web</dd></div></dl><p class="case-lead">El sistema mide la planta, guarda cada ciclo y muestra los datos en vivo.</p><ul class="pts"><li>Mide temperaturas de horno, precalentador y condensador.</li><li>Registra 7 variables de proceso y el estado del molino y del quemador.</li><li>Una página web en la red de la planta muestra las curvas en vivo.</li><li>Un simulador repite el ciclo completo de 15 h. Así pruebo cambios antes de aplicarlos en la planta.</li><li>Escribo informes de mejora con los datos de cada ensayo.</li></ul></div><div class="case-figs one"><figure class="fig w"><a href="assets/img/mixoil-ciclo-1280.webp" aria-label="Abrir imagen en tamaño completo: Registro del ciclo del 11-05-2026: horno, precalentador, condensador y actuadores."><img src="assets/img/mixoil-ciclo-640.webp" srcset="assets/img/mixoil-ciclo-640.webp 640w, assets/img/mixoil-ciclo-1280.webp 1280w" sizes="(min-width: 1000px) 640px, 100vw" width="640" height="366" alt="Registro del ciclo del 11-05-2026: horno, precalentador, condensador y actuadores." loading="lazy" decoding="async"></a><figcaption><span class="ref">Fig. 10</span> Registro del ciclo del 11-05-2026: horno, precalentador, condensador y actuadores.</figcaption></figure></div></article>
+<article class="case" id="respiracion" aria-labelledby="h-respiracion"><div class="case-txt"><p class="case-n">04 / 05</p><h3 id="h-respiracion">«Respiración» — instalación cinética</h3><p class="status st_proto"><span class="led" aria-hidden="true"></span>Prototipo armado</p><dl class="meta"><div><dt>Cliente</dt><dd>Proyecto independiente</dd></div><div><dt>Técnica</dt><dd>MicroPython · PCA9685 · neumática · impresión 3D</dd></div></dl><p class="case-lead">Una pieza de arte que simula la respiración con aire y servos.</p><ul class="pts"><li>Modelé e imprimí en 3D el manifold, la caja de bypass, las aletas y los soportes de sensores.</li><li>Un PCA9685 controla los servos. El firmware en MicroPython detecta presencia y ejecuta las rutinas de movimiento.</li><li>Antes de armar, probé el sistema en un simulador propio. Después preparé la cotización de producción.</li></ul></div><div class="case-figs"><figure class="fig"><a href="assets/img/obra-control-1280.webp" aria-label="Abrir imagen en tamaño completo: Gabinete de control: fuente, protecciones y electrónica."><img src="assets/img/obra-control-640.webp" srcset="assets/img/obra-control-640.webp 640w, assets/img/obra-control-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="853" alt="Gabinete de control: fuente, protecciones y electrónica." loading="lazy" decoding="async"></a><figcaption><span class="ref">Fig. 11</span> Gabinete de control: fuente, protecciones y electrónica.</figcaption></figure><figure class="fig"><a href="assets/img/obra-ensamble-1280.webp" aria-label="Abrir imagen en tamaño completo: Caja de bypass impresa con la electrónica montada."><img src="assets/img/obra-ensamble-640.webp" srcset="assets/img/obra-ensamble-640.webp 640w, assets/img/obra-ensamble-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="853" alt="Caja de bypass impresa con la electrónica montada." loading="lazy" decoding="async"></a><figcaption><span class="ref">Fig. 12</span> Caja de bypass impresa con la electrónica montada.</figcaption></figure><figure class="fig"><a href="assets/img/obra-cad-1280.webp" aria-label="Abrir imagen en tamaño completo: Modelo CAD de una pieza del manifold."><img src="assets/img/obra-cad-640.webp" srcset="assets/img/obra-cad-640.webp 640w, assets/img/obra-cad-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="1138" alt="Modelo CAD de una pieza del manifold." loading="lazy" decoding="async"></a><figcaption><span class="ref">Fig. 13</span> Modelo CAD de una pieza del manifold.</figcaption></figure><figure class="fig"><a href="assets/img/obra-completo-1280.webp" aria-label="Abrir imagen en tamaño completo: Sistema armado con los conductos de aire."><img src="assets/img/obra-completo-640.webp" srcset="assets/img/obra-completo-640.webp 640w, assets/img/obra-completo-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="853" alt="Sistema armado con los conductos de aire." loading="lazy" decoding="async"></a><figcaption><span class="ref">Fig. 14</span> Sistema armado con los conductos de aire.</figcaption></figure></div></article>
+<article class="case" id="robot" aria-labelledby="h-robot"><div class="case-txt"><p class="case-n">05 / 05</p><h3 id="h-robot">Robot aspirador</h3><p class="status st_done"><span class="led" aria-hidden="true"></span>Terminado</p><dl class="meta"><div><dt>Cliente</dt><dd>Proyecto escolar · ITS Villada</dd></div><div><dt>Técnica</dt><dd>SolidWorks · L298N · impresión 3D</dd></div></dl><p class="case-lead">Mi primer equipo completo: mecánica, placa y firmware.</p><ul class="pts"><li>Diseñé el chasis, el paragolpes con microinterruptores y las hélices en SolidWorks. Imprimí todo en 3D.</li><li>Diseñé la placa de potencia con un L298N para los 2 motores de CC.</li><li>El firmware lee los choques, controla los motores y la aspiración.</li></ul></div><div class="case-figs"><figure class="fig"><a href="assets/img/robot-armado-1280.webp" aria-label="Abrir imagen en tamaño completo: Robot armado, vista superior."><img src="assets/img/robot-armado-640.webp" srcset="assets/img/robot-armado-640.webp 640w, assets/img/robot-armado-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="853" alt="Robot armado, vista superior." loading="lazy" decoding="async"></a><figcaption><span class="ref">Fig. 15</span> Robot armado, vista superior.</figcaption></figure><figure class="fig"><a href="assets/img/robot-despiece-1280.webp" aria-label="Abrir imagen en tamaño completo: Despiece: chasis, placa, motores y batería."><img src="assets/img/robot-despiece-640.webp" srcset="assets/img/robot-despiece-640.webp 640w, assets/img/robot-despiece-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="853" alt="Despiece: chasis, placa, motores y batería." loading="lazy" decoding="async"></a><figcaption><span class="ref">Fig. 16</span> Despiece: chasis, placa, motores y batería.</figcaption></figure></div></article>
 </section>
-
-<!-- EXPERIENCE -->
-<section id="exp" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-  <div class="wrap">
-    <div class="sh rv"><span class="num">02</span><h2 data-i18n="ex_t"></h2></div>
-    <div class="tl">
-      <div class="tl-item rv">
-        <span class="tl-date">2026 — <span data-i18n="present"></span></span>
-        <h3>POL SRL</h3><h4 data-i18n="ex0_r"></h4>
-        <p data-i18n="ex0_d"></p>
-        <div class="chips"><span class="chip" data-i18n="chip_auto2"></span><span class="chip" data-i18n="chip_pm"></span><span class="chip" data-i18n="chip_web"></span><span class="chip" data-i18n="chip_db"></span><span class="chip" data-i18n="chip_bio"></span></div>
-      </div>
-      <div class="tl-item rv">
-        <span class="tl-date">2022 — <span data-i18n="present"></span></span>
-        <h3>Contraut SAS</h3><h4 data-i18n="ex1_r"></h4>
-        <p data-i18n="ex1_d"></p>
-        <div class="chips"><span class="chip">Altium</span><span class="chip">PIC / dsPIC</span><span class="chip">ATmega</span><span class="chip">Xilinx</span><span class="chip">CNC</span><span class="chip">Python</span></div>
-      </div>
-      <div class="tl-item rv">
-        <span class="tl-date">2021</span>
-        <h3 data-i18n="ex2_c"></h3><h4 data-i18n="ex2_r"></h4>
-        <p data-i18n="ex2_d"></p>
-        <div class="chips"><span class="chip">CNC</span><span class="chip">Mach3</span><span class="chip">VFD</span><span class="chip" data-i18n="chip_panel"></span></div>
-      </div>
-      <div class="tl-item rv">
-        <span class="tl-date">2020</span>
-        <h3>Blockstrong Motors</h3><h4 data-i18n="ex3_r"></h4>
-        <p data-i18n="ex3_d"></p>
-        <div class="chips"><span class="chip">Siemens S7-200</span><span class="chip">Ladder</span><span class="chip" data-i18n="chip_sens"></span><span class="chip" data-i18n="chip_servo"></span></div>
-      </div>
-      <div class="tl-item rv">
-        <span class="tl-date">2019 — 2021</span>
-        <h3 data-i18n="ex4_c"></h3><h4 data-i18n="ex4_r"></h4>
-        <p data-i18n="ex4_d"></p>
-        <div class="chips"><span class="chip" data-i18n="chip_med"></span><span class="chip">LED</span><span class="chip" data-i18n="chip_proto"></span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="proj">
-  <div class="wrap">
-    <div class="sh rv"><span class="num">03</span><h2 data-i18n="pr_t"></h2><p data-i18n="pr_sub"></p></div>
-    <div class="pgrid">
-
-      <article class="pcard pcard-ea wide rv">
-        <div class="pimg"><a href="https://electroniklosungen.com.ar" target="_blank"><img src="assets/electronart_app.png" alt="ElectronArt EDA"></a><span class="cat" data-i18n="cat_sw"></span></div>
-        <div class="pbody">
-          <h3>ElectronArt — EDA Suite</h3>
-          <p class="role mono" data-i18n="p1_r"></p>
-          <p data-i18n="p1_d"></p>
-          <div class="pmore"><ul>
-            <li data-i18n="p1_b1"></li><li data-i18n="p1_b2"></li><li data-i18n="p1_b3"></li><li data-i18n="p1_b4"></li>
-          </ul></div>
-          <button class="ptoggle" data-i18n="more"></button>
-          <div style="margin-top:14px"><a href="https://electroniklosungen.com.ar" target="_blank" class="ea-link" data-i18n="p1_link"></a></div>
-          <div class="chips" style="margin-top:16px"><span class="chip">Python</span><span class="chip">PySide6</span><span class="chip">NumPy / SciPy</span><span class="chip">SPICE</span><span class="chip">3D</span></div>
-        </div>
-      </article>
-
-      <article class="pcard tall rv">
-        <div class="pimg" data-gal="p2"><img src="assets/gallery/agroplant_01_titulo.jpg" alt="AgroPlant — Clasificador de papa semilla"><span class="cat" data-i18n="cat_auto"></span><span class="gcount">9</span></div>
-        <div class="pbody">
-          <h3 data-i18n="p2_t"></h3>
-          <p class="role mono">Contraut SAS</p>
-          <p data-i18n="p2_d"></p>
-          <div class="pmore"><ul>
-            <li data-i18n="p2_b1"></li><li data-i18n="p2_b2"></li><li data-i18n="p2_b3"></li>
-          </ul></div>
-          <button class="ptoggle" data-i18n="more"></button>
-          <div class="chips"><span class="chip">OpenCV</span><span class="chip">Raspberry Pi ×2</span><span class="chip">dsPIC33F</span><span class="chip" data-i18n="chip_vision"></span></div>
-        </div>
-      </article>
-
-      <article class="pcard rv">
-        <div class="pimg"><img src="assets/mixoil_web.png" alt="MixOil telemetría" style="object-fit:contain;background:#fdfdc8"><span class="cat" data-i18n="cat_auto"></span></div>
-        <div class="pbody">
-          <h3 data-i18n="p3_t"></h3>
-          <p class="role mono">Contraut SAS</p>
-          <p data-i18n="p3_d"></p>
-          <div class="pmore"><ul>
-            <li data-i18n="p3_b1"></li><li data-i18n="p3_b2"></li><li data-i18n="p3_b3"></li>
-          </ul></div>
-          <button class="ptoggle" data-i18n="more"></button>
-          <div class="chips"><span class="chip">Python</span><span class="chip">Web GUI</span><span class="chip" data-i18n="chip_telem"></span><span class="chip" data-i18n="chip_sim"></span></div>
-        </div>
-      </article>
-
-      <article class="pcard rv">
-        <div class="pimg"><img src="assets/electronart_3d.png" alt="Render 3D PCB"><span class="cat" data-i18n="cat_pcb"></span></div>
-        <div class="pbody">
-          <h3 data-i18n="p4_t"></h3>
-          <p class="role mono">Contraut SAS</p>
-          <p data-i18n="p4_d"></p>
-          <div class="pmore"><ul>
-            <li data-i18n="p4_b1"></li><li data-i18n="p4_b2"></li><li data-i18n="p4_b3"></li>
-          </ul></div>
-          <button class="ptoggle" data-i18n="more"></button>
-          <div class="chips"><span class="chip">Altium</span><span class="chip" data-i18n="chip_multi"></span><span class="chip">RF</span><span class="chip">BOM</span></div>
-        </div>
-      </article>
-
-      <article class="pcard wide rv">
-        <div class="pimg" data-gal="p5"><img src="assets/gallery/obra_02_carcasa3d.jpg" alt="Obra Respiración"><span class="cat" data-i18n="cat_art"></span><span class="gcount">5</span></div>
-        <div class="pbody">
-          <h3 data-i18n="p5_t"></h3>
-          <p class="role mono" data-i18n="p5_r"></p>
-          <p data-i18n="p5_d"></p>
-          <div class="pmore"><ul>
-            <li data-i18n="p5_b1"></li><li data-i18n="p5_b2"></li><li data-i18n="p5_b3"></li>
-          </ul></div>
-          <button class="ptoggle" data-i18n="more"></button>
-          <div class="chips"><span class="chip">MicroPython</span><span class="chip">PCA9685</span><span class="chip" data-i18n="chip_3dp"></span><span class="chip" data-i18n="chip_pneu"></span></div>
-        </div>
-      </article>
-
-      <article class="pcard rv">
-        <div class="pimg"><img src="assets/ssd_render.jpg" alt="Render carcasa SSD"><span class="cat" data-i18n="cat_cad"></span></div>
-        <div class="pbody">
-          <h3 data-i18n="p6_t"></h3>
-          <p class="role mono" data-i18n="p6_r"></p>
-          <p data-i18n="p6_d"></p>
-          <div class="pmore"><ul>
-            <li data-i18n="p6_b1"></li><li data-i18n="p6_b2"></li><li data-i18n="p6_b3"></li>
-          </ul></div>
-          <button class="ptoggle" data-i18n="more"></button>
-          <div class="chips"><span class="chip">Fusion 360</span><span class="chip">STL / STEP</span><span class="chip" data-i18n="chip_3dp"></span></div>
-        </div>
-      </article>
-
-      <article class="pcard rv">
-        <div class="pimg"><svg viewBox="0 0 600 280" style="width:100%;height:280px;display:block;background:#060a10" xmlns="http://www.w3.org/2000/svg" aria-label="Diagrama ladder PLC">
-          <line x1="60" y1="20" x2="60" y2="260" stroke="var(--line2)" stroke-width="3"/>
-          <line x1="540" y1="20" x2="540" y2="260" stroke="var(--line2)" stroke-width="3"/>
-          <g stroke="var(--acc)" stroke-width="2.5" fill="none">
-            <line x1="60" y1="70" x2="150" y2="70"/><line x1="150" y1="55" x2="150" y2="85"/><line x1="170" y1="55" x2="170" y2="85"/><line x1="170" y1="70" x2="300" y2="70"/>
-            <line x1="300" y1="55" x2="300" y2="85"/><line x1="322" y1="55" x2="322" y2="85"/><line x1="311" y1="50" x2="300" y2="85" stroke-width="2"/>
-            <line x1="322" y1="70" x2="450" y2="70"/><circle cx="472" cy="70" r="22"/><line x1="494" y1="70" x2="540" y2="70"/>
-          </g>
-          <g stroke="var(--acc2)" stroke-width="2.5" fill="none" opacity=".8">
-            <line x1="60" y1="160" x2="150" y2="160"/><line x1="150" y1="145" x2="150" y2="175"/><line x1="170" y1="145" x2="170" y2="175"/>
-            <line x1="170" y1="160" x2="450" y2="160"/><circle cx="472" cy="160" r="22"/><line x1="494" y1="160" x2="540" y2="160"/>
-          </g>
-          <g stroke="var(--txt3)" stroke-width="2" fill="none" opacity=".6">
-            <line x1="60" y1="230" x2="150" y2="230"/><line x1="150" y1="215" x2="150" y2="245"/><line x1="170" y1="215" x2="170" y2="245"/><line x1="170" y1="230" x2="450" y2="230"/><circle cx="472" cy="230" r="22"/><line x1="494" y1="230" x2="540" y2="230"/>
-          </g>
-          <text x="160" y="45" fill="var(--txt3)" font-family="JetBrains Mono" font-size="12" text-anchor="middle">I0.1</text>
-          <text x="311" y="45" fill="var(--txt3)" font-family="JetBrains Mono" font-size="12" text-anchor="middle">I0.3</text>
-          <text x="472" y="74" fill="var(--acc)" font-family="JetBrains Mono" font-size="11" text-anchor="middle">Q0.2</text>
-          <text x="472" y="164" fill="var(--acc2)" font-family="JetBrains Mono" font-size="11" text-anchor="middle">Q0.4</text>
-          <text x="472" y="234" fill="var(--txt3)" font-family="JetBrains Mono" font-size="11" text-anchor="middle">Q0.5</text>
-        </svg><span class="cat" data-i18n="cat_plc"></span></div>
-        <div class="pbody">
-          <h3 data-i18n="p7_t"></h3>
-          <p class="role mono">Blockstrong Motors</p>
-          <p data-i18n="p7_d"></p>
-          <div class="pmore"><ul>
-            <li data-i18n="p7_b1"></li><li data-i18n="p7_b2"></li><li data-i18n="p7_b3"></li>
-          </ul></div>
-          <button class="ptoggle" data-i18n="more"></button>
-          <div class="chips"><span class="chip">S7-200</span><span class="chip">Ladder</span><span class="chip" data-i18n="chip_doc"></span></div>
-        </div>
-      </article>
-
-      <article class="pcard rv">
-        <div class="pimg"><svg viewBox="0 0 600 280" style="width:100%;height:280px;display:block;background:#060a10" xmlns="http://www.w3.org/2000/svg" aria-label="Curva de ventilación">
-          <g stroke="var(--line)" stroke-width="1">
-            <line x1="0" y1="70" x2="600" y2="70"/><line x1="0" y1="140" x2="600" y2="140"/><line x1="0" y1="210" x2="600" y2="210"/>
-            <line x1="150" y1="0" x2="150" y2="280"/><line x1="300" y1="0" x2="300" y2="280"/><line x1="450" y1="0" x2="450" y2="280"/>
-          </g>
-          <path d="M0 210 L40 210 C70 210 70 80 100 80 L130 80 C160 80 160 210 190 210 L240 210 C270 210 270 80 300 80 L330 80 C360 80 360 210 390 210 L440 210 C470 210 470 80 500 80 L530 80 C560 80 560 210 590 210" fill="none" stroke="var(--acc)" stroke-width="3"/>
-          <path d="M0 240 L40 240 C75 240 80 180 110 175 L140 172 C170 172 175 240 205 240 L240 240 C275 240 280 180 310 175 L340 172 C370 172 375 240 405 240 L440 240 C475 240 480 180 510 175 L540 172 C570 172 575 240 600 240" fill="none" stroke="var(--acc2)" stroke-width="2" opacity=".75"/>
-          <text x="20" y="35" fill="var(--txt3)" font-family="JetBrains Mono" font-size="12">P [cmH2O]</text>
-          <text x="510" y="265" fill="var(--txt3)" font-family="JetBrains Mono" font-size="12">t [s]</text>
-        </svg><span class="cat" data-i18n="cat_rd"></span></div>
-        <div class="pbody">
-          <h3 data-i18n="p8_t"></h3>
-          <p class="role mono">CovidLab · UNRC</p>
-          <p data-i18n="p8_d"></p>
-          <div class="pmore"><ul>
-            <li data-i18n="p8_b1"></li><li data-i18n="p8_b2"></li><li data-i18n="p8_b3"></li>
-          </ul></div>
-          <button class="ptoggle" data-i18n="more"></button>
-          <div class="chips"><span class="chip" data-i18n="chip_med"></span><span class="chip" data-i18n="chip_emb"></span><span class="chip" data-i18n="chip_doc"></span></div>
-        </div>
-      </article>
-
-      <article class="pcard rv">
-        <div class="pimg" data-gal="p9"><img src="assets/gallery/robot_01_ensamblado.jpg" alt="Robot aspirador autónomo" style="object-fit:contain;background:#0c1119"><span class="cat" data-i18n="cat_robot"></span><span class="gcount">2</span></div>
-        <div class="pbody">
-          <h3 data-i18n="p9_t"></h3>
-          <p class="role mono" data-i18n="p9_r"></p>
-          <p data-i18n="p9_d"></p>
-          <div class="pmore"><ul>
-            <li data-i18n="p9_b1"></li><li data-i18n="p9_b2"></li><li data-i18n="p9_b3"></li>
-          </ul></div>
-          <button class="ptoggle" data-i18n="more"></button>
-          <div class="chips"><span class="chip">SolidWorks</span><span class="chip" data-i18n="chip_3dp"></span><span class="chip">L298N</span><span class="chip" data-i18n="chip_emb"></span></div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- EXTRAS -->
-<section id="extras">
-  <div class="wrap">
-    <div class="sh rv"><span class="num">04</span><h2 data-i18n="ex_extras_t"></h2><p data-i18n="ex_extras_sub"></p></div>
-    <div class="egrid" id="egrid"></div>
-    <p class="extras-empty rv" id="egridEmpty" data-i18n="ex_extras_empty"></p>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-  <div class="wrap">
-    <div class="sh rv"><span class="num">05</span><h2 data-i18n="sk_t"></h2></div>
-    <div class="sgrid">
-      <div class="scard rv"><h3><span class="dot"></span><span data-i18n="sk1"></span></h3><ul>
-        <li>Altium Designer<span class="lvl">●●●●●</span></li>
-        <li data-i18n-li="sk1_2">PCB multicapa<span class="lvl">●●●●●</span></li>
-        <li data-i18n-li="sk1_3">Esquemáticos / footprints<span class="lvl">●●●●●</span></li>
-        <li>Proteus / LTspice<span class="lvl">●●●●○</span></li>
-      </ul></div>
-      <div class="scard rv"><h3><span class="dot"></span><span data-i18n="sk2"></span></h3><ul>
-        <li>C / C++<span class="lvl">●●●●●</span></li>
-        <li>Python<span class="lvl">●●●●●</span></li>
-        <li>PIC · dsPIC · ATmega<span class="lvl">●●●●●</span></li>
-        <li>ESP32 · MicroPython<span class="lvl">●●●●○</span></li>
-        <li>Verilog / HDL (Xilinx)<span class="lvl">●●●○○</span></li>
-      </ul></div>
-      <div class="scard rv"><h3><span class="dot"></span><span data-i18n="sk3"></span></h3><ul>
-        <li data-i18n-li="sk3_1">PLC Siemens (Ladder)<span class="lvl">●●●●○</span></li>
-        <li>CNC · Mach3<span class="lvl">●●●●●</span></li>
-        <li data-i18n-li="sk3_3">Tableros eléctricos<span class="lvl">●●●●○</span></li>
-        <li data-i18n-li="sk3_4">Sensores / actuadores<span class="lvl">●●●●●</span></li>
-      </ul></div>
-      <div class="scard rv"><h3><span class="dot"></span><span data-i18n="sk4"></span></h3><ul>
-        <li>Fusion 360 / SolidWorks<span class="lvl">●●●●○</span></li>
-        <li>AutoCAD<span class="lvl">●●●○○</span></li>
-        <li data-i18n-li="sk4_3">Impresión 3D<span class="lvl">●●●●●</span></li>
-        <li>QElectroTech<span class="lvl">●●●●○</span></li>
-      </ul></div>
-      <div class="scard rv"><h3><span class="dot"></span><span data-i18n="sk5"></span></h3><ul>
-        <li>PySide6 / Qt<span class="lvl">●●●●●</span></li>
-        <li>NumPy · SciPy · OpenCV<span class="lvl">●●●●○</span></li>
-        <li>Git<span class="lvl">●●●●○</span></li>
-        <li data-i18n-li="sk5_4">GUIs web embebidas<span class="lvl">●●●●○</span></li>
-      </ul></div>
-      <div class="scard rv"><h3><span class="dot"></span><span data-i18n="sk6"></span></h3><ul>
-        <li data-i18n-li="sk6_1">Español (nativo)<span class="lvl">C2</span></li>
-        <li data-i18n-li="sk6_2">Inglés<span class="lvl">C1</span></li>
-        <li data-i18n-li="sk6_3">Alemán<span class="lvl">A2</span></li>
-      </ul></div>
-    </div>
-  </div>
-</section>
-
-<!-- EDUCATION -->
-<section id="edu">
-  <div class="wrap">
-    <div class="sh rv"><span class="num">06</span><h2 data-i18n="ed_t"></h2></div>
-    <div class="edu-g">
-      <div class="ecard rv">
-        <span class="tl-date">2022 — <span data-i18n="present"></span></span>
-        <h3 data-i18n="ed1_t"></h3><h4>UTN — Facultad Regional Córdoba</h4>
-        <p data-i18n="ed1_d"></p>
-      </div>
-      <div class="ecard rv">
-        <span class="tl-date">2014 — 2020</span>
-        <h3 data-i18n="ed2_t"></h3><h4>Instituto Técnico Salesiano Villada</h4>
-        <p data-i18n="ed2_d"></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="wrap">
-    <div class="contact-wrap rv">
-      <div class="contact-info">
-        <h2 data-i18n="ct_t"></h2>
-        <p data-i18n="ct_d"></p>
-        <div class="cinfo-links">
-          <a href="mailto:olmedo.franco.fo@gmail.com"><i>@</i>olmedo.franco.fo@gmail.com</a>
-          <a href="https://www.linkedin.com/in/franco-olmedo-967405194/" target="_blank" rel="noopener"><i>in</i>LinkedIn</a>
-          <span><i>tel</i>+54 9 351 248-7080</span>
-          <span><i>loc</i>Villa Allende, Córdoba, AR</span>
-          <a class="cvlink" href="cv-es.pdf" target="_blank"><i style="font-family:serif">↓</i><span data-i18n="hero_cv"></span></a>
-        </div>
-      </div>
-      <form class="contact-form" action="https://formspree.io/f/xkodrpqn" method="POST">
-        <input type="text" name="name" placeholder="Tu nombre" required>
-        <input type="email" name="_replyto" placeholder="Tu email" required>
-        <textarea name="message" placeholder="¿En qué te puedo ayudar?" required></textarea>
-        <button type="submit" class="btn btn-p" data-i18n="ct_send">Enviar mensaje</button>
-      </form>
-    </div>
-  </div>
-</section>
+<section id="otros" class="sec wrap" aria-labelledby="h-otros"><div class="sec-h"><p class="net" aria-hidden="true">02</p><h2 id="h-otros">Otros trabajos</h2><p class="sec-sub">Estos trabajos no tienen fotos publicadas. Si te sirve un caso, te mando los detalles por mail.</p></div><table class="bom" role="table"><thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">Año</th><th scope="col" role="columnheader">Trabajo</th><th scope="col" role="columnheader">Para</th><th scope="col" role="columnheader">Evidencia</th></tr></thead><tbody role="rowgroup"><tr role="row"><td role="cell" class="y">2026–hoy</td><td role="cell">Automatización de procesos en compostaje, biochar, biodigestores y lombrifiltro.</td><td role="cell">POL S.R.L.</td><td role="cell" class="ev">En curso</td></tr><tr role="row"><td role="cell" class="y">2022–hoy</td><td role="cell">Placas para máquinas CNC y bancos de ensayo: central de control, control RF, adaptadores MSP430 y SATA-GETAC. Diseño en Altium, firmware PIC/ATmega/Xilinx.</td><td role="cell">Contraut SAS</td><td role="cell" class="ev">Fotos en preparación</td></tr><tr role="row"><td role="cell" class="y">2022–hoy</td><td role="cell">Bancos de ensayo y sistemas de adquisición de datos.</td><td role="cell">FAESA · Astillero Río Santiago</td><td role="cell" class="ev">Sin fotos publicadas</td></tr><tr role="row"><td role="cell" class="y">2021</td><td role="cell">Puesta en marcha de 3 máquinas CNC: tablero eléctrico, comunicación con la PC y ajuste del variador del husillo.</td><td role="cell">Freelance</td><td role="cell" class="ev">Sin fotos publicadas</td></tr><tr role="row"><td role="cell" class="y">2020</td><td role="cell">Bruñidora para motores de camión de 4 a 6 cilindros con PLC Siemens S7-200. Programa ladder, tablero, sensores inductivos y manuales.</td><td role="cell">Blockstrong Motors</td><td role="cell" class="ev">Manuales entregados al cliente</td></tr><tr role="row"><td role="cell" class="y">2020</td><td role="cell">REESpirator, respirador de emergencia. Participé en la electrónica de control y la documentación.</td><td role="cell">CovidLab · UNRC</td><td role="cell" class="ev">Sin fotos publicadas</td></tr><tr role="row"><td role="cell" class="y">2019–2021</td><td role="cell">Auriculares con LEDs para pacientes con Parkinson. Trabajo con un equipo de kinesiólogos.</td><td role="cell">Freelance</td><td role="cell" class="ev">Sin fotos publicadas</td></tr></tbody></table></section>
+<section id="experiencia" class="sec wrap" aria-labelledby="h-exp"><div class="sec-h"><p class="net" aria-hidden="true">03</p><h2 id="h-exp">Experiencia</h2></div><div class="cols"><div><ol class="tl"><li><span class="y">2026–hoy</span><div><b>POL S.R.L.</b><p>Pasante de automatización. Residuos y economía circular: compostaje, pirólisis (MixOil) y biochar.</p></div></li><li><span class="y">2022–hoy</span><div><b>Contraut SAS</b><p>Ingeniero electrónico junior. Diseño y produzco placas propias. Escribo el firmware de cada placa. Hago proyectos de automatización llave en mano.</p></div></li><li><span class="y">2021</span><div><b>Freelance</b><p>Tableros y puesta en marcha de máquinas CNC.</p></div></li><li><span class="y">2020</span><div><b>Blockstrong Motors</b><p>Diseño y programación de PLC.</p></div></li><li><span class="y">2019–2021</span><div><b>Freelance</b><p>Prototipos de dispositivos médicos.</p></div></li></ol></div><div><h3 class="h-sm">Formación</h3><ol class="tl"><li><span class="y">en curso</span><div><b>Ingeniería Electrónica</b><p>FCEFyN — Universidad Nacional de Córdoba</p></div></li><li><span class="y">2014–2020</span><div><b>Técnico Electrónico</b><p>Instituto Técnico Salesiano Villada</p></div></li></ol><h3 class="h-sm">Herramientas</h3><dl class="tools"><div><dt>Placas</dt><dd>Altium Designer · ElectronArt · LTspice · Proteus</dd></div><div><dt>Embebidos</dt><dd>C · C++ · ESP32 · STM32 · PIC / dsPIC · ATmega · MicroPython · Verilog (Xilinx)</dd></div><div><dt>Automatización</dt><dd>PLC Siemens (ladder) · tableros IEC · variadores · CNC Mach3 · QElectroTech</dd></div><div><dt>Software</dt><dd>Python · PySide6 / Qt · NumPy · SciPy · OpenCV · Git</dd></div><div><dt>Mecánica</dt><dd>Fusion 360 · SolidWorks · AutoCAD · impresión 3D</dd></div></dl></div></div></section>
+<section id="contacto" class="sec contact" aria-labelledby="h-ct"><div class="wrap"><div class="sec-h"><p class="net" aria-hidden="true">04</p><h2 id="h-ct">Contacto</h2></div><div class="ct-grid"><div><p class="ct-lead">¿Tenés una máquina, una placa o un tablero para resolver?</p><p class="ct-sub">Contame qué tiene que hacer, cuántas unidades necesitás y para cuándo. Te respondo con una propuesta concreta.</p><div class="ctas"><a class="btn btn-1" href="https://wa.me/5493512487080?text=Hola%20Franco%2C%20te%20escribo%20desde%20tu%20portfolio." rel="noopener">Escribir por WhatsApp</a><a class="btn btn-2" href="mailto:olmedo.franco.fo@gmail.com">Enviar un mail</a></div></div><dl class="ct-list"><div><dt>Mail</dt><dd><a href="mailto:olmedo.franco.fo@gmail.com">olmedo.franco.fo@gmail.com</a></dd></div><div><dt>WhatsApp</dt><dd><a href="https://wa.me/5493512487080?text=Hola%20Franco%2C%20te%20escribo%20desde%20tu%20portfolio." rel="noopener">+54 9 351 248-7080</a></dd></div><div><dt>CV en PDF</dt><dd><a href="cv-es.pdf" hreflang="es">ES</a> · <a href="cv-en.pdf" hreflang="en">EN</a> · <a href="cv-de.pdf" hreflang="de">DE</a></dd></div><div><dt>También</dt><dd><a href="https://www.linkedin.com/in/franco-olmedo-967405194/" rel="noopener">LinkedIn</a> · <a href="https://electroniklosungen.com.ar" rel="noopener">ElectronArt</a></dd></div></dl></div></div></section>
 </main>
-
-<div class="mnav" id="mnav">
-  <div class="mnav-menu" id="mnavMenu">
-    <a href="#top" data-sec="top"><span class="d"></span><span data-i18n="nav_top"></span></a>
-    <a href="#about" data-sec="about"><span class="d"></span><span data-i18n="nav_about"></span></a>
-    <a href="#exp" data-sec="exp"><span class="d"></span><span data-i18n="nav_exp"></span></a>
-    <a href="#proj" data-sec="proj"><span class="d"></span><span data-i18n="nav_proj"></span></a>
-    <a href="#extras" data-sec="extras"><span class="d"></span><span data-i18n="nav_extras"></span></a>
-    <a href="#skills" data-sec="skills"><span class="d"></span><span data-i18n="nav_skills"></span></a>
-    <a href="#edu" data-sec="edu"><span class="d"></span><span data-i18n="nav_edu"></span></a>
-    <a href="#contact" data-sec="contact"><span class="d"></span><span data-i18n="nav_contact"></span></a>
-  </div>
-  <div class="mnav-ring" id="mnavRing"><div class="mnav-fab" id="mnavFab">⋮</div></div>
-</div>
-
-<div class="lb" id="lb">
-  <div class="lb-top">
-    <span id="lbCounter">1 / 1</span>
-    <button class="lb-x" id="lbClose" aria-label="Cerrar">✕</button>
-  </div>
-  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Anterior">‹</button>
-  <div class="lb-stage" id="lbStage">
-    <img id="lbImg" src="" alt="">
-  </div>
-  <button class="lb-nav lb-next" id="lbNext" aria-label="Siguiente">›</button>
-  <span class="lb-hint" id="lbHint">rueda = zoom · arrastrar = mover · doble clic = reset</span>
-</div>
-
-<footer><span data-i18n="foot"></span></footer>
-
-<script>
-const I18N = {
-es: {
-  nav_about:"Sobre mí", nav_exp:"Experiencia", nav_proj:"Proyectos", nav_extras:"Extras", nav_skills:"Habilidades", nav_edu:"Educación", nav_contact:"Contacto", nav_top:"Inicio",
-  hero_tag:"técnico electrónico · ingeniería electrónica en curso",
-  hero_role:"Electrónica & Sistemas Embebidos",
-  hero_sub:"Diseño y producción de PCB multicapa, firmware para microcontroladores, automatización industrial y software de ingeniería. Del esquemático al producto funcionando.",
-  hero_cta1:"Ver proyectos", hero_cta2:"Contactame", hero_cv: "Descargar CV",
-  hero_status:"Actualmente en Contraut SAS y POL SRL",
-  st_years:"años de experiencia", st_proj:"proyectos", st_tech:"tecnologías", st_eng:"inglés",
-  ab_t:"Sobre mí",
-  ab_p1:"Soy técnico electrónico egresado con méritos del ITS Villada y estudiante avanzado de Ingeniería Electrónica en la UTN Facultad Regional Córdoba. Desde 2019 trabajo en proyectos reales de electrónica e integración: primero freelance, y desde 2022 como Ingeniero Electrónico Junior en Contraut SAS.",
-  ab_p2:"Mi trabajo cubre el ciclo completo: relevamiento, diseño de circuitos y esquemáticos, ruteo de PCB multicapa, firmware embebido (PIC, dsPIC, ATmega, ESP32, Xilinx), prototipado, producción y puesta en marcha en planta. También desarrollo el software que acompaña al hardware: GUIs industriales, telemetría web y herramientas de escritorio.",
-  ab_p3:"Me caracteriza la prolijidad ingenieril: documentación completa, manuales de operador, ensayos y verificación. Busco que cada entrega quede bien terminada, no a medias.",
-  f_loc:"Ubicación", f_role:"Rol actual", f_role_v:"Ing. Electrónico Jr.", f_study:"Estudios", f_lang:"Idiomas", f_lang_v:"ES · EN (C1) · DE (A2)", f_avail:"Disponibilidad", f_avail_v:"Part-time / remoto",
-  ex_t:"Experiencia", present:"presente",
-  ex0_r:"Pasante — Automatización e Ingeniería Ambiental",
-  ex0_d:"Pasantía en POL SRL (ingeniería ambiental): automatización de procesos, gestión de proyectos, diseño de páginas web y manejo de bases de datos. Desarrollo de proyectos con biodigestores, biochar y lombrifiltro para tratamiento de efluentes.",
-  ex1_r:"Ingeniero Electrónico Junior",
-  ex1_d:"Diseño y producción de PCBs propias que integran entornos CNC: circuitos, prototipado, análisis, producción y testing. Programación de los microcontroladores de cada placa (PIC, ATmega, Xilinx). Proyectos de automatización llave en mano: clasificadora de papas por visión artificial, control de planta de pirólisis, bancos de ensayo y sistemas de adquisición para clientes como FAESA y Astillero Río Santiago.",
-  ex2_c:"Freelance", ex2_r:"Diseñador y Técnico",
-  ex2_d:"Automatización y puesta en marcha de 3 CNC: armado del tablero eléctrico, comunicación controladores–PC, programación y ajuste de parámetros del variador del husillo.",
-  ex3_r:"Diseñador y Programador PLC",
-  ex3_d:"Diseño e instalación de un sistema PLC con Siemens S7-200 automatizando una bruñidora de motores de camión de 4–6 cilindros: sensores inductivos, calibre de aire, servomotores y husillos. Redacción de manuales de usuario y funcionamiento.",
-  ex4_c:"Freelance", ex4_r:"Diseñador y Técnico",
-  ex4_d:"Junto a un equipo de kinesiólogos y fisioterapeutas desarrollamos y produjimos una adaptación de auriculares con sistema de LEDs para asistir a pacientes con Parkinson y/o parálisis parcial.",
-  chip_panel:"Tablero eléctrico", chip_sens:"Sensórica", chip_servo:"Servomotores", chip_med:"Dispositivo médico", chip_proto:"Prototipado",
-  chip_auto2:"Automatización", chip_pm:"Gestión de proyectos", chip_web:"Diseño web", chip_db:"Bases de datos", chip_bio:"Biodigestores",
-  pr_t:"Proyectos destacados",
-  pr_sub:"Una selección de trabajos profesionales y personales: hardware, firmware, software e integración industrial.",
-  cat_sw:"Software", cat_auto:"Automatización", cat_pcb:"PCB", cat_art:"Arte + Tecnología", cat_cad:"CAD 3D", cat_plc:"PLC", cat_rd:"I+D", cat_robot:"Robótica",
-  ex_extras_t:"Extras", ex_extras_sub:"Piezas sueltas: PCBs individuales, renders y modelos 3D que no tienen su propio proyecto.",
-  ex_extras_empty:"Próximamente — se está armando esta galería.",
-  more:"[+] ver detalles", less:"[–] ocultar detalles",
-  p1_r:"Producto comercializado · Electronik Lösungen",
-  p1_d:"Suite EDA de escritorio todo-en-uno escrita en Python y PySide6: captura de esquemáticos, diseño de PCB multicapa, simulación SPICE, visor 3D y módulo eléctrico IEC 60617/PLC. Un producto comercial con licencias offline (Ed25519) en tres idiomas.",
-  p1_b1:"Autorouter multicapa que cierra el 100% de las conexiones en placa de ejemplo.",
-  p1_b2:"Exportación para manufactura: Gerber con arcos reales, IPC-2581, ODB++ y STEP 3D.",
-  p1_b3:"Suite de verificación sólida con 252 tests automatizados.",
-  p1_b4:"Disponible a la venta en tres planes para uso comercial.",
-  p1_link:"Visitar el sitio de ElectronArt ↗",
-  p2_t:"AgroPlant — Clasificador de Papa Semilla por Visión Robótica",
-  p2_d:"Equipo clasificador de papa semilla instalado en planta: visión por computadora para estimar peso y grado, segmentación del contorno, estimación volumétrica y clasificación en 5 categorías con acumulación en cajones físicos.",
-  p2_b1:"Arquitectura distribuida: RPi con GUI táctil de operación + RPi de cámara y procesamiento + dsPIC33F para servos, cintas, balanza y compuertas.",
-  p2_b2:"Registro de cosechas por semana/año, calibración guiada y autochequeo al arranque.",
-  p2_b3:"Manual de operador completo, instalación y puesta en marcha en planta del cliente.",
-  p3_t:"MixOil V5 — Control de planta de pirólisis",
-  p3_d:"Sistema de control, adquisición y telemetría para una planta de pirólisis: monitoreo de temperaturas de horno en tiempo real, sistema de balanza, GUI web de supervisión y simulación del proceso para ensayos.",
-  p3_b1:"GUI web con gráficos en vivo (TIR/TCF del horno) y registro histórico de ensayos.",
-  p3_b2:"Módulos de control, balanza y graficador integrados; simulaciones del ciclo completo de 15 h.",
-  p3_b3:"Informes técnicos de mejoras y validación con datos de planta.",
-  p4_t:"PCBs industriales para entornos CNC",
-  p4_d:"Familia de placas de diseño y producción propia en Contraut: central de control, control RF, derivaciones MSP430 y adaptadores SATA-GETAC, integradas en máquinas CNC y bancos de ensayo.",
-  p4_b1:"Diseño en Altium: esquemático, ruteo multicapa, footprints y serigrafía propios, BOMs de producción.",
-  p4_b2:"Fabricación local y en China; ensamble, análisis, testing y puesta en marcha.",
-  p4_b3:"Firmware de PIC/ATmega/Xilinx integrado a cada placa según función.",
-  p5_t:"Obra “Respiración” — instalación cinética",
-  p5_r:"Proyecto artístico-técnico independiente",
-  p5_d:"Instalación artística electrónica que simula la respiración: sistema neumático con manifold y bypass box modelados en 3D, servos controlados por PCA9685 y firmware MicroPython con detección de presencia.",
-  p5_b1:"Modelado 3D e impresión de manifold, aletas, caja y soportes de sensores.",
-  p5_b2:"Firmware MicroPython: control de servos vía PCA9685, tests de presencia y rutinas de movimiento.",
-  p5_b3:"Simulador del sistema, bosquejos de diseño y cotización de producción.",
-  p6_t:"Diseño CAD 3D y prototipado",
-  p6_r:"Proyectos propios",
-  p6_d:"Diseño mecánico de gabinetes y piezas funcionales: carcasa slim para SSD/HDD (render fotorrealista), gabinete para Raspberry Pi 3B con integración de micrófono I2S y LEDs, teclados matriciales y piezas a medida.",
-  p6_b1:"Modelado paramétrico con exportación STL/STEP para impresión 3D.",
-  p6_b2:"Renders fotorrealistas para presentación de producto.",
-  p6_b3:"Integración electrónica-mecánica: tolerancias, encastres y montaje de módulos reales.",
-  p7_t:"Bruñidora — Automatización con PLC",
-  p7_d:"Automatización integral de una bruñidora de motores de camión (4–6 cilindros) con Siemens S7-200: programa ladder horizontal/vertical, tablero de control, sensórica industrial y documentación completa.",
-  p7_b1:"Manejo de sensores inductivos, calibre de aire, servomotores y husillos.",
-  p7_b2:"Programas ladder documentados (versión horizontal y vertical) con mapa de I/O.",
-  p7_b3:"Manual de funcionamiento y manual de usuario entregados al cliente.",
-  p8_t:"REESpirator — Ventilador de emergencia",
-  p8_d:"Participación en CovidLab: proyecto de ventilación de emergencia desarrollado con la UNRC durante la pandemia. Electrónica de control, documentación técnica y entregables de ingeniería del prototipo.",
-  p8_b1:"Colaboración multidisciplinaria universidad-makers en contexto de emergencia sanitaria.",
-  p8_b2:"Documentación final del REESpirator y entregables por etapas (problema → aprendizajes).",
-  p8_b3:"Firmware y electrónica de válvulas/sensores del prototipo respirador23.",
-  p9_t:"Robot aspirador autónomo",
-  p9_r:"Proyecto personal — Técnico Electrónico",
-  p9_d:"Robot aspirador diseñado y construido de cero durante la etapa técnica: chasis y hélices de aspiración impresos en 3D (modelado en SolidWorks), driver de motores L298N a medida y control con microcontrolador propio.",
-  p9_b1:"Diseño mecánico completo en SolidWorks: chasis, parachoques con microswitches de choque, soportes de motor y compartimento de batería.",
-  p9_b2:"Placa driver L298N diseñada a medida para el control de los dos motores DC.",
-  p9_b3:"Firmware embebido para sensado de choque, control de motores y aspiración.",
-  chip_vision:"Visión artificial", chip_telem:"Telemetría", chip_sim:"Simulación", chip_multi:"Multicapa", chip_3dp:"Impresión 3D", chip_pneu:"Neumática", chip_doc:"Documentación", chip_emb:"Embebidos",
-  sk_t:"Habilidades técnicas",
-  sk1:"PCB & Circuitos", sk2:"Embebidos & Firmware", sk3:"Automatización industrial", sk4:"CAD & Mecánica", sk5:"Software", sk6:"Idiomas",
-  sk1_2:"PCB multicapa", sk1_3:"Esquemáticos / footprints", sk3_1:"PLC Siemens (Ladder)", sk3_3:"Tableros eléctricos", sk3_4:"Sensores / actuadores", sk4_3:"Impresión 3D", sk5_4:"GUIs web embebidas", sk6_1:"Español (nativo)", sk6_2:"Inglés", sk6_3:"Alemán",
-  ed_t:"Educación",
-  ed1_t:"Ingeniería Electrónica (en curso)",
-  ed1_d:"Estudiante avanzado (4.º año). Formación en teoría de circuitos, dispositivos electrónicos, técnicas digitales, medios de enlace y electrónica aplicada.",
-  ed2_t:"Técnico Electrónico",
-  ed2_d:"Egresado con méritos. Formación técnica completa: electrónica analógica, digital e industrial, electrotecnia, telecomunicaciones e informática electrónica.",
-  ct_t:"Trabajemos juntos",
-  ct_d:"Abierto a posiciones part-time y proyectos de electrónica, embebidos o automatización. Disponibilidad inmediata, modalidad remota o presencial en Córdoba.",
-  ct_send:"Enviar mensaje",
-  foot:"© 2026 Franco Olmedo — Construido a mano, placa por placa. Sin plantillas."
-},
-en: {
-  nav_about:"About", nav_exp:"Experience", nav_proj:"Projects", nav_extras:"Extras", nav_skills:"Skills", nav_edu:"Education", nav_contact:"Contact", nav_top:"Home",
-  hero_tag:"electronics technician · electronic engineering student",
-  hero_role:"Electronics & Embedded Systems",
-  hero_sub:"Multilayer PCB design and production, microcontroller firmware, industrial automation and engineering software. From schematic to working product.",
-  hero_cta1:"View projects", hero_cta2:"Get in touch", hero_cv:"Download CV",
-  hero_status:"Currently at Contraut SAS and POL SRL",
-  st_years:"years of experience", st_proj:"projects", st_tech:"technologies", st_eng:"english",
-  ab_t:"About me",
-  ab_p1:"I'm an electronics technician, graduated with merits from ITS Villada, and an advanced Electronic Engineering student at UTN Córdoba (FRC). I've been working on real electronics and integration projects since 2019 — first freelance, and since 2022 as a Junior Electronic Engineer at Contraut SAS.",
-  ab_p2:"My work covers the full cycle: requirements, circuit and schematic design, multilayer PCB routing, embedded firmware (PIC, dsPIC, ATmega, ESP32, Xilinx), prototyping, production and commissioning on site. I also build the software that ships with the hardware: industrial GUIs, web telemetry and desktop tools.",
-  ab_p3:"I'm defined by engineering tidiness: complete documentation, operator manuals, testing and verification. Every delivery finished properly — never halfway.",
-  f_loc:"Location", f_role:"Current role", f_role_v:"Jr. Electronic Engineer", f_study:"Studies", f_lang:"Languages", f_lang_v:"ES · EN (C1) · DE (A2)", f_avail:"Availability", f_avail_v:"Part-time / remote",
-  ex_t:"Experience", present:"present",
-  ex0_r:"Intern — Automation & Environmental Engineering",
-  ex0_d:"Internship at POL SRL (environmental engineering): process automation, project management, web design and database management. Development of biodigester, biochar and vermifilter projects for wastewater treatment.",
-  ex1_r:"Junior Electronic Engineer",
-  ex1_d:"Design and production of in-house PCBs integrating CNC environments: circuits, prototyping, analysis, production and testing. Firmware for each board's microcontrollers (PIC, ATmega, Xilinx). Turn-key automation projects: a machine-vision potato classifier, pyrolysis plant control, test benches and acquisition systems for clients such as FAESA and Astillero Río Santiago.",
-  ex2_c:"Freelance", ex2_r:"Designer & Technician",
-  ex2_d:"Automation and commissioning of 3 CNC machines: electrical panel assembly, controller–PC communication, programming and spindle-drive parameter tuning.",
-  ex3_r:"PLC Designer & Programmer",
-  ex3_d:"Design and installation of a Siemens S7-200 PLC system automating a 4–6 cylinder truck-engine honing machine: inductive sensors, air gauge, servomotors and spindles. Authored the user and operation manuals.",
-  ex4_c:"Freelance", ex4_r:"Designer & Technician",
-  ex4_d:"Together with a team of kinesiologists and physiotherapists, developed and produced a headset adaptation with an LED system to assist patients with Parkinson's and/or partial paralysis.",
-  chip_panel:"Electrical panel", chip_sens:"Sensors", chip_servo:"Servomotors", chip_med:"Medical device", chip_proto:"Prototyping",
-  chip_auto2:"Automation", chip_pm:"Project management", chip_web:"Web design", chip_db:"Databases", chip_bio:"Biodigesters",
-  pr_t:"Featured projects",
-  pr_sub:"A selection of professional and personal work: hardware, firmware, software and industrial integration.",
-  cat_sw:"Software", cat_auto:"Automation", cat_pcb:"PCB", cat_art:"Art + Tech", cat_cad:"3D CAD", cat_plc:"PLC", cat_rd:"R&D", cat_robot:"Robotics",
-  ex_extras_t:"Extras", ex_extras_sub:"Standalone pieces: individual PCBs, renders and 3D models that don't have their own project.",
-  ex_extras_empty:"Coming soon — this gallery is being put together.",
-  more:"[+] show details", less:"[–] hide details",
-  p1_r:"Commercial product · Electronik Lösungen",
-  p1_d:"All-in-one desktop EDA suite written in Python and PySide6: schematic capture, multilayer PCB design, SPICE simulation, 3D viewer and IEC 60617/PLC electrical module. A commercial product with offline Ed25519 licenses in three languages.",
-  p1_b1:"Multilayer autorouter achieving 100% completion on sample board.",
-  p1_b2:"Manufacturing export: Gerber with real arcs, IPC-2581, ODB++ and STEP 3D.",
-  p1_b3:"Solid verification suite with 252 automated tests.",
-  p1_b4:"Available for purchase across three commercial plans.",
-  p1_link:"Visit ElectronArt website ↗",
-  p2_t:"AgroPlant — Seed Potato Classifier by Robotic Vision",
-  p2_d:"Seed-potato classifier installed on-site at a client's plant: computer vision to estimate weight and grade, contour segmentation, volumetric estimation and classification into 5 categories accumulated in physical drawers.",
-  p2_b1:"Distributed architecture: touchscreen-GUI RPi + camera/processing RPi + dsPIC33F driving servos, belts, scale and gates.",
-  p2_b2:"Harvest logging by week/year, guided calibration and startup self-check.",
-  p2_b3:"Full operator manual, installation and commissioning at the client's plant.",
-  p3_t:"MixOil V5 — Pyrolysis plant control",
-  p3_d:"Control, acquisition and telemetry system for a pyrolysis plant: real-time furnace temperature monitoring, weighing system, web supervision GUI and process simulation for test runs.",
-  p3_b1:"Web GUI with live charts (furnace TIR/TCF) and historical test logging.",
-  p3_b2:"Integrated control, scale and plotting modules; full 15-hour cycle simulations.",
-  p3_b3:"Technical improvement reports validated with plant data.",
-  p4_t:"Industrial PCBs for CNC environments",
-  p4_d:"Family of boards designed and produced in-house at Contraut: control central, RF control, MSP430 breakouts and SATA-GETAC adapters, integrated into CNC machines and test benches.",
-  p4_b1:"Altium design: schematics, multilayer routing, custom footprints and silkscreen, production BOMs.",
-  p4_b2:"Local and Chinese fabrication; assembly, analysis, testing and commissioning.",
-  p4_b3:"PIC/ATmega/Xilinx firmware integrated per board function.",
-  p5_t:"“Respiración” — kinetic art installation",
-  p5_r:"Independent art-tech project",
-  p5_d:"Electronic art installation simulating breathing: pneumatic system with 3D-modeled manifold and bypass box, servos driven by PCA9685 and MicroPython firmware with presence detection.",
-  p5_b1:"3D modeling and printing of manifold, fins, enclosure and sensor mounts.",
-  p5_b2:"MicroPython firmware: servo control via PCA9685, presence tests and motion routines.",
-  p5_b3:"System simulator, design sketches and production quotes.",
-  p6_t:"3D CAD Design and prototyping",
-  p6_r:"Personal projects",
-  p6_d:"Mechanical design of enclosures and functional parts: slim case for SSD/HDD (photorealistic render), enclosure for Raspberry Pi 3B with I2S microphone and LEDs integration, matrix keypads and custom parts.",
-  p6_b1:"Parametric modeling with STL/STEP export for 3D printing.",
-  p6_b2:"Photorealistic renders for product presentation.",
-  p6_b3:"Electronics-mechanics integration: tolerances, snap-fits and real module mounting.",
-  p7_t:"Honing machine — PLC Automation",
-  p7_d:"Full automation of a truck engine honing machine (4–6 cylinders) with a Siemens S7-200: horizontal/vertical ladder programs, control panel, industrial sensors and complete documentation.",
-  p7_b1:"Inductive sensors, air gauge, servomotors and spindle management.",
-  p7_b2:"Documented ladder programs (horizontal & vertical) with I/O map.",
-  p7_b3:"Operation and user manuals delivered to the client.",
-  p8_t:"REESpirator — Emergency ventilator",
-  p8_d:"Participation in CovidLab: an emergency ventilation project developed with UNRC during the pandemic. Control electronics, technical documentation and engineering deliverables for the prototype.",
-  p8_b1:"Multidisciplinary university–maker collaboration during the health emergency.",
-  p8_b2:"Final REESpirator documentation and staged deliverables (problem → learnings).",
-  p8_b3:"Firmware and valve/sensor electronics of the respirador23 prototype.",
-  p9_t:"Autonomous robot vacuum",
-  p9_r:"Personal project — Electronics Technician",
-  p9_d:"Robot vacuum designed and built from scratch during my technical studies: 3D-printed chassis and suction impellers (modeled in SolidWorks), a custom L298N motor driver board and firmware on its own microcontroller.",
-  p9_b1:"Full mechanical design in SolidWorks: chassis, bumper with collision microswitches, motor mounts and battery compartment.",
-  p9_b2:"Custom-designed L298N driver board to control the two DC motors.",
-  p9_b3:"Embedded firmware for collision sensing, motor control and suction.",
-  chip_vision:"Machine vision", chip_telem:"Telemetry", chip_sim:"Simulation", chip_multi:"Multilayer", chip_3dp:"3D printing", chip_pneu:"Pneumatics", chip_doc:"Documentation", chip_emb:"Embedded",
-  sk_t:"Technical skills",
-  sk1:"PCB & Circuits", sk2:"Embedded & Firmware", sk3:"Industrial automation", sk4:"CAD & Mechanical", sk5:"Software", sk6:"Languages",
-  sk1_2:"Multilayer PCB", sk1_3:"Schematics / footprints", sk3_1:"Siemens PLC (Ladder)", sk3_3:"Electrical panels", sk3_4:"Sensors / actuators", sk4_3:"3D printing", sk5_4:"Embedded web GUIs", sk6_1:"Spanish (native)", sk6_2:"English", sk6_3:"German",
-  ed_t:"Education",
-  ed1_t:"Electronic Engineering (in progress)",
-  ed1_d:"Advanced student (4th year). Coursework in circuit theory, electronic devices, digital techniques, communication links and applied electronics.",
-  ed2_t:"Electronics Technician",
-  ed2_d:"Graduated with merits. Complete technical training: analog, digital and industrial electronics, electrotechnics, telecommunications and electronic computing.",
-  ct_t:"Let's work together",
-  ct_d:"Open to part-time positions and projects in electronics, embedded systems or automation. Immediate availability, remote or on-site in Córdoba.",
-  ct_send:"Send message",
-  foot:"© 2026 Franco Olmedo — Built by hand, board by board. No templates."
-},
-de: {
-  nav_about:"Über mich", nav_exp:"Erfahrung", nav_proj:"Projekte", nav_extras:"Extras", nav_skills:"Kenntnisse", nav_edu:"Ausbildung", nav_contact:"Kontakt", nav_top:"Start",
-  hero_tag:"elektroniktechniker · student des elektronikingenieurwesens",
-  hero_role:"Elektronik & Eingebettete Systeme",
-  hero_sub:"Entwicklung und Fertigung mehrlagiger Leiterplatten, Mikrocontroller-Firmware, Industrieautomatisierung und Ingenieursoftware. Vom Schaltplan zum fertigen Produkt.",
-  hero_cta1:"Projekte ansehen", hero_cta2:"Kontakt", hero_cv:"Lebenslauf herunterladen",
-  hero_status:"Aktuell bei Contraut SAS und POL SRL",
-  st_years:"Jahre Erfahrung", st_proj:"Projekte", st_tech:"Technologien", st_eng:"Englisch",
-  ab_t:"Über mich",
-  ab_p1:"Ich bin Elektroniktechniker mit Auszeichnung (ITS Villada) und fortgeschrittener Student des Elektronikingenieurwesens an der UTN Córdoba (FRC). Seit 2019 arbeite ich an realen Elektronik- und Integrationsprojekten — zunächst freiberuflich, seit 2022 als Junior-Elektronikingenieur bei Contraut SAS.",
-  ab_p2:"Meine Arbeit deckt den gesamten Zyklus ab: Anforderungsanalyse, Schaltungs- und Schaltplanentwurf, Routing mehrlagiger Leiterplatten, eingebettete Firmware (PIC, dsPIC, ATmega, ESP32, Xilinx), Prototyping, Fertigung und Inbetriebnahme vor Ort. Außerdem entwickle ich die Software zur Hardware: industrielle GUIs, Web-Telemetrie und Desktop-Tools.",
-  ab_p3:"Mich zeichnet ingenieurmäßige Sorgfalt aus: vollständige Dokumentation, Bedienungsanleitungen, Tests und Verifikation. Jede Lieferung sauber abgeschlossen — nie halbfertig.",
-  f_loc:"Standort", f_role:"Aktuelle Rolle", f_role_v:"Jr. Elektronikingenieur", f_study:"Studium", f_lang:"Sprachen", f_lang_v:"ES · EN (C1) · DE (A2)", f_avail:"Verfügbarkeit", f_avail_v:"Teilzeit / Remote",
-  ex_t:"Erfahrung", present:"heute",
-  ex0_r:"Praktikant — Automatisierung & Umwelttechnik",
-  ex0_d:"Praktikum bei POL SRL (Umwelttechnik): Prozessautomatisierung, Projektmanagement, Webdesign und Datenbankverwaltung. Entwicklung von Projekten mit Biodigestoren, Biokohle und Wurmfiltern zur Abwasserbehandlung.",
-  ex1_r:"Junior-Elektronikingenieur",
-  ex1_d:"Entwicklung und Fertigung eigener Leiterplatten für CNC-Umgebungen: Schaltungen, Prototyping, Analyse, Fertigung und Test. Programmierung der Mikrocontroller (PIC, ATmega, Xilinx). Schlüsselfertige Automatisierungsprojekte: Kartoffelsortierer mit Bildverarbeitung, Steuerung einer Pyrolyseanlage, Prüfstände und Messsysteme für Kunden wie FAESA und die Werft Astillero Río Santiago.",
-  ex2_c:"Freiberuflich", ex2_r:"Entwickler & Techniker",
-  ex2_d:"Automatisierung und Inbetriebnahme von 3 CNC-Maschinen: Schaltschrankbau, Kommunikation Steuerung–PC, Programmierung und Parametrierung des Spindelantriebs.",
-  ex3_r:"SPS-Entwickler & Programmierer",
-  ex3_d:"Entwurf und Installation eines SPS-Systems mit Siemens S7-200 zur Automatisierung einer Honmaschine für LKW-Motoren (4–6 Zylinder): induktive Sensoren, Luftmesslehre, Servomotoren und Spindeln. Erstellung der Bedien- und Funktionshandbücher.",
-  ex4_c:"Freiberuflich", ex4_r:"Entwickler & Techniker",
-  ex4_d:"Gemeinsam mit einem Team aus Kinesiologen und Physiotherapeuten Entwicklung und Fertigung eines Kopfhörer-Aufsatzes mit LED-System zur Unterstützung von Patienten mit Parkinson und/oder partieller Lähmung.",
-  chip_panel:"Schaltschrank", chip_sens:"Sensorik", chip_servo:"Servomotoren", chip_med:"Medizingerät", chip_proto:"Prototyping",
-  chip_auto2:"Automatisierung", chip_pm:"Projektmanagement", chip_web:"Webdesign", chip_db:"Datenbanken", chip_bio:"Biodigestoren",
-  pr_t:"Ausgewählte Projekte",
-  pr_sub:"Eine Auswahl beruflicher und persönlicher Arbeiten: Hardware, Firmware, Software und industrielle Integration.",
-  cat_sw:"Software", cat_auto:"Automatisierung", cat_pcb:"Leiterplatte", cat_art:"Kunst + Technik", cat_cad:"3D-CAD", cat_plc:"SPS", cat_rd:"F&E", cat_robot:"Robotik",
-  ex_extras_t:"Extras", ex_extras_sub:"Einzelstücke: einzelne Leiterplatten, Renderings und 3D-Modelle ohne eigenes Projekt.",
-  ex_extras_empty:"Demnächst — diese Galerie wird gerade zusammengestellt.",
-  more:"[+] Details anzeigen", less:"[–] Details ausblenden",
-  p1_r:"Kommerzielles Produkt · Electronik Lösungen",
-  p1_d:"All-in-One Desktop EDA-Suite in Python und PySide6: Schaltplanerfassung, mehrlagiges Leiterplattendesign, SPICE-Simulation, 3D-Ansicht und IEC 60617/SPS-Elektromodul. Ein kommerzielles Produkt mit Offline-Ed25519-Lizenzen in drei Sprachen.",
-  p1_b1:"Mehrlagiger Autorouter, der 100% der Verbindungen auf der Beispielplatine schließt.",
-  p1_b2:"Fertigungsexport: Gerber mit echten Bögen, IPC-2581, ODB++ und STEP 3D.",
-  p1_b3:"Solide Verifikations-Suite mit 252 automatisierten Tests.",
-  p1_b4:"Erhältlich in drei kommerziellen Plänen.",
-  p1_link:"ElectronArt Webseite besuchen ↗",
-  p2_t:"AgroPlant — Kartoffelsortierer per Robotersicht",
-  p2_d:"Beim Kunden installierter Pflanzkartoffel-Sortierer: Computer Vision zur Schätzung von Gewicht und Güteklasse, Kontursegmentierung, Volumenschätzung und Klassifizierung in 5 Kategorien mit Sammlung in physischen Schubladen.",
-  p2_b1:"Verteilte Architektur: RPi mit Touch-GUI + Kamera-RPi + dsPIC33F für Servos, Förderbänder, Waage und Klappen.",
-  p2_b2:"Ernteprotokoll nach Woche/Jahr, geführte Kalibrierung und Selbsttest beim Start.",
-  p2_b3:"Vollständiges Bedienerhandbuch, Installation und Inbetriebnahme beim Kunden.",
-  p3_t:"MixOil V5 — Steuerung einer Pyrolyseanlage",
-  p3_d:"Steuerungs-, Erfassungs- und Telemetriesystem für eine Pyrolyseanlage: Echtzeitüberwachung der Ofentemperaturen, Wiegesystem, Web-GUI zur Überwachung und Prozesssimulation für Testläufe.",
-  p3_b1:"Web-GUI mit Live-Diagrammen (Ofen TIR/TCF) und historischer Protokollierung.",
-  p3_b2:"Integrierte Steuerungs-, Waagen- und Diagrammmodule; Simulation kompletter 15-Stunden-Zyklen.",
-  p3_b3:"Technische Verbesserungsberichte, validiert mit Anlagendaten.",
-  p4_t:"Industrielle Leiterplatten für CNC-Umgebungen",
-  p4_d:"Eigene Leiterplattenfamilie bei Contraut: Steuerzentrale, HF-Steuerung, MSP430-Breakouts und SATA-GETAC-Adapter, integriert in CNC-Maschinen und Prüfstände.",
-  p4_b1:"Altium-Design: Schaltpläne, mehrlagiges Routing, eigene Footprints und Bestückungsdruck, Fertigungs-BOMs.",
-  p4_b2:"Fertigung lokal und in China; Bestückung, Analyse, Test und Inbetriebnahme.",
-  p4_b3:"PIC-/ATmega-/Xilinx-Firmware je nach Boardfunktion.",
-  p5_t:"„Respiración“ — Kinetische Kunstinstallation",
-  p5_r:"Unabhängiges Kunst-Technik-Projekt",
-  p5_d:"Elektronische Installation, die das Atmen simuliert: Pneumatiksystem mit 3D-modelliertem Manifold und Bypass-Box, Servos über PCA9685 und MicroPython-Firmware mit Präsenzerkennung.",
-  p5_b1:"3D-Modellierung und Druck von Manifold, Lamellen, Gehäuse und Sensorhalterungen.",
-  p5_b2:"MicroPython-Firmware: Servosteuerung über PCA9685, Präsenztests und Bewegungsroutinen.",
-  p5_b3:"Systemsimulator, Entwurfsskizzen und Produktionskalkulation.",
-  p6_t:"3D-CAD-Design & Prototyping",
-  p6_r:"Eigene Projekte",
-  p6_d:"Mechanisches Design von Gehäusen und Funktionsteilen: flaches SSD/HDD-Gehäuse (fotorealistisches Rendering), Raspberry-Pi-3B-Gehäuse mit I2S-Mikrofon und LEDs, Matrix-Tastaturen und Sonderteile.",
-  p6_b1:"Parametrische Modellierung mit STL/STEP-Export für den 3D-Druck.",
-  p6_b2:"Fotorealistische Renderings für Produktpräsentationen.",
-  p6_b3:"Elektromechanische Integration: Toleranzen, Schnappverbindungen und Montage realer Module.",
-  p7_t:"Honmaschine — SPS-Automatisierung",
-  p7_d:"Komplette Automatisierung einer Honmaschine für LKW-Motoren (4–6 Zylinder) mit Siemens S7-200: Ladder-Programme (horizontal/vertikal), Schaltschrank, Industriesensorik und vollständige Dokumentation.",
-  p7_b1:"Induktive Sensoren, Luftmesslehre, Servomotoren und Spindeln.",
-  p7_b2:"Dokumentierte Ladder-Programme (horizontal & vertikal) mit I/O-Übersicht.",
-  p7_b3:"Funktions- und Benutzerhandbuch an den Kunden übergeben.",
-  p8_t:"REESpirator — Notfallbeatmungsgerät",
-  p8_d:"Mitarbeit im CovidLab: Notbeatmungsprojekt mit der UNRC während der Pandemie. Steuerungselektronik, technische Dokumentation und Engineering-Ergebnisse des Prototyps.",
-  p8_b1:"Multidisziplinäre Zusammenarbeit Universität–Maker während der Gesundheitskrise.",
-  p8_b2:"Abschlussdokumentation des REESpirator und Ergebnisse in Etappen (Problem → Erkenntnisse).",
-  p8_b3:"Firmware und Ventil-/Sensorelektronik des Prototyps respirador23.",
-  p9_t:"Autonomer Saugroboter",
-  p9_r:"Persönliches Projekt — Elektroniktechniker",
-  p9_d:"Von Grund auf während meiner technischen Ausbildung entworfener und gebauter Saugroboter: 3D-gedrucktes Chassis und Sauggebläse (in SolidWorks modelliert), eigens entworfene L298N-Motortreiberplatine und Firmware auf eigenem Mikrocontroller.",
-  p9_b1:"Vollständiges mechanisches Design in SolidWorks: Chassis, Stoßstange mit Kollisions-Mikroschaltern, Motorhalterungen und Batteriefach.",
-  p9_b2:"Eigens entworfene L298N-Treiberplatine zur Steuerung der beiden Gleichstrommotoren.",
-  p9_b3:"Eingebettete Firmware für Kollisionserkennung, Motorsteuerung und Saugfunktion.",
-  chip_vision:"Bildverarbeitung", chip_telem:"Telemetrie", chip_sim:"Simulation", chip_multi:"Mehrlagig", chip_3dp:"3D-Druck", chip_pneu:"Pneumatik", chip_doc:"Dokumentation", chip_emb:"Embedded",
-  sk_t:"Technische Kenntnisse",
-  sk1:"Leiterplatten & Schaltungen", sk2:"Embedded & Firmware", sk3:"Industrieautomatisierung", sk4:"CAD & Mechanik", sk5:"Software", sk6:"Sprachen",
-  sk1_2:"Mehrlagige Leiterplatten", sk1_3:"Schaltpläne / Footprints", sk3_1:"Siemens-SPS (Ladder)", sk3_3:"Schaltschränke", sk3_4:"Sensorik / Aktorik", sk4_3:"3D-Druck", sk5_4:"Eingebettete Web-GUIs", sk6_1:"Spanisch (Muttersprache)", sk6_2:"Englisch", sk6_3:"Deutsch",
-  ed_t:"Ausbildung",
-  ed1_t:"Elektronikingenieurwesen (laufend)",
-  ed1_d:"Fortgeschrittener Student (4. Jahr). Schwerpunkte: Schaltungstheorie, elektronische Bauelemente, Digitaltechnik, Nachrichtentechnik und angewandte Elektronik.",
-  ed2_t:"Elektroniktechniker",
-  ed2_d:"Abschluss mit Auszeichnung. Vollständige technische Ausbildung: analoge, digitale und industrielle Elektronik, Elektrotechnik, Telekommunikation und Elektronik-Informatik.",
-  ct_t:"Lassen Sie uns zusammenarbeiten",
-  ct_d:"Offen für Teilzeitstellen und Projekte in Elektronik, eingebetteten Systemen oder Automatisierung. Sofort verfügbar, remote oder vor Ort in Córdoba.",
-  ct_send:"Nachricht senden",
-  foot:"© 2026 Franco Olmedo — Von Hand gebaut, Platine für Platine. Keine Vorlagen."
-}};
-
-let LANG = 'es';
-try { LANG = localStorage.getItem('fo_lang') || 'es'; } catch(e) {}
-
-function setLang(l){
-  LANG = l;
-  try { localStorage.setItem('fo_lang', l); } catch(e) {}
-  document.documentElement.lang = l;
-  const d = I18N[l];
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k = el.getAttribute('data-i18n');
-    if(d[k]!==undefined) el.textContent = d[k];
-  });
-  document.querySelectorAll('[data-i18n-li]').forEach(el=>{
-    const k = el.getAttribute('data-i18n-li');
-    if(d[k]!==undefined) {
-        // preserve the span.lvl
-        const lvl = el.querySelector('.lvl');
-        el.textContent = d[k];
-        if(lvl) el.appendChild(lvl);
-    }
-  });
-  document.querySelectorAll('.ptoggle').forEach(b=>{
-    const card = b.closest('.pcard');
-    b.textContent = card.classList.contains('open') ? d.less : d.more;
-  });
-  document.getElementById('btn-es').classList.toggle('on', l==='es');
-  document.getElementById('btn-en').classList.toggle('on', l==='en');
-  document.getElementById('btn-de').classList.toggle('on', l==='de');
-  document.querySelectorAll('.cvlink').forEach(a=>{ a.setAttribute('href', {es:'cv-es.pdf', en:'cv-en.pdf', de:'cv-de.pdf'}[l] || 'cv-en.pdf'); });
-  document.title = l==='es' ? 'Franco Olmedo — Electrónica & Sistemas Embebidos'
-                 : l==='de' ? 'Franco Olmedo — Elektronik & Eingebettete Systeme'
-                 : 'Franco Olmedo — Electronics & Embedded Systems';
-
-  const PH = {
-    es:{name:"Tu nombre", mail:"Tu email", msg:"¿En qué te puedo ayudar?"},
-    en:{name:"Your name", mail:"Your email", msg:"How can I help you?"},
-    de:{name:"Ihr Name", mail:"Ihre E-Mail", msg:"Wie kann ich Ihnen helfen?"}
-  };
-  const ph = PH[l] || PH.es;
-  document.querySelector('input[name="name"]').placeholder = ph.name;
-  document.querySelector('input[name="_replyto"]').placeholder = ph.mail;
-  document.querySelector('textarea[name="message"]').placeholder = ph.msg;
-}
-
-document.querySelectorAll('.ptoggle').forEach(b=>{
-  b.addEventListener('click',()=>{
-    const card = b.closest('.pcard');
-    card.classList.toggle('open');
-    b.textContent = card.classList.contains('open') ? I18N[LANG].less : I18N[LANG].more;
-  });
-});
-
-/* ---------- GALLERY LIGHTBOX (zoom + pan) ---------- */
-const GALLERIES = {
-  p2: ['agroplant_01_titulo.jpg','agroplant_02_hmi_onsite.jpg','agroplant_03_sensor_proto.jpg','agroplant_04_pcb.jpg','agroplant_05_vision_box.jpg','agroplant_06_vision_test.jpg','agroplant_07_hmi_grado.jpg','agroplant_08_planta_molino.jpg','agroplant_09_panel.jpg'],
-  p5: ['obra_01_cad.jpg','obra_02_carcasa3d.jpg','obra_03_control.jpg','obra_04_ensamble.jpg','obra_05_completo.jpg'],
-  p9: ['robot_01_ensamblado.jpg','robot_02_desensamblado.jpg'],
-  extras: [] // se completa cuando Franco cargue fotos en curacion-fotos/10_Extras
-};
-(function(){
-  const grid = document.getElementById('egrid'), empty = document.getElementById('egridEmpty');
-  if(!grid) return;
-  if(GALLERIES.extras.length === 0){ empty.style.display = 'block'; return; }
-  empty.style.display = 'none';
-  GALLERIES.extras.forEach((fn, i)=>{
-    const d = document.createElement('div');
-    d.className = 'pimg etile'; d.setAttribute('data-gal','extras'); d.setAttribute('data-idx', i);
-    d.innerHTML = `<img src="assets/gallery/${fn}" alt="">`;
-    grid.appendChild(d);
-  });
-})();
-(function(){
-  const lb = document.getElementById('lb'), stage = document.getElementById('lbStage'), img = document.getElementById('lbImg');
-  const counter = document.getElementById('lbCounter');
-  let gal = [], idx = 0, scale = 1, tx = 0, ty = 0, dragging = false, sx = 0, sy = 0, stx = 0, sty = 0;
-
-  function render(){
-    img.src = 'assets/gallery/' + gal[idx];
-    counter.textContent = (idx+1) + ' / ' + gal.length;
-    scale = 1; tx = 0; ty = 0; applyT();
-  }
-  function applyT(){ img.style.transform = `translate(${tx}px,${ty}px) scale(${scale})`; }
-  function open(key, startImg){
-    gal = GALLERIES[key]; if(!gal) return;
-    idx = startImg || 0;
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    render();
-  }
-  function close(){ lb.classList.remove('open'); document.body.style.overflow = ''; }
-  function next(){ idx = (idx+1) % gal.length; render(); }
-  function prev(){ idx = (idx-1+gal.length) % gal.length; render(); }
-
-  document.querySelectorAll('.pimg[data-gal]').forEach(el=>{
-    el.addEventListener('click', ()=> open(el.getAttribute('data-gal'), parseInt(el.getAttribute('data-idx')||'0', 10)));
-  });
-  document.getElementById('lbClose').addEventListener('click', close);
-  document.getElementById('lbNext').addEventListener('click', e=>{ e.stopPropagation(); next(); });
-  document.getElementById('lbPrev').addEventListener('click', e=>{ e.stopPropagation(); prev(); });
-  lb.addEventListener('click', e=>{ if(e.target === lb) close(); });
-  document.addEventListener('keydown', e=>{
-    if(!lb.classList.contains('open')) return;
-    if(e.key==='Escape') close();
-    if(e.key==='ArrowRight') next();
-    if(e.key==='ArrowLeft') prev();
-  });
-
-  // wheel = zoom centered roughly on cursor
-  stage.addEventListener('wheel', e=>{
-    e.preventDefault();
-    const delta = e.deltaY > 0 ? -0.18 : 0.18;
-    scale = Math.min(5, Math.max(1, scale + delta));
-    if(scale === 1){ tx = 0; ty = 0; }
-    applyT();
-  }, {passive:false});
-
-  // drag to pan (mouse + touch via pointer events)
-  stage.addEventListener('pointerdown', e=>{
-    if(scale <= 1) return;
-    dragging = true; stage.classList.add('grabbing');
-    sx = e.clientX; sy = e.clientY; stx = tx; sty = ty;
-    stage.setPointerCapture(e.pointerId);
-  });
-  stage.addEventListener('pointermove', e=>{
-    if(!dragging) return;
-    tx = stx + (e.clientX - sx); ty = sty + (e.clientY - sy);
-    applyT();
-  });
-  ['pointerup','pointercancel','pointerleave'].forEach(ev=>{
-    stage.addEventListener(ev, ()=>{ dragging = false; stage.classList.remove('grabbing'); });
-  });
-
-  // double-click / double-tap = toggle zoom
-  img.addEventListener('dblclick', ()=>{
-    scale = scale > 1 ? 1 : 2.4; tx = 0; ty = 0; applyT();
-  });
-
-  // basic pinch-to-zoom on touch
-  let pinchStart = null;
-  stage.addEventListener('touchstart', e=>{
-    if(e.touches.length === 2){
-      const [a,b] = e.touches;
-      pinchStart = { d: Math.hypot(a.clientX-b.clientX, a.clientY-b.clientY), scale };
-    }
-  }, {passive:true});
-  stage.addEventListener('touchmove', e=>{
-    if(e.touches.length === 2 && pinchStart){
-      e.preventDefault();
-      const [a,b] = e.touches;
-      const d = Math.hypot(a.clientX-b.clientX, a.clientY-b.clientY);
-      scale = Math.min(5, Math.max(1, pinchStart.scale * (d / pinchStart.d)));
-      applyT();
-    }
-  }, {passive:false});
-})();
-
-const io = new IntersectionObserver(es=>{
-  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-},{threshold:.12});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-
-/* ---- Convert "●●●●○" text levels into segmented meter bars (engineering datasheet style) ---- */
-document.querySelectorAll('.lvl').forEach(el=>{
-  const t = el.textContent.trim();
-  if(/^[●○]+$/.test(t)){
-    const filled = (t.match(/●/g)||[]).length, total = t.length;
-    el.textContent = '';
-    el.classList.add('meter');
-    for(let i=0;i<total;i++){
-      const seg = document.createElement('span');
-      seg.className = 'seg' + (i<filled ? ' on' : '');
-      el.appendChild(seg);
-    }
-  } else {
-    el.classList.add('badge-lvl');
-  }
-});
-
-/* ---- Mobile floating nav: progress ring + jump menu + scroll-spy ---- */
-(function(){
-  const fab = document.getElementById('mnavFab');
-  const menu = document.getElementById('mnavMenu');
-  const ring = document.getElementById('mnavRing');
-  if(!fab) return;
-
-  fab.addEventListener('click', (e)=>{ e.stopPropagation(); menu.classList.toggle('open'); });
-  document.addEventListener('click', (e)=>{ if(!menu.contains(e.target) && e.target!==fab) menu.classList.remove('open'); });
-  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=> menu.classList.remove('open')));
-
-  function updateProgress(){
-    const h = document.documentElement;
-    const scrolled = h.scrollTop;
-    const max = h.scrollHeight - h.clientHeight;
-    const pct = max > 0 ? Math.min(100, Math.max(0, (scrolled/max)*100)) : 0;
-    ring.style.setProperty('--prog', pct + '%');
-  }
-  let ticking = false;
-  document.addEventListener('scroll', ()=>{
-    if(!ticking){ requestAnimationFrame(()=>{ updateProgress(); ticking=false; }); ticking = true; }
-  }, {passive:true});
-  updateProgress();
-
-  const secIds = ['top','about','exp','proj','extras','skills','edu','contact'];
-  const secEls = secIds.map(id => id==='top' ? document.body : document.getElementById(id)).filter(Boolean);
-  const links = menu.querySelectorAll('a');
-  const spy = new IntersectionObserver((entries)=>{
-    entries.forEach(en=>{
-      if(en.isIntersecting){
-        const id = en.target.id || 'top';
-        links.forEach(l=> l.classList.toggle('active', l.dataset.sec === id));
-      }
-    });
-  }, {rootMargin:'-45% 0px -50% 0px'});
-  secIds.filter(id=>id!=='top').forEach(id=>{ const el=document.getElementById(id); if(el) spy.observe(el); });
-})();
-
-/* ---- Hero circuit: corriente "conduciendo" que reacciona al scroll ---- */
-(function(){
-  const heroEl = document.querySelector('.hero');
-  const paths = {
-    A: document.getElementById('circA'),
-    B: document.getElementById('circB'),
-    C: document.getElementById('circC')
-  };
-  const dots = {
-    A: document.getElementById('circDotA'),
-    B: document.getElementById('circDotB'),
-    C: document.getElementById('circDotC')
-  };
-  if(!heroEl || !paths.A || !paths.B || !paths.C) return;
-
-  const lens = {};
-  for(const k in paths){ lens[k] = paths[k].getTotalLength(); paths[k].style.strokeDasharray = lens[k]; }
-
-  let t = 0;
-  function frame(){
-    const max = document.body.scrollHeight - window.innerHeight;
-    const scrollFrac = max > 0 ? Math.min(1, window.scrollY / max) : 0;
-    t += 0.006;
-    const speedBoost = scrollFrac * 3;
-    ['A','B','C'].forEach((k, i)=>{
-      const len = lens[k];
-      const prog = (t * (0.6 + i*0.15) + speedBoost + i*0.33) % 1;
-      paths[k].style.strokeDashoffset = len * (1 - ((t*(0.5+i*0.1) + speedBoost + i*0.3) % 1));
-      const pt = paths[k].getPointAtLength(prog * len);
-      dots[k].setAttribute('cx', pt.x); dots[k].setAttribute('cy', pt.y);
-      dots[k].style.opacity = 0.55 + 0.45*Math.sin(t*8 + i);
-    });
-    heroEl.style.setProperty('--parallax', (scrollFrac*30) + 'px');
-    requestAnimationFrame(frame);
-  }
-  requestAnimationFrame(frame);
-})();
-
-setLang(LANG);
-</script>
+<footer class="foot wrap"><p>Franco Olmedo · Villa Allende, Córdoba · Rev. 2026-10</p><p>HTML y CSS hechos a mano. Sin frameworks ni rastreadores.</p></footer>
 </body>
 </html>
