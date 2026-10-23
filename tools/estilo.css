@@ -228,7 +228,7 @@ html:not(.js) .rt,html:not(.js) .osc{display:none}
 .log{margin-top:12px;font-size:12.5px}
 .log li{padding:6px 0;border-top:1px solid var(--rule);color:var(--ink2);transition:opacity .2s}
 .log b{font-weight:400;color:var(--cu)}
-.anim .log li{opacity:.4}
+.anim .log li{opacity:.75}
 .anim .log li.cur{opacity:1;color:var(--ink)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
 @media(max-width:959px){.duo .live{order:-1}}

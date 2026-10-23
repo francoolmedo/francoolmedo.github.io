@@ -25,8 +25,15 @@ Se partió de la rama `rediseno-portfolio` (estética de plano, fotos WebP, ES/E
 - La foto de la HMI del U9 pasó de la portada al caso U9.
 
 ## Números
-- Lighthouse móvil (local, sin gzip): Performance ES 96 · EN 96 · DE 100. Accesibilidad, buenas prácticas y SEO: 100 en las 3.
+- Lighthouse móvil (local, sin gzip): Performance ES 95–96 · EN 96 · DE 100. Accesibilidad, buenas prácticas y SEO: 100 en las 3.
 - Sin scroll horizontal a 375 y 1440 px (ES/EN/DE).
+
+## Revisión de otro agente (23/10)
+Un agente revisor independiente revisó la rama (hechos contra la spec, JS, reduced-motion, 375/1440 en ES/EN/DE, accesibilidad).
+Corregido: Ladder trabado si se apretaba PARADA durante la demo; Worker sin manejo de error; contraste del registro de agentes;
+`aria-live` y `aria-pressed` en el Ladder; año inventado en el caudalímetro (ahora «—»); frases sin evidencia en IA; «jedes» en DE;
+promedio del osciloscopio con el ciclo redondeado; rótulos del PCB legibles a 375 px; PARADA cableada NC (I0.1 = 1 en reposo).
+Queda sin cambiar: «Rutear de nuevo» da el mismo resultado (el router es determinista) y la cantidad de revisores (pregunta 2).
 
 ## Cómo editar
 - Textos y estructura: `tools/build.py` (diccionarios `T`, `X`, `PROYECTOS`, `OTROS`). Estilos: `tools/estilo.css`.

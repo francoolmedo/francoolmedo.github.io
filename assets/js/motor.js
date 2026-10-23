@@ -58,7 +58,7 @@
         g.strokeRect(c.x0 * s + 0.5, c.y0 * s + 0.5, (c.x1 - c.x0 + 1) * s - 1, (c.y1 - c.y0 + 1) * s - 1);
         if (c.ref === 'U1') {
           g.textAlign = 'center'; g.fillText('U1', 48.5 * s, 18 * s); g.fillText(c.txt, 48.5 * s, 21 * s); g.textAlign = 'left';
-        } else if (c.ref) g.fillText(c.ref, c.x0 * s + 2, c.y1 * s + s + 2 > L.h - 8 ? c.y0 * s - s * 2 : c.ref === 'R1' || c.ref === 'D1' ? c.y0 * s - s * 2.2 : c.y1 * s + s + 1);
+        }
       });
       B.pads.forEach(function (p) {
         g.fillStyle = C.pad;
@@ -68,6 +68,17 @@
         } else g.fillRect(px(p.x) - s * 0.62, px(p.y) - s * 0.62, s * 1.24, s * 1.24);
       });
       fondo = o;
+    }
+    // Rótulos de referencia encima de las pistas, con fondo para que se lean a 375 px.
+    function rotulos(g) {
+      g.font = Math.max(8, s * 1.9) + 'px ' + MONO; g.textBaseline = 'top';
+      B.comps.forEach(function (c) {
+        if (!c.ref || c.ref === 'U1') return;
+        var x = c.x0 * s + 1, y = c.y1 * s + s + 2 > L.h - 10 ? c.y0 * s - s * 2.4 : c.ref === 'R1' || c.ref === 'D1' ? c.y0 * s - s * 2.4 : c.y1 * s + s + 1;
+        var w = g.measureText(c.ref).width;
+        g.fillStyle = 'rgba(26,30,27,.85)'; g.fillRect(x - 1, y - 1, w + 3, Math.max(8, s * 1.9) + 2);
+        g.fillStyle = 'rgba(232,228,214,.8)'; g.fillText(c.ref, x, y);
+      });
     }
     // Dibuja los primeros k pasos de cada camino, capa inferior primero.
     function pistas(g, lista) {
@@ -109,7 +120,7 @@
           for (var j = 0; j < m; j++) g.fillRect(px(v[j] % W) - s * 0.3, px((v[j] / W) | 0) - s * 0.3, s * 0.6, s * 0.6);
         } else lista.push([q.path, Math.ceil(q.path.length * (f - 0.45) / 0.55)]);
       }
-      pistas(g, lista);
+      pistas(g, lista); rotulos(g);
       var ok = 0; for (i = 0; i < n; i++) if (res[i].ok) ok++;
       if (hecho) {
         var vias = 0; res.forEach(function (q) { for (var i = 1; i < q.path.length; i++) if (q.path[i][0] !== q.path[i - 1][0]) vias++; });
@@ -129,6 +140,7 @@
     function empezar() {
       res = null; hecho = false; ms = 0; btn.hidden = true;
       var wk = new Worker(new URL('ruteo.js', SRC));
+      wk.onerror = function () { wk.terminate(); fig.hidden = true; };
       wk.onmessage = function (e) {
         wk.terminate(); R = e.data; W = R.W; H = R.H; s = L.w / W;
         B = { pads: R.pads, comps: R.comps }; fondo = null; res = R.res; total = res.length;
@@ -180,12 +192,13 @@
       g.font = '11px ' + MONO; g.fillStyle = 'rgba(232,228,214,.7)'; g.textBaseline = 'bottom';
       g.fillText((EN ? '0.5' : '0,5') + ' ms/div · 1 V/div', 8, h - 4);
       g.fillStyle = 'rgba(229,211,107,.9)'; g.fillText('CH1', 8, Y(V) - 3);
-      g.fillStyle = '#f0a46b'; g.fillText('CH2', 8, Y(vmax) + 15);
+      g.fillStyle = '#111412'; g.fillRect(4, Y(V * D) - 8, 34, 16);
+      g.fillStyle = '#f0a46b'; g.textBaseline = 'middle'; g.fillText('CH2', 8, Y(V * D));
       avg.textContent = fmt(V * D, 2) + ' V';
       pp.textContent = fmt(vmax - vmin, 3) + ' V';
       out.textContent = Math.round(D * 100) + ' %';
     }
-    function fijar(v) { D = Math.max(0.1, Math.min(0.9, v)); inp.value = Math.round(D * 100); dibujar(); }
+    function fijar(v) { D = Math.round(Math.max(0.1, Math.min(0.9, v)) * 100) / 100; inp.value = Math.round(D * 100); dibujar(); }
     function scroll() {
       pend = 0; if (manual) return;
       var r = fig.getBoundingClientRect(), p = (innerHeight - r.top) / (innerHeight + r.height);
@@ -193,7 +206,8 @@
     }
     L = lienzo(cv); dibujar();
     inp.addEventListener('input', function () { manual = true; fijar(inp.value / 100); });
-    if (!RM) addEventListener('scroll', function () { if (!pend) pend = requestAnimationFrame(scroll); }, { passive: true });
+    var visto = false; enVista(fig, function (v) { visto = v; });
+    if (!RM) addEventListener('scroll', function () { if (visto && !pend) pend = requestAnimationFrame(scroll); }, { passive: true });
     alCambiarAncho(function () { L = lienzo(cv); dibujar(); });
   }
 
@@ -204,8 +218,10 @@
     var msgs = JSON.parse(fig.dataset.m), msg = $('.lad-msg', fig), st = { S0: 0, S1: 0, KM: 0 };
     var SEQ = [[0, 0, 1500], [0, 1, 1200], [0, 0, 2600], [1, 0, 1200], [0, 0, 900]];
     var auto = !RM, vis = false, paso = 0, timer = 0;
-    function texto() { return msgs[st.S0 ? 3 : st.S1 ? 1 : st.KM ? 2 : 0]; }
+    var cayo = false; // PARADA cortó a KM1 en este ciclo o antes, mientras sigue apretada
+    function texto() { return msgs[st.S0 ? (cayo ? 3 : 0) : st.S1 ? 1 : st.KM ? 2 : 0]; }
     function ciclo() {
+      if (!st.S0) cayo = false; else if (st.KM) cayo = true;
       st.KM = !st.S0 && (st.S1 || st.KM) ? 1 : 0;
       var on = { a: 1, b: !st.S0, c: !st.S0 && st.S1, d: !st.S0 && st.KM, e: st.KM, f: st.KM };
       $$('.w', fig).forEach(function (p) { p.classList.toggle('on', !!on[p.dataset.p]); });
@@ -213,9 +229,9 @@
         var k = c.dataset.c; c.classList.toggle('cl', !!(k === 'S0' ? !st.S0 : k === 'S1' ? st.S1 : st.KM));
       });
       $$('.coil', fig).forEach(function (c) { c.classList.toggle('on', !!st.KM); });
-      var io = { 'I0.0': st.S1, 'I0.1': st.S0, 'Q0.0': st.KM, 'Q0.1': st.KM };
+      var io = { 'I0.0': st.S1, 'I0.1': !st.S0, 'Q0.0': st.KM, 'Q0.1': st.KM };
       $$('[data-io]').forEach(function (e) { var v = io[e.dataset.io] ? 1 : 0; e.textContent = v; e.classList.toggle('hi', !!v); });
-      $$('.pb', fig).forEach(function (b) { b.classList.toggle('down', !!st[b.dataset.b]); });
+      $$('.pb', fig).forEach(function (b) { b.classList.toggle('down', !!st[b.dataset.b]); b.setAttribute('aria-pressed', st[b.dataset.b] ? 'true' : 'false'); });
       msg.textContent = texto();
     }
     function avanzar() {
@@ -223,7 +239,10 @@
       var s = SEQ[paso++ % SEQ.length]; st.S0 = s[0]; st.S1 = s[1]; ciclo();
       timer = setTimeout(avanzar, s[2]);
     }
-    function tomar() { auto = false; clearTimeout(timer); }
+    function tomar() {
+      if (auto) { st.S0 = st.S1 = 0; msg.setAttribute('aria-live', 'polite'); }
+      auto = false; clearTimeout(timer);
+    }
     $$('.pb', fig).forEach(function (b) {
       var k = b.dataset.b;
       function bajar(e) { if (e.repeat) return; tomar(); st[k] = 1; ciclo(); }
