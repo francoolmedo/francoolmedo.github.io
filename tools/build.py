@@ -524,8 +524,11 @@ AG_SEQ = [[("tel", 1, 0)], [("git", 1, 1)], [("loc", 1, 2)], [("loc", -1, 3)],
 def svg_agentes(x):
     o = [f'<svg class="ag" viewBox="0 0 360 300" role="img" aria-label="{escape(x["ag_aria"])}">']
     for eid, p, q in AG_EDGES:
+        # la arista arranca y termina en el borde de cada caja (108 × 42), no en el centro
         (x1, y1), (x2, y2) = AG_POS[p], AG_POS[q]
-        o.append(f'<path class="e" id="e-{eid}" d="M{x1} {y1}L{x2} {y2}"/>')
+        dx, dy = x2 - x1, y2 - y1
+        k = min(57 / abs(dx) if dx else 9, 24 / abs(dy) if dy else 9)
+        o.append(f'<path class="e" id="e-{eid}" d="M{x1 + dx * k:.1f} {y1 + dy * k:.1f}L{x2 - dx * k:.1f} {y2 - dy * k:.1f}"/>')
     for k, (cx, cy) in AG_POS.items():
         nom, sub = x["nodes"][k]
         o.append(f'<g class="nd" data-n="{k}"><rect x="{cx - 54}" y="{cy - 21}" width="108" height="42"/>'
@@ -543,7 +546,9 @@ def log_agentes(x):
         orig, dest = set(), []
         for e, s, m in paso:
             p, q = ends[e] if s == 1 else ends[e][::-1]
-            orig.add(nodos[p]); dest.append(nodos[q])
+            orig.add(nodos[p])
+            if nodos[q] not in dest:
+                dest.append(nodos[q])
         o.append(f'<li><span class="y">{i:02d}</span> {", ".join(sorted(orig))} → {", ".join(dest)} · <b>{escape(x["msgs"][paso[0][2]])}</b></li>')
     o.append('</ol>')
     return "".join(o)
