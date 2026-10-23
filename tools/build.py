@@ -4,6 +4,8 @@ Uso: python3 tools/build.py   (requiere Pillow solo para leer medidas de imagen)
 
 Reglas de texto (ASD-STE100): frases cortas, voz activa, cifras concretas,
 sin adjetivos vacíos. Un dato que no tiene evidencia no entra como proyecto."""
+import json
+import math
 import os
 from html import escape
 from PIL import Image
@@ -107,6 +109,91 @@ T = {
     ct_cv="Lebenslauf als PDF", ct_other="Außerdem",
     foot="Handgeschriebenes HTML, CSS und JS. Keine Frameworks, keine Tracker.",
     present="heute", ongoing="laufend",
+),
+}
+
+# Textos de las animaciones y de las secciones Tableros e IA.
+X = {
+"es": dict(
+    rt_aria="Animación: autoruteo de una placa con un ESP32 y 74 conexiones. Las pistas se trazan una por una, con codos a 45° y dos capas.",
+    rt_cap="Autoruteo en vivo de una placa ESP32 con 74 conexiones: grilla, A*, codos a 45° y 2 capas. Lo calcula tu navegador ahora. En ElectronArt, una placa ESP32 de 74 conexiones queda 74/74 en menos de 5 s.",
+    rt_conn="conexiones", rt_vias="vías", rt_pas="pasadas", rt_calc="cálculo", rt_again="Rutear de nuevo",
+    rt_top="Capa superior", rt_bot="Capa inferior",
+    osc_aria="Osciloscopio: canal 1 con PWM de 1 kHz y canal 2 con la tensión del capacitor del filtro RC.",
+    osc_cap="PWM de 1 kHz por un filtro RC de 10 kΩ y 100 nF (τ = 1 ms). La curva sale de la solución exacta del circuito. El ciclo de trabajo sigue el scroll, o movelo vos.",
+    osc_d="Ciclo de trabajo", osc_avg="Promedio", osc_pp="Rizado",
+    sec_tab="Tableros", sec_tab_sub="Diseño tableros IEC y programo PLC en Ladder desde 2020.",
+    lad_h="Arranque directo con enclavamiento",
+    lad_p="Es el circuito base de un tablero. MARCHA energiza el contactor KM1. Un contacto auxiliar de KM1 mantiene la bobina. PARADA la corta. ElectronArt simula programas como este antes de armar el tablero.",
+    lad_ev="En 2020 programé en Ladder una bruñidora con un PLC Siemens S7-200 (ver «Otros»).",
+    lad_try="Mantené apretado MARCHA, soltalo y después apretá PARADA.",
+    b_on="MARCHA", b_off="PARADA",
+    lad_m=["Reposo: KM1 sin tensión.", "MARCHA cerrado: la bobina de KM1 se energiza.", "Enclavamiento: el contacto de KM1 mantiene la bobina.", "PARADA abierto: KM1 cae y el enclavamiento se abre."],
+    io=[("I0.0", "S1 · MARCHA"), ("I0.1", "S0 · PARADA"), ("Q0.0", "KM1 · contactor"), ("Q0.1", "H1 · piloto")],
+    lad_aria="Diagrama Ladder de un arranque con enclavamiento: contactos S0, S1 y KM1, bobinas KM1 y H1.",
+    sec_ia="IA", sec_ia_sub="Uso IA donde la puedo medir.",
+    tri_h="Triana, la IA local de ElectronArt",
+    tri_p="Corre Qwen 4B en la PC, sin internet. La medí con un banco de pruebas propio. Estos son los resultados, sin redondear.",
+    bars=[("Circuitos completos bien armados", 10, 40), ("Módulos bien conectados a un micro", 9, 12)],
+    ag_h="Mi sistema de agentes",
+    ag_p="Un orquestador reparte el trabajo. Revisores controlan cada cambio. Un modelo local resuelve tareas sin salir de la máquina. La memoria queda en git. Lo uso desde la nube y desde el celular.",
+    ag_aria="Esquema del sistema de agentes: celular, orquestador en la nube, memoria en git, dos revisores y un modelo local.",
+    nodes=dict(tel=("Celular", ""), orq=("Orquestador", "nube"), git=("git", "memoria"), r1=("Revisor 1", ""), r2=("Revisor 2", ""), loc=("Modelo local", "sin internet")),
+    msgs=["pedido", "contexto", "subtarea", "resultado", "diff", "observaciones", "commit", "PR listo"],
+),
+"en": dict(
+    rt_aria="Animation: autorouting a board with an ESP32 and 74 connections. Tracks are drawn one by one, with 45° bends on two layers.",
+    rt_cap="Live autorouting of an ESP32 board with 74 connections: grid, A*, 45° bends and 2 layers. Your browser computes it now. In ElectronArt, an ESP32 board with 74 connections routes 74/74 in under 5 s.",
+    rt_conn="connections", rt_vias="vias", rt_pas="passes", rt_calc="compute", rt_again="Route again",
+    rt_top="Top layer", rt_bot="Bottom layer",
+    osc_aria="Oscilloscope: channel 1 shows a 1 kHz PWM, channel 2 the capacitor voltage of the RC filter.",
+    osc_cap="1 kHz PWM through an RC filter of 10 kΩ and 100 nF (τ = 1 ms). The curve is the exact solution of the circuit. The duty cycle follows the scroll, or set it yourself.",
+    osc_d="Duty cycle", osc_avg="Average", osc_pp="Ripple",
+    sec_tab="Panels", sec_tab_sub="I design IEC control panels and program PLCs in Ladder since 2020.",
+    lad_h="Direct-on-line start with seal-in",
+    lad_p="This is the base circuit of a control panel. START energises contactor KM1. An auxiliary contact of KM1 holds the coil. STOP breaks it. ElectronArt simulates programs like this before the panel is built.",
+    lad_ev="In 2020 I programmed a honing machine in Ladder on a Siemens S7-200 PLC (see “Other”).",
+    lad_try="Hold START, release it, then press STOP.",
+    b_on="START", b_off="STOP",
+    lad_m=["Idle: KM1 is de-energised.", "START closed: the KM1 coil energises.", "Seal-in: the KM1 contact holds the coil.", "STOP open: KM1 drops out and the seal-in opens."],
+    io=[("I0.0", "S1 · START"), ("I0.1", "S0 · STOP"), ("Q0.0", "KM1 · contactor"), ("Q0.1", "H1 · pilot lamp")],
+    lad_aria="Ladder diagram of a start with seal-in: contacts S0, S1 and KM1, coils KM1 and H1.",
+    sec_ia="AI", sec_ia_sub="I use AI where I can measure it.",
+    tri_h="Triana, the local AI in ElectronArt",
+    tri_p="It runs Qwen 4B on the PC, offline. I measured it with my own test bench. These are the results, not rounded.",
+    bars=[("Complete circuits built correctly", 10, 40), ("Modules wired correctly to a microcontroller", 9, 12)],
+    ag_h="My agent system",
+    ag_p="An orchestrator splits the work. Reviewers check every change. A local model solves tasks without leaving the machine. Memory lives in git. I run it from the cloud and from my phone.",
+    ag_aria="Agent system diagram: phone, cloud orchestrator, git memory, two reviewers and a local model.",
+    nodes=dict(tel=("Phone", ""), orq=("Orchestrator", "cloud"), git=("git", "memory"), r1=("Reviewer 1", ""), r2=("Reviewer 2", ""), loc=("Local model", "offline")),
+    msgs=["request", "context", "subtask", "result", "diff", "comments", "commit", "PR ready"],
+),
+"de": dict(
+    rt_aria="Animation: Autorouting einer Platine mit einem ESP32 und 74 Verbindungen. Die Leiterbahnen entstehen nacheinander, mit 45°-Knicken auf zwei Lagen.",
+    rt_cap="Live-Autorouting einer ESP32-Platine mit 74 Verbindungen: Raster, A*, 45°-Knicke und 2 Lagen. Ihr Browser rechnet das jetzt. In ElectronArt wird eine ESP32-Platine mit 74 Verbindungen in unter 5 s zu 74/74 geroutet.",
+    rt_conn="Verbindungen", rt_vias="Vias", rt_pas="Durchläufe", rt_calc="Rechenzeit", rt_again="Neu routen",
+    rt_top="Oberseite", rt_bot="Unterseite",
+    osc_aria="Oszilloskop: Kanal 1 zeigt eine 1-kHz-PWM, Kanal 2 die Kondensatorspannung des RC-Filters.",
+    osc_cap="1-kHz-PWM durch ein RC-Filter mit 10 kΩ und 100 nF (τ = 1 ms). Die Kurve ist die exakte Lösung der Schaltung. Das Tastverhältnis folgt dem Scrollen, oder stellen Sie es selbst ein.",
+    osc_d="Tastverhältnis", osc_avg="Mittelwert", osc_pp="Welligkeit",
+    sec_tab="Schaltschränke", sec_tab_sub="Ich entwerfe IEC-Schaltschränke und programmiere SPS in KOP (Ladder), seit 2020.",
+    lad_h="Direktanlauf mit Selbsthaltung",
+    lad_p="Das ist die Grundschaltung jedes Schaltschranks. EIN erregt das Schütz KM1. Ein Hilfskontakt von KM1 hält die Spule. AUS unterbricht sie. ElectronArt simuliert solche Programme, bevor der Schrank gebaut wird.",
+    lad_ev="2020 habe ich eine Honmaschine mit einer Siemens-S7-200-SPS in KOP programmiert (siehe „Weitere“).",
+    lad_try="EIN gedrückt halten, loslassen, dann AUS drücken.",
+    b_on="EIN", b_off="AUS",
+    lad_m=["Ruhe: KM1 ist stromlos.", "EIN geschlossen: die Spule von KM1 zieht an.", "Selbsthaltung: der Kontakt von KM1 hält die Spule.", "AUS geöffnet: KM1 fällt ab, die Selbsthaltung öffnet."],
+    io=[("I0.0", "S1 · EIN"), ("I0.1", "S0 · AUS"), ("Q0.0", "KM1 · Schütz"), ("Q0.1", "H1 · Meldeleuchte")],
+    lad_aria="KOP-Diagramm eines Anlaufs mit Selbsthaltung: Kontakte S0, S1 und KM1, Spulen KM1 und H1.",
+    sec_ia="KI", sec_ia_sub="Ich setze KI dort ein, wo ich sie messen kann.",
+    tri_h="Triana, die lokale KI in ElectronArt",
+    tri_p="Sie läuft mit Qwen 4B auf dem PC, ohne Internet. Ich habe sie mit einem eigenen Prüfstand gemessen. Das sind die Ergebnisse, ungerundet.",
+    bars=[("Vollständige Schaltungen korrekt aufgebaut", 10, 40), ("Module korrekt an einen Mikrocontroller angeschlossen", 9, 12)],
+    ag_h="Mein Agentensystem",
+    ag_p="Ein Orchestrator verteilt die Arbeit. Reviewer prüfen jede Änderung. Ein lokales Modell löst Aufgaben, ohne die Maschine zu verlassen. Das Gedächtnis liegt in Git. Ich steuere es aus der Cloud und vom Handy.",
+    ag_aria="Schema des Agentensystems: Handy, Orchestrator in der Cloud, Gedächtnis in Git, zwei Reviewer und ein lokales Modell.",
+    nodes=dict(tel=("Handy", ""), orq=("Orchestrator", "Cloud"), git=("git", "Gedächtnis"), r1=("Reviewer 1", ""), r2=("Reviewer 2", ""), loc=("Lokales Modell", "offline")),
+    msgs=["Auftrag", "Kontext", "Teilaufgabe", "Ergebnis", "Diff", "Anmerkungen", "Commit", "PR fertig"],
 ),
 }
 
@@ -353,8 +440,117 @@ def figure(nombre, cls, cap, n, t, pre, eager=False):
             f'<figcaption><span class="ref">{t["fig"]} {n:02d}</span> {escape(cap)}</figcaption></figure>')
 
 
+
+# ---------------------------------------------------------------- animaciones
+def rc_pwm(d, f=1000.0, r=10e3, c=100e-9, v=5.0):
+    """Régimen permanente de un PWM por un RC: devuelve (Vmin, Vmax)."""
+    tau, T = r * c, 1.0 / f
+    a, b = math.exp(-d * T / tau), math.exp(-(1 - d) * T / tau)
+    vmax = v * (1 - a) / (1 - a * b)
+    return vmax * b, vmax
+
+
+def num(v, lang, dec=2):
+    s = f"{v:.{dec}f}"
+    return s if lang == "en" else s.replace(".", ",")
+
+
+def fig_ruteo(x, n, t):
+    return (f'<figure class="live rt" id="ruteo" data-conn="{x["rt_conn"]}" data-vias="{x["rt_vias"]}" '
+            f'data-pas="{x["rt_pas"]}" data-calc="{x["rt_calc"]}">'
+            f'<div class="rt-box"><canvas role="img" aria-label="{escape(x["rt_aria"])}"></canvas></div>'
+            f'<div class="hud"><p class="hud-n"><b>0/74</b> {x["rt_conn"]} · DRC <b>—</b></p>'
+            f'<p class="hud-k"><span class="k k-top"></span>{x["rt_top"]} <span class="k k-bot"></span>{x["rt_bot"]}</p>'
+            f'<button type="button" class="again" hidden>{x["rt_again"]}</button></div>'
+            f'<figcaption><span class="ref">{t["fig"]} {n:02d}</span> {escape(x["rt_cap"])}</figcaption></figure>')
+
+
+def fig_osc(x, n, t, lang):
+    vmin, vmax = rc_pwm(0.5)
+    return (f'<figure class="fig w live osc" id="osc">'
+            f'<div class="osc-box"><canvas role="img" aria-label="{escape(x["osc_aria"])}"></canvas></div>'
+            f'<div class="osc-ctl"><label for="osc-d">{x["osc_d"]}</label>'
+            f'<input id="osc-d" type="range" min="10" max="90" step="1" value="50"><output for="osc-d">50 %</output></div>'
+            f'<dl class="osc-read"><div><dt>CH1</dt><dd>PWM 1 kHz</dd></div>'
+            f'<div><dt>CH2 · {x["osc_avg"]}</dt><dd data-r="avg">{num(2.5, lang)} V</dd></div>'
+            f'<div><dt>CH2 · {x["osc_pp"]}</dt><dd data-r="pp">{num(vmax - vmin, lang, 3)} V</dd></div></dl>'
+            f'<figcaption><span class="ref">{t["fig"]} {n:02d}</span> {escape(x["osc_cap"])}</figcaption></figure>')
+
+
+def svg_ladder(x):
+    o = []
+    a = o.append
+
+    def lbl(cx, y, top, bot):
+        a(f'<text x="{cx}" y="{y - 19}">{top}</text><text class="ad" x="{cx}" y="{y + 27}">{bot}</text>')
+
+    def contacto(cx, y, cid, top, bot, nc=False):
+        a(f'<g class="ct{" nc" if nc else ""}" data-c="{cid}"><rect class="bar" x="{cx + 3}" y="{y - 2}" width="18" height="4"/>'
+          f'<path d="M{cx} {y - 12}v24M{cx + 24} {y - 12}v24"/>')
+        if nc:
+            a(f'<path d="M{cx - 3} {y + 12}L{cx + 27} {y - 12}"/>')
+        a('</g>')
+        lbl(cx + 12, y, top, bot)
+
+    def bobina(cx, y, cid, top, bot):
+        a(f'<g class="coil" data-k="{cid}"><circle cx="{cx + 12}" cy="{y}" r="10"/>'
+          f'<path d="M{cx + 7} {y - 11}a14 14 0 0 0 0 22M{cx + 17} {y - 11}a14 14 0 0 1 0 22"/></g>')
+        lbl(cx + 12, y, top, bot)
+
+    def w(p, d):
+        a(f'<path class="w" data-p="{p}" d="{d}"/>')
+
+    a(f'<svg class="lad" viewBox="0 0 400 252" role="img" aria-label="{escape(x["lad_aria"])}">')
+    a('<path class="rail" d="M12 22V234"/><path class="rail r" d="M388 22V234"/>')
+    w("a", "M12 64H52"); w("b", "M76 64H140M110 64V128H140"); w("c", "M164 64H214"); w("d", "M164 128H214V64")
+    w("e", "M214 64H300M324 64H388"); w("a", "M12 204H140"); w("f", "M164 204H300M324 204H388")
+    contacto(52, 64, "S0", "S0", "I0.1", nc=True)
+    contacto(140, 64, "S1", "S1", "I0.0")
+    contacto(140, 128, "KM", "KM1", "Q0.0")
+    bobina(300, 64, "KM", "KM1", "Q0.0")
+    contacto(140, 204, "KM", "KM1", "Q0.0")
+    bobina(300, 204, "H1", "H1", "Q0.1")
+    a('</svg>')
+    return "".join(o)
+
+
+AG_POS = dict(tel=(90, 40), git=(270, 40), orq=(180, 140), r1=(60, 252), r2=(180, 252), loc=(300, 252))
+AG_EDGES = [("tel", "tel", "orq"), ("git", "git", "orq"), ("r1", "orq", "r1"), ("r2", "orq", "r2"), ("loc", "orq", "loc")]
+# Pasos: lista de (arista, sentido, mensaje). Sentido 1 = como está dibujada la arista.
+AG_SEQ = [[("tel", 1, 0)], [("git", 1, 1)], [("loc", 1, 2)], [("loc", -1, 3)],
+          [("r1", 1, 4), ("r2", 1, 4)], [("r1", -1, 5), ("r2", -1, 5)], [("git", -1, 6)], [("tel", -1, 7)]]
+
+
+def svg_agentes(x):
+    o = [f'<svg class="ag" viewBox="0 0 360 300" role="img" aria-label="{escape(x["ag_aria"])}">']
+    for eid, p, q in AG_EDGES:
+        (x1, y1), (x2, y2) = AG_POS[p], AG_POS[q]
+        o.append(f'<path class="e" id="e-{eid}" d="M{x1} {y1}L{x2} {y2}"/>')
+    for k, (cx, cy) in AG_POS.items():
+        nom, sub = x["nodes"][k]
+        o.append(f'<g class="nd" data-n="{k}"><rect x="{cx - 54}" y="{cy - 21}" width="108" height="42"/>'
+                 f'<text x="{cx}" y="{cy + (-2 if sub else 4)}">{escape(nom)}</text>'
+                 + (f'<text class="sub" x="{cx}" y="{cy + 13}">{escape(sub)}</text>' if sub else "") + '</g>')
+    o.append('<g class="msgs"></g></svg>')
+    return "".join(o)
+
+
+def log_agentes(x):
+    nodos = {k: v[0] for k, v in x["nodes"].items()}
+    ends = {e: (p, q) for e, p, q in AG_EDGES}
+    o = ['<ol class="log">']
+    for i, paso in enumerate(AG_SEQ, 1):
+        orig, dest = set(), []
+        for e, s, m in paso:
+            p, q = ends[e] if s == 1 else ends[e][::-1]
+            orig.add(nodos[p]); dest.append(nodos[q])
+        o.append(f'<li><span class="y">{i:02d}</span> {", ".join(sorted(orig))} → {", ".join(dest)} · <b>{escape(x["msgs"][paso[0][2]])}</b></li>')
+    o.append('</ol>')
+    return "".join(o)
+
+
 def page(lang):
-    t = T[lang]
+    t, x = T[lang], X[lang]
     pre = "" if lang == "es" else "../"
     url = SITIO + RUTA[lang]
     figno = 1
@@ -380,6 +576,7 @@ def page(lang):
       f'<meta name="theme-color" content="#f2efe6">\n'
       f'<link rel="icon" href="{pre}favicon.svg" type="image/svg+xml">\n'
       f'<link rel="preload" href="{pre}assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>\n'
+      '<script>document.documentElement.className="js"</script>\n'
       f'<style>{CSS.replace("url(assets/", "url(" + pre + "assets/")}</style>\n')
     a('<script type="application/ld+json">' + (
         '{"@context":"https://schema.org","@type":"Person","name":"Franco Olmedo",'
@@ -403,10 +600,12 @@ def page(lang):
     a('</ul></div></header>\n<main id="main">\n')
     # hero
     wa = f"https://wa.me/{WA}?text=" + t["wa_text"].replace(" ", "%20").replace(",", "%2C")
-    a('<section class="hero wrap" aria-labelledby="h-nombre"><div class="hero-txt">'
+    a('<section class="hero wrap" aria-labelledby="h-nombre"><div class="hero-a">'
       f'<p class="kicker">{t["kicker"]}</p>'
       f'<h1 id="h-nombre">Franco Olmedo</h1>'
-      f'<p class="lead">{t["lead"]}</p><p class="sub">{t["sub"]}</p>'
+      f'<p class="lead">{t["lead"]}</p></div>')
+    a(fig_ruteo(x, figno, t)); figno += 1
+    a(f'<div class="hero-b"><p class="sub">{t["sub"]}</p>'
       '<div class="ctas">'
       f'<a class="btn btn-1" href="{wa}" rel="noopener">{t["cta_wa"]}</a>'
       f'<a class="btn btn-2" href="mailto:{MAIL}">{t["cta_mail"]}</a>'
@@ -414,9 +613,7 @@ def page(lang):
       '<dl class="tblock">')
     for k, v in t["block"]:
         a(f'<div><dt>{k}</dt><dd>{v}</dd></div>')
-    a('</dl></div><div class="hero-fig">')
-    a(figure("u9-hmi-grado", "", t["hero_cap"], figno, t, pre, eager=True)); figno += 1
-    a('</div></section>\n')
+    a('</dl></div></section>\n')
     # proyectos
     a(f'<section id="trabajos" class="sec wrap" aria-labelledby="h-trab"><div class="sec-h"><p class="net" aria-hidden="true">01</p>'
       f'<h2 id="h-trab">{t["sec_trab"]}</h2><p class="sec-sub">{t["sec_trab_sub"]}</p></div>\n')
@@ -437,12 +634,36 @@ def page(lang):
             a(f'<p><a class="ext" href="{p["link"][0]}" rel="noopener">{p["link"][1]} <span aria-hidden="true">↗</span></a></p>')
         cls = " one" if len(p["figs"]) == 1 else (" " + p["grid"] if p.get("grid") else "")
         a(f'</div><div class="case-figs{cls}">')
+        if p.get("scope"):
+            a(fig_osc(x, figno, t, lang)); figno += 1
         for nombre, cls, cap in p["figs"]:
             a(figure(nombre, cls, tx(cap, lang), figno, t, pre)); figno += 1
         a('</div></article>\n')
     a('</section>\n')
+    # tableros: Ladder
+    a(f'<section id="tableros" class="sec wrap" aria-labelledby="h-tab"><div class="sec-h"><p class="net" aria-hidden="true">02</p>'
+      f'<h2 id="h-tab">{x["sec_tab"]}</h2><p class="sec-sub">{x["sec_tab_sub"]}</p></div><div class="duo">'
+      f'<div class="duo-txt"><h3>{x["lad_h"]}</h3><p class="duo-p">{x["lad_p"]}</p><p class="duo-ev"><a href="#otros">{x["lad_ev"]}</a></p>'
+      '<table class="io"><tbody>')
+    for addr, nom in x["io"]:
+        a(f'<tr><td class="y">{addr}</td><td>{nom}</td><td class="v"><span data-io="{addr}">0</span></td></tr>')
+    a(f'</tbody></table></div><figure class="live lad-fig" id="ladder" data-m="{escape(json.dumps(x["lad_m"], ensure_ascii=False))}">'
+      f'{svg_ladder(x)}<div class="lad-ctl"><button type="button" class="pb on" data-b="S1">{x["b_on"]}</button>'
+      f'<button type="button" class="pb off" data-b="S0">{x["b_off"]}</button></div>'
+      f'<p class="lad-msg">{x["lad_m"][0]}</p>'
+      f'<figcaption><span class="ref">{t["fig"]} {figno:02d}</span> {x["lad_try"]}</figcaption></figure></div></section>\n'); figno += 1
+    # IA: Triana y agentes
+    a(f'<section id="ia" class="sec wrap" aria-labelledby="h-ia"><div class="sec-h"><p class="net" aria-hidden="true">03</p>'
+      f'<h2 id="h-ia">{x["sec_ia"]}</h2><p class="sec-sub">{x["sec_ia_sub"]}</p></div><div class="duo">'
+      f'<div class="duo-txt"><h3>{x["tri_h"]}</h3><p class="duo-p">{x["tri_p"]}</p><ul class="bars">')
+    for lab, k, n in x["bars"]:
+        a(f'<li><span class="bl">{lab}</span><span class="bn"><b>{k}</b>/{n}</span>'
+          f'<span class="bt" aria-hidden="true"><span style="width:{100 * k / n:.1f}%"></span></span></li>')
+    a(f'</ul><h3 class="h-ag">{x["ag_h"]}</h3><p class="duo-p">{x["ag_p"]}</p></div>'
+      f'<figure class="live ag-fig" id="agentes" data-seq="{escape(json.dumps(AG_SEQ))}">'
+      f'{svg_agentes(x)}{log_agentes(x)}</figure></div></section>\n')
     # otros
-    a(f'<section id="otros" class="sec wrap" aria-labelledby="h-otros"><div class="sec-h"><p class="net" aria-hidden="true">02</p>'
+    a(f'<section id="otros" class="sec wrap" aria-labelledby="h-otros"><div class="sec-h"><p class="net" aria-hidden="true">04</p>'
       f'<h2 id="h-otros">{t["sec_otros"]}</h2><p class="sec-sub">{t["sec_otros_sub"]}</p></div>'
       '<table class="bom" role="table"><thead role="rowgroup"><tr role="row">')
     for h in t["th"]:
@@ -453,7 +674,7 @@ def page(lang):
         a(f'<tr role="row"><td role="cell" class="y">{anio}</td><td role="cell">{tx(desc, lang)}</td><td role="cell">{para}</td><td role="cell" class="ev">{tx(ev, lang)}</td></tr>')
     a('</tbody></table></section>\n')
     # experiencia + formacion + herramientas
-    a(f'<section id="experiencia" class="sec wrap" aria-labelledby="h-exp"><div class="sec-h"><p class="net" aria-hidden="true">03</p>'
+    a(f'<section id="experiencia" class="sec wrap" aria-labelledby="h-exp"><div class="sec-h"><p class="net" aria-hidden="true">05</p>'
       f'<h2 id="h-exp">{t["sec_exp"]}</h2></div><div class="cols">'
       '<div><ol class="tl">')
     for anio, org, d in EXP:
@@ -468,7 +689,7 @@ def page(lang):
         a(f'<div><dt>{tx(k, lang)}</dt><dd>{tx(v, lang)}</dd></div>')
     a('</dl></div></div></section>\n')
     # contacto
-    a(f'<section id="contacto" class="sec contact" aria-labelledby="h-ct"><div class="wrap"><div class="sec-h"><p class="net" aria-hidden="true">04</p>'
+    a(f'<section id="contacto" class="sec contact" aria-labelledby="h-ct"><div class="wrap"><div class="sec-h"><p class="net" aria-hidden="true">06</p>'
       f'<h2 id="h-ct">{t["sec_ct"]}</h2></div><div class="ct-grid"><div>'
       f'<p class="ct-lead">{t["ct_lead"]}</p><p class="ct-sub">{t["ct_sub"]}</p>'
       '<div class="ctas">'
@@ -480,7 +701,8 @@ def page(lang):
       f'<div><dt>{t["ct_cv"]}</dt><dd><a href="{pre}cv-es.pdf" hreflang="es">ES</a> · <a href="{pre}cv-en.pdf" hreflang="en">EN</a> · <a href="{pre}cv-de.pdf" hreflang="de">DE</a></dd></div>'
       f'<div><dt>{t["ct_other"]}</dt><dd><a href="{LINKEDIN}" rel="noopener">LinkedIn</a> · <a href="{EA}" rel="noopener">ElectronArt</a></dd></div>'
       '</dl></div></div></section>\n</main>\n')
-    a(f'<footer class="foot wrap"><p>Franco Olmedo · Villa Allende, Córdoba · Rev. {REV}</p><p>{t["foot"]}</p></footer>\n</body>\n</html>\n')
+    a(f'<footer class="foot wrap"><p>Franco Olmedo · Villa Allende, Córdoba · Rev. {REV}</p><p>{t["foot"]}</p></footer>\n'
+      f'<script src="{pre}assets/js/ruteo.js" defer></script><script src="{pre}assets/js/motor.js" defer></script>\n</body>\n</html>\n')
     return "".join(o)
 
 
