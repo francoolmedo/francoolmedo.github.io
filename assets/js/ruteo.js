@@ -234,3 +234,16 @@ var Ruteo = (function () {
   return { W: W, H: H, placa: placa, conexiones: conexiones, Router: Router, tramos: tramos, Pasos: Pasos };
 })();
 if (typeof module !== 'undefined') module.exports = Ruteo;
+// Como Web Worker: rutea fuera del hilo principal y devuelve la placa y los caminos.
+if (typeof importScripts === 'function') {
+  onmessage = function () {
+    var B = Ruteo.placa(), p = new Ruteo.Pasos(B), t0 = performance.now();
+    while (!p.paso());
+    var calc = performance.now() - t0;
+    postMessage({
+      W: Ruteo.W, H: Ruteo.H, pads: B.pads.map(function (q) { return { x: q.x, y: q.y, th: q.th }; }), comps: B.comps,
+      res: p.res.map(function (q) { return { ok: q.ok, path: q.path, vistos: Int32Array.from(q.vistos) }; }),
+      pasadas: p.pasadas.length, drc: p.r.drc(), calc: calc
+    });
+  };
+}

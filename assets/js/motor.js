@@ -26,16 +26,17 @@
     });
   }
   var MONO = '"Plex Mono", ui-monospace, monospace';
+  var SRC = document.currentScript && document.currentScript.src;
 
   // ------------------------------------------------------------ 1. autoruteo
   function ruteo() {
-    var fig = $('#ruteo'); if (!fig || !window.Ruteo) return;
+    var fig = $('#ruteo'); if (!fig || !window.Worker || !SRC) return;
     var cv = $('canvas', fig), hud = $('.hud-n', fig), btn = $('.again', fig), d = fig.dataset;
-    var W = Ruteo.W, H = Ruteo.H, C = {
+    var W = 96, H = 64, C = {
       board: '#1a1e1b', grid: '#2c332d', silk: 'rgba(232,228,214,.5)', top: '#e3894b', bot: '#5f93c4',
       pad: '#d8b46c', hole: '#1a1e1b', seen: 'rgba(240,164,107,.28)'
     };
-    var L, s, fondo, B, pasos, calc, res, total, hecho = false, vis = true, raf = 0, ms = 0, last = 0;
+    var L, s, fondo, B, R, res, total, hecho = false, vis = true, raf = 0, ms = 0, last = 0;
     var PER = 85; // ms por conexión en la animación
 
     function px(v) { return (v + 0.5) * s; }
@@ -94,6 +95,7 @@
       });
     }
     function pintar() {
+      if (!B) return;
       if (!fondo) dibujarFondo();
       var g = L.g; g.setTransform(1, 0, 0, 1, 0, 0); g.drawImage(fondo, 0, 0); g.setTransform(L.k, 0, 0, L.k, 0, 0);
       if (!res) return;
@@ -111,8 +113,8 @@
       var ok = 0; for (i = 0; i < n; i++) if (res[i].ok) ok++;
       if (hecho) {
         var vias = 0; res.forEach(function (q) { for (var i = 1; i < q.path.length; i++) if (q.path[i][0] !== q.path[i - 1][0]) vias++; });
-        hud.innerHTML = '<b>' + ok + '/' + total + '</b> ' + d.conn + ' · DRC <b>' + pasos.r.drc() + '</b> · <b>' + vias + '</b> ' + d.vias +
-          ' · <b>' + pasos.pasadas.length + '</b> ' + d.pas + ' · ' + d.calc + ' <b>' + fmt(calc / 1000, 2) + ' s</b>';
+        hud.innerHTML = '<b>' + ok + '/' + total + '</b> ' + d.conn + ' · DRC <b>' + R.drc + '</b> · <b>' + vias + '</b> ' + d.vias +
+          ' · <b>' + R.pasadas + '</b> ' + d.pas + ' · ' + d.calc + ' <b>' + fmt(R.calc / 1000, 2) + ' s</b>';
       } else hud.innerHTML = '<b>' + ok + '/' + total + '</b> ' + d.conn + ' · DRC <b>—</b>';
     }
     function cuadro(now) {
@@ -123,18 +125,16 @@
       if (!hecho && vis) raf = requestAnimationFrame(cuadro);
     }
     function seguir() { if (!raf && !hecho && res && vis) { last = 0; raf = requestAnimationFrame(cuadro); } }
-    // Cálculo por tandas de ~8 ms para no bloquear la página. Se mide solo el tiempo de ruteo.
-    function calcular() {
-      var t0 = performance.now(), fin = false;
-      while (!fin && performance.now() - t0 < 8) fin = pasos.paso();
-      calc += performance.now() - t0;
-      if (!fin) return setTimeout(calcular, 0);
-      res = pasos.res; total = res.length;
-      if (RM) { hecho = true; pintar(); } else seguir();
-    }
+    // El ruteo corre en un Web Worker (ruteo.js): la página no se traba mientras calcula.
     function empezar() {
-      B = Ruteo.placa(); pasos = new Ruteo.Pasos(B); calc = 0; res = null; hecho = false; ms = 0; btn.hidden = true;
-      fondo = null; pintar(); calcular();
+      res = null; hecho = false; ms = 0; btn.hidden = true;
+      var wk = new Worker(new URL('ruteo.js', SRC));
+      wk.onmessage = function (e) {
+        wk.terminate(); R = e.data; W = R.W; H = R.H; s = L.w / W;
+        B = { pads: R.pads, comps: R.comps }; fondo = null; res = R.res; total = res.length;
+        if (RM) { hecho = true; pintar(); } else seguir();
+      };
+      wk.postMessage(0);
     }
     medir();
     btn.addEventListener('click', empezar);

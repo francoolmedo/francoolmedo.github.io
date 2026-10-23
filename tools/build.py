@@ -646,7 +646,7 @@ def page(lang):
       f'<div class="duo-txt"><h3>{x["lad_h"]}</h3><p class="duo-p">{x["lad_p"]}</p><p class="duo-ev"><a href="#otros">{x["lad_ev"]}</a></p>'
       '<table class="io"><tbody>')
     for addr, nom in x["io"]:
-        a(f'<tr><td class="y">{addr}</td><td>{nom}</td><td class="v"><span data-io="{addr}">0</span></td></tr>')
+        a(f'<tr><th scope="row" class="y">{addr}</th><td>{nom}</td><td class="v"><span data-io="{addr}">0</span></td></tr>')
     a(f'</tbody></table></div><figure class="live lad-fig" id="ladder" data-m="{escape(json.dumps(x["lad_m"], ensure_ascii=False))}">'
       f'{svg_ladder(x)}<div class="lad-ctl"><button type="button" class="pb on" data-b="S1">{x["b_on"]}</button>'
       f'<button type="button" class="pb off" data-b="S0">{x["b_off"]}</button></div>'
@@ -702,7 +702,7 @@ def page(lang):
       f'<div><dt>{t["ct_other"]}</dt><dd><a href="{LINKEDIN}" rel="noopener">LinkedIn</a> · <a href="{EA}" rel="noopener">ElectronArt</a></dd></div>'
       '</dl></div></div></section>\n</main>\n')
     a(f'<footer class="foot wrap"><p>Franco Olmedo · Villa Allende, Córdoba · Rev. {REV}</p><p>{t["foot"]}</p></footer>\n'
-      f'<script src="{pre}assets/js/ruteo.js" defer></script><script src="{pre}assets/js/motor.js" defer></script>\n</body>\n</html>\n')
+      f'<script src="{pre}assets/js/motor.js" defer></script>\n</body>\n</html>\n')
     return "".join(o)
 
 

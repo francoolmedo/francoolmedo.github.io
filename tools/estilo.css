@@ -179,8 +179,8 @@ html:not(.js) .rt,html:not(.js) .osc{display:none}
 .duo-p{color:var(--ink2);margin-top:12px;max-width:56ch}
 .duo-ev{margin-top:14px;font-size:15px}
 .io{width:100%;border-collapse:collapse;margin-top:22px;font-size:15px}
-.io td{padding:8px 0;border-bottom:1px solid var(--rule)}
-.io tr:first-child td{border-top:1px solid var(--ink)}
+.io td,.io th{padding:8px 0;border-bottom:1px solid var(--rule);text-align:left;font-weight:400}
+.io tr:first-child>*{border-top:1px solid var(--ink)}
 .io .y{width:64px;color:var(--ink2)}
 .io .v{text-align:right}
 [data-io]{display:inline-block;min-width:28px;text-align:center;font:13px var(--mono);border:1px solid var(--ink);padding:1px 0}
@@ -231,3 +231,4 @@ html:not(.js) .rt,html:not(.js) .osc{display:none}
 .anim .log li{opacity:.4}
 .anim .log li.cur{opacity:1;color:var(--ink)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
+@media(max-width:959px){.duo .live{order:-1}}
