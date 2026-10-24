@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Franco Olmedo — Elektroniktechniker: Leiterplatten, Firmware und Schaltschränke</title>
+<meta name="description" content="Elektroniktechniker in Córdoba, Argentinien. Ich entwickle Leiterplatten, Firmware (ESP32, dsPIC, STM32) und IEC-Schaltschränke. Kartoffelsortierer U9 im Einsatz, Pyrolyse-Steuerung MixOil und ElectronArt EDA.">
+<link rel="canonical" href="https://franco.electroniklosungen.com.ar/de/">
+<link rel="alternate" hreflang="es" href="https://franco.electroniklosungen.com.ar/">
+<link rel="alternate" hreflang="en" href="https://franco.electroniklosungen.com.ar/en/">
+<link rel="alternate" hreflang="de" href="https://franco.electroniklosungen.com.ar/de/">
+<link rel="alternate" hreflang="x-default" href="https://franco.electroniklosungen.com.ar/">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Franco Olmedo — Elektroniktechniker: Leiterplatten, Firmware und Schaltschränke">
+<meta property="og:description" content="Elektroniktechniker in Córdoba, Argentinien. Ich entwickle Leiterplatten, Firmware (ESP32, dsPIC, STM32) und IEC-Schaltschränke. Kartoffelsortierer U9 im Einsatz, Pyrolyse-Steuerung MixOil und ElectronArt EDA.">
+<meta property="og:url" content="https://franco.electroniklosungen.com.ar/de/">
+<meta property="og:locale" content="de_DE">
+<meta property="og:image" content="https://franco.electroniklosungen.com.ar/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sortierer U9 bei AgroPlant, Juni 2025. Der Bildschirm meldet: Behälter Klasse 1 ist voll.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f2efe6">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.className="js"</script>
+<style>@font-face{font-family:Archivo;src:url(../assets/fonts/archivo-latin-wdth-normal.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+@font-face{font-family:"Plex Mono";src:url(../assets/fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+:root{--paper:#f2efe6;--paper2:#e8e4d6;--ink:#17181b;--ink2:#4b4943;--rule:#c8c2b0;--cu:#983e12;--cu2:#f0a46b;--ok:#1b6a41;--run:#8a5300;
+--board:#1a1e1b;--cuL:#e3894b;--bot:#5f93c4;
+--sans:Archivo,"Helvetica Neue",Arial,sans-serif;--mono:"Plex Mono",ui-monospace,Menlo,Consolas,monospace;color-scheme:light}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:84px}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.55 var(--sans);font-stretch:100%}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--cu)}
+:focus-visible{outline:2px solid var(--cu);outline-offset:3px}
+h1,h2,h3,p,dl,dd,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 16px}
+@media(min-width:760px){.wrap{padding:0 32px}}
+.skip{position:absolute;left:8px;top:-60px;background:var(--ink);color:var(--paper);padding:10px 14px;z-index:9}
+.skip:focus{top:8px}
+.mono,.kicker,.case-n,.meta dt,.tblock dt,figcaption,.status,.y,.tools dt,.ct-list dt,.foot,.ev,.net,.langs,.hud,.log{font-family:var(--mono);font-size:13px;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+
+/* cabecera: hoja de plano con marcas de zona */
+.top{background:var(--paper);border-bottom:1px solid var(--ink);position:relative}
+.top::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;pointer-events:none;
+ background:repeating-linear-gradient(90deg,var(--ink) 0 1px,transparent 1px 80px);opacity:.55}
+@media(min-width:760px){.top{position:sticky;top:0;z-index:5}}
+.top-in{display:flex;flex-wrap:wrap;align-items:center;gap:6px 20px;padding-top:12px;padding-bottom:14px}
+.brand{font-weight:750;font-stretch:112%;font-size:17px;text-decoration:none;display:flex;align-items:center;gap:8px;margin-right:auto;min-height:44px}
+.pin1{width:14px;height:14px;border:1.5px solid var(--ink);position:relative}
+.pin1::after{content:"";position:absolute;left:2px;top:2px;width:4px;height:4px;border-radius:50%;background:var(--cu)}
+.nav{display:flex;flex-wrap:wrap;gap:0 18px;order:3;width:100%}
+.nav a{display:inline-block;padding:8px 0;text-decoration:none;font-weight:500;font-size:15px}
+.nav a:hover{text-decoration:underline}
+@media(min-width:760px){.nav{order:0;width:auto}}
+.langs{display:flex;border:1px solid var(--ink)}
+.langs a{display:block;padding:9px 10px;text-decoration:none;min-width:40px;text-align:center}
+.langs li+li a{border-left:1px solid var(--ink)}
+.langs a[aria-current]{background:var(--ink);color:var(--paper)}
+
+/* portada */
+.hero{display:grid;gap:32px;padding-top:40px;padding-bottom:56px}
+@media(min-width:960px){.hero{grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-areas:"a f" "b f";gap:28px 56px;padding-top:64px;padding-bottom:88px;align-items:start}
+ .hero-a{grid-area:a}.rt{grid-area:f}.hero-b{grid-area:b}}
+.kicker{color:var(--cu);text-transform:uppercase;letter-spacing:.08em}
+h1{font-size:clamp(46px,11vw,112px);line-height:.92;font-weight:800;font-stretch:72%;letter-spacing:-.01em;text-transform:uppercase;margin-top:14px}
+.lead{font-size:clamp(21px,2.6vw,28px);line-height:1.3;font-weight:500;font-stretch:96%;margin-top:22px;max-width:30ch}
+.sub{color:var(--ink2);max-width:58ch}
+.ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 20px;font-weight:600;font-size:16px;text-decoration:none;border:1.5px solid var(--ink)}
+.btn-1{background:var(--ink);color:var(--paper)}
+.btn-1:hover{background:var(--cu);border-color:var(--cu);color:#fff}
+.btn-2:hover{background:var(--ink);color:var(--paper)}
+.btn-3{border-color:transparent;padding:0 6px;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:420px){.hero .btn-1,.hero .btn-2{flex:1 1 100%;justify-content:center}}
+.tblock{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));margin-top:36px;border-top:1px solid var(--ink);border-left:1px solid var(--ink)}
+.tblock div{border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:8px 10px 10px}
+.tblock dt,.meta dt,.tools dt,.ct-list dt{color:var(--ink2);text-transform:uppercase;font-size:11.5px;letter-spacing:.08em}
+.tblock dd{font-size:15px;font-weight:500;margin-top:2px}
+
+/* figuras */
+.fig a{display:block;background:var(--paper2)}
+figcaption{color:var(--ink2);margin-top:8px;font-size:12.5px;line-height:1.45}
+.ref{color:var(--cu);margin-right:4px}
+.hero-fig{max-width:460px}
+@media(min-width:960px){.hero-fig{max-width:none}}
+.hero-fig img{width:100%;border:1px solid var(--ink)}
+
+/* secciones */
+.sec{--g:16px;padding-top:56px;padding-bottom:56px;background:linear-gradient(var(--ink),var(--ink)) no-repeat center top/calc(100% - 2*var(--g)) 1px}
+@media(min-width:760px){.sec{--g:32px}}
+@media(min-width:960px){.sec{padding-top:88px;padding-bottom:88px}}
+.sec-h{display:grid;gap:10px;margin-bottom:36px}
+@media(min-width:960px){.sec-h{grid-template-columns:auto minmax(0,1fr) minmax(0,1fr);align-items:baseline;gap:24px;margin-bottom:56px}}
+.net{display:inline-block;justify-self:start;background:var(--ink);color:var(--paper);padding:3px 18px 3px 9px;
+ clip-path:polygon(0 0,calc(100% - 9px) 0,100% 50%,calc(100% - 9px) 100%,0 100%)}
+h2{font-size:clamp(34px,6vw,60px);line-height:1;font-weight:800;font-stretch:72%;text-transform:uppercase}
+.sec-sub{color:var(--ink2);max-width:52ch}
+
+/* casos */
+.case{display:grid;gap:24px;padding:32px 0 40px;border-top:1px solid var(--rule)}
+.case:first-of-type{border-top:0;padding-top:0}
+@media(min-width:960px){.case{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px;padding:48px 0 56px}.case-txt{position:sticky;top:96px;align-self:start}}
+.case-n{color:var(--ink2)}
+h3{font-size:clamp(25px,3.2vw,34px);line-height:1.08;font-weight:750;font-stretch:85%;margin-top:6px}
+.status{display:inline-flex;align-items:center;gap:8px;margin-top:12px;border:1px solid var(--ink);padding:3px 10px}
+.led{width:8px;height:8px;border-radius:50%;background:var(--ink2);box-shadow:0 0 0 2px var(--paper),0 0 0 3px currentColor}
+.st_op .led{background:var(--ok)}.st_op{color:var(--ok)}
+.st_run .led{background:var(--run)}.st_run{color:var(--run)}
+.st_sale .led{background:var(--cu)}.st_sale{color:var(--cu)}
+.meta{margin-top:18px;border-top:1px solid var(--rule)}
+.meta div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;padding:7px 0;border-bottom:1px solid var(--rule)}
+.meta dt{padding-top:3px}
+.meta dd{font-size:15px}
+.case-lead{font-size:20px;line-height:1.35;font-weight:600;font-stretch:95%;margin-top:22px}
+.pts{margin-top:14px}
+.pts li{position:relative;padding-left:22px;margin-top:9px;color:var(--ink2)}
+.pts li::before{content:"";position:absolute;left:2px;top:.62em;width:7px;height:7px;border:1.5px solid var(--cu);border-radius:50%}
+.ext{display:inline-block;margin-top:20px;font-weight:600;padding:6px 0}
+.case-figs{display:grid;grid-template-columns:1fr 1fr;gap:20px 12px;align-content:start}
+.case-figs .fig img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.case-figs .fig.w{grid-column:1/-1}
+.case-figs .fig.w img{aspect-ratio:auto}
+.case-figs.one{grid-template-columns:1fr}
+@media(min-width:960px){.case-figs.c3{grid-template-columns:repeat(3,1fr)}}
+
+/* tabla tipo BOM */
+.bom{width:100%;border-collapse:collapse;font-size:15.5px}
+.bom th{text-align:left;font:400 11.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);padding:8px 12px 8px 0;border-bottom:1px solid var(--ink)}
+.bom td{padding:14px 16px 14px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.bom .y{white-space:nowrap}
+.bom .ev{color:var(--ink2);font-size:12.5px}
+@media(max-width:699px){
+ .bom thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+ .bom tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:14px 0;border-bottom:1px solid var(--rule)}
+ .bom td{display:block;padding:0;border:0}
+ .bom td:nth-child(2){grid-column:1/-1;grid-row:2}
+ .bom td:nth-child(3){grid-row:3;font-size:14px;color:var(--ink2)}
+ .bom td.ev{grid-row:3;text-align:right}
+}
+
+/* experiencia */
+.cols{display:grid;gap:40px}
+@media(min-width:960px){.cols{grid-template-columns:1fr 1fr;gap:64px}}
+.tl li{display:grid;grid-template-columns:84px minmax(0,1fr);gap:12px;padding:14px 0;border-top:1px solid var(--rule)}
+.tl li:first-child{border-top:1px solid var(--ink)}
+.tl .y{padding-top:3px;color:var(--ink2)}
+.tl b{font-weight:650}
+.tl p{color:var(--ink2);margin-top:2px}
+.h-sm{font-size:22px;font-stretch:85%;margin:0 0 12px}
+.tl+.h-sm{margin-top:40px}
+.tools div{padding:10px 0;border-top:1px solid var(--rule)}
+.tools dd{margin-top:2px}
+
+/* contacto */
+.contact{background:var(--ink);color:var(--paper)}
+.contact .net{background:var(--paper);color:var(--ink)}
+.contact a:hover{color:var(--cu2)}
+.ct-grid{display:grid;gap:40px}
+@media(min-width:960px){.ct-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px}}
+.ct-lead{font-size:clamp(26px,3.6vw,40px);line-height:1.12;font-weight:700;font-stretch:85%;max-width:22ch}
+.ct-sub{margin-top:14px;color:#d6d1c3;max-width:52ch}
+.contact .btn{border-color:var(--paper)}
+.contact .btn-1{background:var(--paper);color:var(--ink)}
+.contact .btn-1:hover{background:var(--cu2);border-color:var(--cu2);color:var(--ink)}
+.contact .btn-2:hover{background:var(--paper);color:var(--ink)}
+.ct-list div{padding:12px 0;border-top:1px solid #4a4a4a}
+.ct-list dt{color:#bdb7a8}
+.ct-list dd{font-size:17px;margin-top:2px;overflow-wrap:anywhere}
+.ct-list a{display:inline-block;padding:4px 0}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;padding-top:24px;padding-bottom:32px;color:var(--ink2);font-size:12.5px}
+
+/* piezas en vivo: sin JS no se muestran los lienzos */
+html:not(.js) .rt,html:not(.js) .osc{display:none}
+.rt-box,.osc-box{position:relative;border:1px solid var(--ink)}
+.rt-box{aspect-ratio:3/2;background:var(--board)}
+.osc-box{aspect-ratio:5/3;background:#111412}
+.rt canvas,.osc canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hud{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 16px;margin-top:8px;font-size:12.5px}
+.hud p{margin:0}
+.hud b{font-weight:400;color:var(--cu)}
+.hud-k{color:var(--ink2)}
+.k{display:inline-block;width:14px;height:3px;margin:0 6px 3px 0;vertical-align:middle}
+.k-top{background:var(--cuL)}.k-bot{background:var(--bot);margin-left:10px}
+.again,.pb{font:13px var(--mono);letter-spacing:.04em;background:none;color:var(--ink);border:1.5px solid var(--ink);padding:0 14px;min-height:40px;cursor:pointer}
+.again:hover{background:var(--ink);color:var(--paper)}
+.rt figcaption{margin-top:6px}
+
+/* osciloscopio */
+.osc-ctl{display:flex;align-items:center;gap:12px;margin-top:10px;font:13px var(--mono)}
+.osc-ctl input{flex:1;min-width:0;height:44px;accent-color:var(--cu)}
+.osc-ctl output{min-width:4.5ch;text-align:right;font-variant-numeric:tabular-nums}
+.osc-read{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--ink);margin-top:4px}
+.osc-read div{padding:8px 8px 4px 0}
+.osc-read dt{font:11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
+.osc-read dd{font:15px var(--mono);font-variant-numeric:tabular-nums;margin-top:2px}
+
+/* bloques de dos columnas: Tableros e IA */
+.duo{display:grid;gap:32px}
+@media(min-width:960px){.duo{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start}}
+.duo-p{color:var(--ink2);margin-top:12px;max-width:56ch}
+.duo-ev{margin-top:14px;font-size:15px}
+.io{width:100%;border-collapse:collapse;margin-top:22px;font-size:15px}
+.io td,.io th{padding:8px 0;border-bottom:1px solid var(--rule);text-align:left;font-weight:400}
+.io tr:first-child>*{border-top:1px solid var(--ink)}
+.io .y{width:64px;color:var(--ink2)}
+.io .v{text-align:right}
+[data-io]{display:inline-block;min-width:28px;text-align:center;font:13px var(--mono);border:1px solid var(--ink);padding:1px 0}
+[data-io].hi{background:var(--cu);border-color:var(--cu);color:#fff}
+
+/* Ladder */
+.lad{display:block;width:100%;height:auto;background:var(--paper2);border:1px solid var(--ink)}
+.lad path{fill:none;stroke:var(--ink2);stroke-width:1.6;transition:stroke .12s,stroke-width .12s}
+.lad .rail{stroke:var(--ink);stroke-width:3}
+.lad .rail:not(.r){stroke:var(--cu)}
+.lad .w.on{stroke:var(--cu);stroke-width:3.5}
+.lad text{font:10.5px var(--mono);fill:var(--ink);text-anchor:middle}
+.lad .ad{fill:var(--ink2)}
+.ct .bar{fill:none}
+.ct.cl .bar{fill:var(--cu)}
+.ct.cl path{stroke:var(--cu);stroke-width:2.5}
+.coil circle{fill:none}
+.coil.on circle{fill:var(--cu2)}
+.coil.on path{stroke:var(--cu);stroke-width:2.5}
+.lad-ctl{display:flex;gap:10px;margin-top:12px}
+.pb{flex:1;min-height:52px;font-size:14px;font-weight:400;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.pb.on{border-color:var(--ok);color:var(--ok)}
+.pb.off{border-color:#a3241c;color:#a3241c}
+.pb.down{color:#fff}.pb.on.down{background:var(--ok)}.pb.off.down{background:#a3241c}
+.lad-msg{font:14px var(--mono);margin-top:12px;min-height:2.9em}
+
+/* IA */
+.bars{margin-top:18px}
+.bars li{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:6px 12px;padding:12px 0;border-top:1px solid var(--rule)}
+.bars li:first-child{border-top-color:var(--ink)}
+.bn{font:15px var(--mono);font-variant-numeric:tabular-nums;color:var(--ink2)}
+.bn b{font-size:24px;font-weight:400;color:var(--cu)}
+.bt{grid-column:1/-1;height:8px;border:1px solid var(--ink);background:var(--paper)}
+.bt span{display:block;height:100%;background:var(--cu)}
+.h-ag{margin-top:44px}
+.ag{display:block;width:100%;height:auto;border:1px solid var(--ink);background:var(--paper2)}
+.ag .e{fill:none;stroke:var(--ink2);stroke-width:1.4;stroke-dasharray:3 5}
+.ag .e.on{stroke:var(--cu);stroke-width:2;stroke-dasharray:none}
+.nd rect{fill:var(--paper);stroke:var(--ink);stroke-width:1.5;transition:stroke .2s}
+.nd.on rect{stroke:var(--cu);stroke-width:2.5}
+.nd text{font:600 13px var(--sans);text-anchor:middle;fill:var(--ink)}
+.nd .sub{font:400 10.5px var(--mono);fill:var(--ink2)}
+.msgs circle{fill:var(--cu)}
+.msgs text{font:11px var(--mono);fill:var(--cu);text-anchor:middle;paint-order:stroke;stroke:var(--paper2);stroke-width:4px}
+.log{margin-top:12px;font-size:12.5px}
+.log li{padding:6px 0;border-top:1px solid var(--rule);color:var(--ink2);transition:opacity .2s}
+.log b{font-weight:400;color:var(--cu)}
+.anim .log li{opacity:.75}
+.anim .log li.cur{opacity:1;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
+@media(max-width:959px){.duo .live{order:-1}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Franco Olmedo","url":"https://franco.electroniklosungen.com.ar/","email":"mailto:olmedo.franco.fo@gmail.com","telephone":"+54 9 351 248-7080","jobTitle":"Elektroniktechniker","worksFor":{"@type":"Organization","name":"POL S.R.L."},"alumniOf":{"@type":"EducationalOrganization","name":"Instituto Técnico Salesiano Villada"},"address":{"@type":"PostalAddress","addressLocality":"Villa Allende","addressRegion":"Córdoba","addressCountry":"AR"},"sameAs":["https://www.linkedin.com/in/franco-olmedo-967405194/","https://electroniklosungen.com.ar"]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt</a>
+<header class="top"><div class="wrap top-in"><a class="brand" href="../"><span class="pin1" aria-hidden="true"></span>Franco Olmedo</a><nav aria-label="Abschnitte"><ul class="nav"><li><a href="#trabajos">Projekte</a></li><li><a href="#tableros">Schaltschränke</a></li><li><a href="#ia">KI</a></li><li><a href="#otros">Weitere</a></li><li><a href="#experiencia">Erfahrung</a></li><li><a href="#contacto">Kontakt</a></li></ul></nav><ul class="langs" aria-label="Idioma / Language / Sprache"><li><a href=".././" hreflang="es" lang="es">ES</a></li><li><a href="../en/" hreflang="en" lang="en">EN</a></li><li><a href="../de/" hreflang="de" lang="de" aria-current="page">DE</a></li></ul></div></header>
+<main id="main">
+<section class="hero wrap" aria-labelledby="h-nombre"><div class="hero-a"><p class="kicker">Elektroniktechniker · Córdoba, Argentinien</p><h1 id="h-nombre">Franco Olmedo</h1><p class="lead">Ich entwickle Leiterplatten, Firmware und Software für Maschinen im Produktionseinsatz. Außerdem entwickle ich ElectronArt, mein eigenes Programm für Elektronikentwurf.</p></div><figure class="live rt" id="ruteo" data-conn="Verbindungen" data-vias="Vias" data-pas="Durchläufe" data-calc="Rechenzeit"><div class="rt-box"><canvas role="img" aria-label="Animation: Autorouting einer Platine mit einem ESP32 und 74 Verbindungen. Die Leiterbahnen entstehen nacheinander, mit 45°-Knicken auf zwei Lagen."></canvas></div><div class="hud"><p class="hud-n"><b>0/74</b> Verbindungen · DRC <b>—</b></p><p class="hud-k"><span class="k k-top"></span>Oberseite <span class="k k-bot"></span>Unterseite</p><button type="button" class="again" hidden>Neu routen</button></div><figcaption><span class="ref">Abb. 01</span> Live-Autorouting einer ESP32-Platine mit 74 Verbindungen: Raster, A*, 45°-Knicke und 2 Lagen. Ihr Browser rechnet das jetzt. In ElectronArt wird eine ESP32-Platine mit 74 Verbindungen in unter 5 s zu 74/74 geroutet.</figcaption></figure><div class="hero-b"><p class="sub">Ich studiere Elektrotechnik (Elektronik) an der FCEFyN, Nationaluniversität Córdoba. Ich arbeite bei POL S.R.L., einem Unternehmen für Abfall und Kreislaufwirtschaft. Seit 2019 liefere ich Anlagen für Industrie und Landwirtschaft.</p><div class="ctas"><a class="btn btn-1" href="https://wa.me/5493512487080?text=Hallo%20Franco%2C%20ich%20schreibe%20dir%20über%20dein%20Portfolio." rel="noopener">Nachricht per WhatsApp</a><a class="btn btn-2" href="mailto:olmedo.franco.fo@gmail.com">E-Mail senden</a><a class="btn btn-3" href="https://electroniklosungen.com.ar" rel="noopener">ElectronArt ansehen <span aria-hidden="true">→</span></a></div><dl class="tblock"><div><dt>Ort</dt><dd>Villa Allende, Córdoba, AR</dd></div><div><dt>Aktuell</dt><dd>POL S.R.L.</dd></div><div><dt>Studium</dt><dd>Elektronik · FCEFyN–UNC</dd></div><div><dt>Sprachen</dt><dd>ES · EN C1 · DE A2</dd></div></dl></div></section>
+<section id="trabajos" class="sec wrap" aria-labelledby="h-trab"><div class="sec-h"><p class="net" aria-hidden="true">01</p><h2 id="h-trab">Projekte</h2><p class="sec-sub">Jedes Projekt auf dieser Liste hat echte Fotos, Screenshots oder Messdaten. Arbeiten ohne veröffentlichte Belege stehen unter „Weitere“.</p></div>
+<article class="case" id="u9" aria-labelledby="h-u9"><div class="case-txt"><p class="case-n">01 / 05</p><h3 id="h-u9">Saatkartoffel-Sortierer U9</h3><p class="status st_op"><span class="led" aria-hidden="true"></span>Im Einsatz</p><dl class="meta"><div><dt>Kunde</dt><dd>AgroPlant</dd></div><div><dt>Wo</dt><dd>Contraut SAS</dd></div><div><dt>Jahr</dt><dd>2025</dd></div><div><dt>Technik</dt><dd>OpenCV · 2× Raspberry Pi · dsPIC33F</dd></div></dl><p class="case-lead">Die Maschine wiegt jede Kartoffel mit einer Kamera und leitet sie in einen von 6 Behältern.</p><ul class="pts"><li>Ein Raspberry Pi nimmt das Bild auf, segmentiert die Kontur und berechnet das Volumen. Aus dem Volumen schätzt er das Gewicht.</li><li>Ein dsPIC33F steuert Servos, Förderbänder und Klappen. Er liest auch die Kalibrierwaage.</li><li>Ein zweiter Raspberry Pi betreibt den Touchscreen für den Bediener.</li><li>Er sortiert in 6 Gewichtsklassen: von 0–5 g bis über 60 g.</li><li>Er protokolliert jede Ernte nach Woche und Jahr. Er warnt, wenn ein Behälter voll ist.</li><li>Beim Start prüft sich die Maschine selbst. Die Kalibrierung führt Schritt für Schritt.</li><li>Ich habe das Bedienerhandbuch geschrieben und die Maschine beim Kunden in Betrieb genommen.</li></ul></div><div class="case-figs"><figure class="fig w"><a href="../assets/img/u9-hmi-grado-1280.webp" aria-label="Bild in voller Größe öffnen: U9-Bildschirm bei AgroPlant, Juni 2025. Er meldet: Behälter Klasse 1 ist voll."><img src="../assets/img/u9-hmi-grado-640.webp" srcset="../assets/img/u9-hmi-grado-640.webp 640w, ../assets/img/u9-hmi-grado-1280.webp 1280w" sizes="(min-width: 1000px) 640px, 100vw" width="640" height="853" alt="U9-Bildschirm bei AgroPlant, Juni 2025. Er meldet: Behälter Klasse 1 ist voll." loading="lazy" decoding="async"></a><figcaption><span class="ref">Abb. 02</span> U9-Bildschirm bei AgroPlant, Juni 2025. Er meldet: Behälter Klasse 1 ist voll.</figcaption></figure><figure class="fig"><a href="../assets/img/u9-camara-1280.webp" aria-label="Bild in voller Größe öffnen: Bildkabine mit eigener LED-Beleuchtung."><img src="../assets/img/u9-camara-640.webp" srcset="../assets/img/u9-camara-640.webp 640w, ../assets/img/u9-camara-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="480" alt="Bildkabine mit eigener LED-Beleuchtung." loading="lazy" decoding="async"></a><figcaption><span class="ref">Abb. 03</span> Bildkabine mit eigener LED-Beleuchtung.</figcaption></figure><figure class="fig"><a href="../assets/img/u9-segmentacion-1280.webp" aria-label="Bild in voller Größe öffnen: Kontursegmentierung und Hauptachse einer Kartoffel."><img src="../assets/img/u9-segmentacion-640.webp" srcset="../assets/img/u9-segmentacion-640.webp 640w, ../assets/img/u9-segmentacion-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="640" alt="Kontursegmentierung und Hauptachse einer Kartoffel." loading="lazy" decoding="async"></a><figcaption><span class="ref">Abb. 04</span> Kontursegmentierung und Hauptachse einer Kartoffel.</figcaption></figure><figure class="fig"><a href="../assets/img/u9-placas-1280.webp" aria-label="Bild in voller Größe öffnen: Interface-Platinen, RTC, Wandler und Raspberry Pi im Gehäuse."><img src="../assets/img/u9-placas-640.webp" srcset="../assets/img/u9-placas-640.webp 640w, ../assets/img/u9-placas-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="853" alt="Interface-Platinen, RTC, Wandler und Raspberry Pi im Gehäuse." loading="lazy" decoding="async"></a><figcaption><span class="ref">Abb. 05</span> Interface-Platinen, RTC, Wandler und Raspberry Pi im Gehäuse.</figcaption></figure><figure class="fig"><a href="../assets/img/u9-tablero-1280.webp" aria-label="Bild in voller Größe öffnen: Schaltschrank mit Klemmen und Schutzorganen."><img src="../assets/img/u9-tablero-640.webp" srcset="../assets/img/u9-tablero-640.webp 640w, ../assets/img/u9-tablero-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="853" alt="Schaltschrank mit Klemmen und Schutzorganen." loading="lazy" decoding="async"></a><figcaption><span class="ref">Abb. 06</span> Schaltschrank mit Klemmen und Schutzorganen.</figcaption></figure><figure class="fig"><a href="../assets/img/u9-planta-1280.webp" aria-label="Bild in voller Größe öffnen: Anlage beim Kunden."><img src="../assets/img/u9-planta-640.webp" srcset="../assets/img/u9-planta-640.webp 640w, ../assets/img/u9-planta-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="853" alt="Anlage beim Kunden." loading="lazy" decoding="async"></a><figcaption><span class="ref">Abb. 07</span> Anlage beim Kunden.</figcaption></figure><figure class="fig"><a href="../assets/img/u9-ensayo-1280.webp" aria-label="Bild in voller Größe öffnen: Testlauf mit einer Kartoffel in der Kabine."><img src="../assets/img/u9-ensayo-640.webp" srcset="../assets/img/u9-ensayo-640.webp 640w, ../assets/img/u9-ensayo-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="480" alt="Testlauf mit einer Kartoffel in der Kabine." loading="lazy" decoding="async"></a><figcaption><span class="ref">Abb. 08</span> Testlauf mit einer Kartoffel in der Kabine.</figcaption></figure></div></article>
+<article class="case" id="electronart" aria-labelledby="h-electronart"><div class="case-txt"><p class="case-n">02 / 05</p><h3 id="h-electronart">ElectronArt — EDA-Software</h3><p class="status st_sale"><span class="led" aria-hidden="true"></span>Im Verkauf</p><dl class="meta"><div><dt>Kunde</dt><dd>Eigenes Produkt</dd></div><div><dt>Wo</dt><dd>Electronik Lösungen</dd></div><div><dt>Technik</dt><dd>Python · PySide6 · NumPy/SciPy · SPICE</dd></div></dl><p class="case-lead">Ein Programm vom Schaltplan bis zu den Fertigungsdaten.</p><ul class="pts"><li>Schaltplan und SPICE-Simulation: Transient, AC und FFT mit THD, SNR, SINAD und SFDR.</li><li>Mehrlagige Leiterplatten mit Autorouter. Eine ESP32-Platine mit 74 Verbindungen wird in unter 5 s zu 74/74 geroutet, mit 45°-Knicken und 0 DRC-Fehlern.</li><li>3D-Ansicht. Ausgabe als Gerber, Excellon, ODB++, IPC-2581 und STEP.</li><li>IEC-Schaltschränke mit Simulation des KOP-Programms (Ladder).</li><li>Mehr als 400 automatische Tests. Version 9.6 vom 22.10.2026.</li></ul><p><a class="ext" href="https://electroniklosungen.com.ar" rel="noopener">electroniklosungen.com.ar <span aria-hidden="true">↗</span></a></p></div><div class="case-figs"><figure class="fig w live osc" id="osc"><div class="osc-box"><canvas role="img" aria-label="Oszilloskop: Kanal 1 zeigt eine 1-kHz-PWM, Kanal 2 die Kondensatorspannung des RC-Filters."></canvas></div><div class="osc-ctl"><label for="osc-d">Tastverhältnis</label><input id="osc-d" type="range" min="10" max="90" step="1" value="50"><output for="osc-d">50 %</output></div><dl class="osc-read"><div><dt>CH1</dt><dd>PWM 1 kHz</dd></div><div><dt>CH2 · Mittelwert</dt><dd data-r="avg">2,50 V</dd></div><div><dt>CH2 · Welligkeit</dt><dd data-r="pp">1,225 V</dd></div></dl><figcaption><span class="ref">Abb. 09</span> 1-kHz-PWM durch ein RC-Filter mit 10 kΩ und 100 nF (τ = 1 ms). Die Kurve ist die exakte Lösung der Schaltung. Das Tastverhältnis folgt dem Scrollen, oder stellen Sie es selbst ein.</figcaption></figure><figure class="fig w"><a href="../assets/img/ea-esquematico-1280.webp" aria-label="Bild in voller Größe öffnen: Schaltplaneditor von ElectronArt."><img src="../assets/img/ea-esquematico-640.webp" srcset="../assets/img/ea-esquematico-640.webp 640w, ../assets/img/ea-esquematico-1280.webp 1280w" sizes="(min-width: 1000px) 640px, 100vw" width="640" height="405" alt="Schaltplaneditor von ElectronArt." loading="lazy" decoding="async"></a><figcaption><span class="ref">Abb. 10</span> Schaltplaneditor von ElectronArt.</figcaption></figure><figure class="fig w"><a href="../assets/img/ea-fft-1280.webp" aria-label="Bild in voller Größe öffnen: Fourier-Analyse einer SPICE-Simulation."><img src="../assets/img/ea-fft-640.webp" srcset="../assets/img/ea-fft-640.webp 640w, ../assets/img/ea-fft-1280.webp 1280w" sizes="(min-width: 1000px) 640px, 100vw" width="640" height="348" alt="Fourier-Analyse einer SPICE-Simulation." loading="lazy" decoding="async"></a><figcaption><span class="ref">Abb. 11</span> Fourier-Analyse einer SPICE-Simulation.</figcaption></figure></div></article>
+<article class="case" id="mixoil" aria-labelledby="h-mixoil"><div class="case-txt"><p class="case-n">03 / 05</p><h3 id="h-mixoil">MixOil V5 — Steuerung einer Pyrolyseanlage</h3><p class="status st_run"><span class="led" aria-hidden="true"></span>Laufend</p><dl class="meta"><div><dt>Kunde</dt><dd>POL S.R.L.</dd></div><div><dt>Wo</dt><dd>Contraut SAS</dd></div><div><dt>Jahr</dt><dd>2026</dd></div><div><dt>Technik</dt><dd>Firmware · HMI · Web · Python</dd></div></dl><p class="case-lead">Firmware, HMI und Weboberfläche für die Steuerung eines Pyrolysebrenners für Gas und Diesel.</p><ul class="pts"><li>Die Steuerung führt die Zündsequenz, die APQ-Klappe, die Alarme und die Diagramme.</li><li>Misst die Temperaturen von Ofen, Vorwärmer und Kondensator.</li><li>Protokolliert 7 Prozessgrößen und den Zustand von Mühle und Brenner.</li><li>Eine Webseite im Anlagennetz zeigt die Kurven live.</li><li>Ein Simulator spielt den ganzen 15-Stunden-Zyklus nach. Dort teste ich Änderungen, bevor ich sie an der Anlage anwende.</li><li>Aus den Daten jedes Versuchs schreibe ich Verbesserungsberichte.</li></ul></div><div class="case-figs one"><figure class="fig w"><a href="../assets/img/mixoil-ciclo-1280.webp" aria-label="Bild in voller Größe öffnen: Aufzeichnung des Zyklus vom 11.05.2026: Ofen, Vorwärmer, Kondensator und Aktoren."><img src="../assets/img/mixoil-ciclo-640.webp" srcset="../assets/img/mixoil-ciclo-640.webp 640w, ../assets/img/mixoil-ciclo-1280.webp 1280w" sizes="(min-width: 1000px) 640px, 100vw" width="640" height="366" alt="Aufzeichnung des Zyklus vom 11.05.2026: Ofen, Vorwärmer, Kondensator und Aktoren." loading="lazy" decoding="async"></a><figcaption><span class="ref">Abb. 12</span> Aufzeichnung des Zyklus vom 11.05.2026: Ofen, Vorwärmer, Kondensator und Aktoren.</figcaption></figure></div></article>
+<article class="case" id="respiracion" aria-labelledby="h-respiracion"><div class="case-txt"><p class="case-n">04 / 05</p><h3 id="h-respiracion">„Respiración“ — kinetische Installation</h3><p class="status st_proto"><span class="led" aria-hidden="true"></span>Prototyp gebaut</p><dl class="meta"><div><dt>Kunde</dt><dd>Eigenes Projekt</dd></div><div><dt>Technik</dt><dd>MicroPython · PCA9685 · Pneumatik · 3D-Druck</dd></div></dl><p class="case-lead">Ein Kunstobjekt, das mit Luft und Servos das Atmen nachahmt.</p><ul class="pts"><li>Ich habe Verteiler, Bypass-Box, Lamellen und Sensorhalter konstruiert und 3D-gedruckt.</li><li>Ein PCA9685 steuert die Servos. Die MicroPython-Firmware erkennt Anwesenheit und fährt die Bewegungsabläufe.</li><li>Vor dem Aufbau habe ich das System in einem eigenen Simulator getestet. Danach habe ich das Fertigungsangebot erstellt.</li></ul></div><div class="case-figs"><figure class="fig"><a href="../assets/img/obra-control-1280.webp" aria-label="Bild in voller Größe öffnen: Steuergehäuse: Netzteil, Schutz und Elektronik."><img src="../assets/img/obra-control-640.webp" srcset="../assets/img/obra-control-640.webp 640w, ../assets/img/obra-control-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="853" alt="Steuergehäuse: Netzteil, Schutz und Elektronik." loading="lazy" decoding="async"></a><figcaption><span class="ref">Abb. 13</span> Steuergehäuse: Netzteil, Schutz und Elektronik.</figcaption></figure><figure class="fig"><a href="../assets/img/obra-ensamble-1280.webp" aria-label="Bild in voller Größe öffnen: Gedruckte Bypass-Box mit montierter Elektronik."><img src="../assets/img/obra-ensamble-640.webp" srcset="../assets/img/obra-ensamble-640.webp 640w, ../assets/img/obra-ensamble-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="853" alt="Gedruckte Bypass-Box mit montierter Elektronik." loading="lazy" decoding="async"></a><figcaption><span class="ref">Abb. 14</span> Gedruckte Bypass-Box mit montierter Elektronik.</figcaption></figure><figure class="fig"><a href="../assets/img/obra-cad-1280.webp" aria-label="Bild in voller Größe öffnen: CAD-Modell eines Verteilerteils."><img src="../assets/img/obra-cad-640.webp" srcset="../assets/img/obra-cad-640.webp 640w, ../assets/img/obra-cad-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="1138" alt="CAD-Modell eines Verteilerteils." loading="lazy" decoding="async"></a><figcaption><span class="ref">Abb. 15</span> CAD-Modell eines Verteilerteils.</figcaption></figure><figure class="fig"><a href="../assets/img/obra-completo-1280.webp" aria-label="Bild in voller Größe öffnen: Aufgebautes System mit Luftleitungen."><img src="../assets/img/obra-completo-640.webp" srcset="../assets/img/obra-completo-640.webp 640w, ../assets/img/obra-completo-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="853" alt="Aufgebautes System mit Luftleitungen." loading="lazy" decoding="async"></a><figcaption><span class="ref">Abb. 16</span> Aufgebautes System mit Luftleitungen.</figcaption></figure></div></article>
+<article class="case" id="robot" aria-labelledby="h-robot"><div class="case-txt"><p class="case-n">05 / 05</p><h3 id="h-robot">Saugroboter</h3><p class="status st_done"><span class="led" aria-hidden="true"></span>Abgeschlossen</p><dl class="meta"><div><dt>Kunde</dt><dd>Schulprojekt · ITS Villada</dd></div><div><dt>Technik</dt><dd>SolidWorks · L298N · 3D-Druck</dd></div></dl><p class="case-lead">Mein erstes vollständiges Gerät: Mechanik, Platine und Firmware.</p><ul class="pts"><li>Chassis, Stoßfänger mit Mikroschaltern und Lüfterräder habe ich in SolidWorks konstruiert und 3D-gedruckt.</li><li>Die Treiberplatine mit L298N für die 2 Gleichstrommotoren habe ich selbst entworfen.</li><li>Die Firmware liest den Stoßfänger, steuert die Motoren und die Saugleistung.</li></ul></div><div class="case-figs"><figure class="fig"><a href="../assets/img/robot-armado-1280.webp" aria-label="Bild in voller Größe öffnen: Montierter Roboter, Draufsicht."><img src="../assets/img/robot-armado-640.webp" srcset="../assets/img/robot-armado-640.webp 640w, ../assets/img/robot-armado-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="853" alt="Montierter Roboter, Draufsicht." loading="lazy" decoding="async"></a><figcaption><span class="ref">Abb. 17</span> Montierter Roboter, Draufsicht.</figcaption></figure><figure class="fig"><a href="../assets/img/robot-despiece-1280.webp" aria-label="Bild in voller Größe öffnen: Explosionsdarstellung: Chassis, Platine, Motoren und Akku."><img src="../assets/img/robot-despiece-640.webp" srcset="../assets/img/robot-despiece-640.webp 640w, ../assets/img/robot-despiece-1280.webp 1280w" sizes="(min-width: 1000px) 320px, 50vw" width="640" height="853" alt="Explosionsdarstellung: Chassis, Platine, Motoren und Akku." loading="lazy" decoding="async"></a><figcaption><span class="ref">Abb. 18</span> Explosionsdarstellung: Chassis, Platine, Motoren und Akku.</figcaption></figure></div></article>
+</section>
+<section id="tableros" class="sec wrap" aria-labelledby="h-tab"><div class="sec-h"><p class="net" aria-hidden="true">02</p><h2 id="h-tab">Schaltschränke</h2><p class="sec-sub">Ich entwerfe IEC-Schaltschränke und programmiere SPS in KOP (Ladder), seit 2020.</p></div><div class="duo"><div class="duo-txt"><h3>Direktanlauf mit Selbsthaltung</h3><p class="duo-p">Das ist eine Grundschaltung im Schaltschrank. EIN erregt das Schütz KM1. Ein Hilfskontakt von KM1 hält die Spule. AUS unterbricht sie. AUS ist als Öffner verdrahtet: I0.1 ist in Ruhe 1, ein Drahtbruch stoppt den Motor also auch. ElectronArt simuliert solche Programme, bevor der Schrank gebaut wird.</p><p class="duo-ev"><a href="#otros">2020 habe ich eine Honmaschine mit einer Siemens-S7-200-SPS in KOP programmiert (siehe „Weitere“).</a></p><table class="io"><tbody><tr><th scope="row" class="y">I0.0</th><td>S1 · EIN</td><td class="v"><span data-io="I0.0">0</span></td></tr><tr><th scope="row" class="y">I0.1</th><td>S0 · AUS</td><td class="v"><span data-io="I0.1">0</span></td></tr><tr><th scope="row" class="y">Q0.0</th><td>KM1 · Schütz</td><td class="v"><span data-io="Q0.0">0</span></td></tr><tr><th scope="row" class="y">Q0.1</th><td>H1 · Meldeleuchte</td><td class="v"><span data-io="Q0.1">0</span></td></tr></tbody></table></div><figure class="live lad-fig" id="ladder" data-m="[&quot;Ruhe: KM1 ist stromlos.&quot;, &quot;EIN geschlossen: die Spule von KM1 zieht an.&quot;, &quot;Selbsthaltung: der Kontakt von KM1 hält die Spule.&quot;, &quot;AUS geöffnet: KM1 fällt ab, die Selbsthaltung öffnet.&quot;]"><svg class="lad" viewBox="0 0 400 252" role="img" aria-label="KOP-Diagramm eines Anlaufs mit Selbsthaltung: Kontakte S0, S1 und KM1, Spulen KM1 und H1."><path class="rail" d="M12 22V234"/><path class="rail r" d="M388 22V234"/><path class="w" data-p="a" d="M12 64H52"/><path class="w" data-p="b" d="M76 64H140M110 64V128H140"/><path class="w" data-p="c" d="M164 64H214"/><path class="w" data-p="d" d="M164 128H214V64"/><path class="w" data-p="e" d="M214 64H300M324 64H388"/><path class="w" data-p="a" d="M12 204H140"/><path class="w" data-p="f" d="M164 204H300M324 204H388"/><g class="ct" data-c="S0"><rect class="bar" x="55" y="62" width="18" height="4"/><path d="M52 52v24M76 52v24"/></g><text x="64" y="45">S0</text><text class="ad" x="64" y="91">I0.1</text><g class="ct" data-c="S1"><rect class="bar" x="143" y="62" width="18" height="4"/><path d="M140 52v24M164 52v24"/></g><text x="152" y="45">S1</text><text class="ad" x="152" y="91">I0.0</text><g class="ct" data-c="KM"><rect class="bar" x="143" y="126" width="18" height="4"/><path d="M140 116v24M164 116v24"/></g><text x="152" y="109">KM1</text><text class="ad" x="152" y="155">Q0.0</text><g class="coil" data-k="KM"><circle cx="312" cy="64" r="10"/><path d="M307 53a14 14 0 0 0 0 22M317 53a14 14 0 0 1 0 22"/></g><text x="312" y="45">KM1</text><text class="ad" x="312" y="91">Q0.0</text><g class="ct" data-c="KM"><rect class="bar" x="143" y="202" width="18" height="4"/><path d="M140 192v24M164 192v24"/></g><text x="152" y="185">KM1</text><text class="ad" x="152" y="231">Q0.0</text><g class="coil" data-k="H1"><circle cx="312" cy="204" r="10"/><path d="M307 193a14 14 0 0 0 0 22M317 193a14 14 0 0 1 0 22"/></g><text x="312" y="185">H1</text><text class="ad" x="312" y="231">Q0.1</text></svg><div class="lad-ctl"><button type="button" class="pb on" data-b="S1">EIN</button><button type="button" class="pb off" data-b="S0">AUS</button></div><p class="lad-msg">Ruhe: KM1 ist stromlos.</p><figcaption><span class="ref">Abb. 19</span> EIN gedrückt halten, loslassen, dann AUS drücken.</figcaption></figure></div></section>
+<section id="ia" class="sec wrap" aria-labelledby="h-ia"><div class="sec-h"><p class="net" aria-hidden="true">03</p><h2 id="h-ia">KI</h2><p class="sec-sub">Lokale KI, gemessen auf einem eigenen Prüfstand, und das Agentensystem, mit dem ich arbeite.</p></div><div class="duo"><div class="duo-txt"><h3>Triana, die lokale KI in ElectronArt</h3><p class="duo-p">Sie läuft mit Qwen 4B auf dem PC, ohne Internet. Ich habe sie mit einem eigenen Prüfstand gemessen. Das sind die Ergebnisse, ungerundet.</p><ul class="bars"><li><span class="bl">Vollständige Schaltungen korrekt aufgebaut</span><span class="bn"><b>10</b>/40</span><span class="bt" aria-hidden="true"><span style="width:25.0%"></span></span></li><li><span class="bl">Module korrekt an einen Mikrocontroller angeschlossen</span><span class="bn"><b>9</b>/12</span><span class="bt" aria-hidden="true"><span style="width:75.0%"></span></span></li></ul><h3 class="h-ag">Mein Agentensystem</h3><p class="duo-p">Ein Orchestrator verteilt die Arbeit. Reviewer prüfen die Änderungen. Ein lokales Modell löst Aufgaben, ohne die Maschine zu verlassen. Das Gedächtnis liegt in Git. Ich steuere es aus der Cloud und vom Handy.</p></div><figure class="live ag-fig" id="agentes" data-seq="[[[&quot;tel&quot;, 1, 0]], [[&quot;git&quot;, 1, 1]], [[&quot;loc&quot;, 1, 2]], [[&quot;loc&quot;, -1, 3]], [[&quot;r1&quot;, 1, 4], [&quot;r2&quot;, 1, 4]], [[&quot;r1&quot;, -1, 5], [&quot;r2&quot;, -1, 5]], [[&quot;git&quot;, -1, 6]], [[&quot;tel&quot;, -1, 7]]]"><svg class="ag" viewBox="0 0 360 300" role="img" aria-label="Schema des Agentensystems: Handy, Orchestrator in der Cloud, Gedächtnis in Git, zwei Reviewer und ein lokales Modell."><path class="e" id="e-tel" d="M111.6 64.0L158.4 116.0"/><path class="e" id="e-git" d="M248.4 64.0L201.6 116.0"/><path class="e" id="e-r1" d="M154.3 164.0L85.7 228.0"/><path class="e" id="e-r2" d="M180.0 164.0L180.0 228.0"/><path class="e" id="e-loc" d="M205.7 164.0L274.3 228.0"/><g class="nd" data-n="tel"><rect x="36" y="19" width="108" height="42"/><text x="90" y="44">Handy</text></g><g class="nd" data-n="git"><rect x="216" y="19" width="108" height="42"/><text x="270" y="38">git</text><text class="sub" x="270" y="53">Gedächtnis</text></g><g class="nd" data-n="orq"><rect x="126" y="119" width="108" height="42"/><text x="180" y="138">Orchestrator</text><text class="sub" x="180" y="153">Cloud</text></g><g class="nd" data-n="r1"><rect x="6" y="231" width="108" height="42"/><text x="60" y="256">Reviewer 1</text></g><g class="nd" data-n="r2"><rect x="126" y="231" width="108" height="42"/><text x="180" y="256">Reviewer 2</text></g><g class="nd" data-n="loc"><rect x="246" y="231" width="108" height="42"/><text x="300" y="250">Lokales Modell</text><text class="sub" x="300" y="265">offline</text></g><g class="msgs"></g></svg><ol class="log"><li><span class="y">01</span> Handy → Orchestrator · <b>Auftrag</b></li><li><span class="y">02</span> git → Orchestrator · <b>Kontext</b></li><li><span class="y">03</span> Orchestrator → Lokales Modell · <b>Teilaufgabe</b></li><li><span class="y">04</span> Lokales Modell → Orchestrator · <b>Ergebnis</b></li><li><span class="y">05</span> Orchestrator → Reviewer 1, Reviewer 2 · <b>Diff</b></li><li><span class="y">06</span> Reviewer 1, Reviewer 2 → Orchestrator · <b>Anmerkungen</b></li><li><span class="y">07</span> Orchestrator → git · <b>Commit</b></li><li><span class="y">08</span> Orchestrator → Handy · <b>PR fertig</b></li></ol></figure></div></section>
+<section id="otros" class="sec wrap" aria-labelledby="h-otros"><div class="sec-h"><p class="net" aria-hidden="true">04</p><h2 id="h-otros">Weitere Arbeiten</h2><p class="sec-sub">Für diese Arbeiten gibt es keine veröffentlichten Fotos. Details schicke ich gern per E-Mail.</p></div><table class="bom" role="table"><thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">Jahr</th><th scope="col" role="columnheader">Arbeit</th><th scope="col" role="columnheader">Für</th><th scope="col" role="columnheader">Belege</th></tr></thead><tbody role="rowgroup"><tr role="row"><td role="cell" class="y">2026–heute</td><td role="cell">Prozessautomatisierung für Kompostierung, Pflanzenkohle, Biogasanlagen und Wurmfilter.</td><td role="cell">POL S.R.L.</td><td role="cell" class="ev">Laufend</td></tr><tr role="row"><td role="cell" class="y">—</td><td role="cell">3D-Konstruktion eines Durchflussmessergehäuses.</td><td role="cell">POL S.R.L.</td><td role="cell" class="ev">Keine Fotos veröffentlicht</td></tr><tr role="row"><td role="cell" class="y">—</td><td role="cell">Leiterplatte V5XCPU3C, entworfen in Altium.</td><td role="cell">—</td><td role="cell" class="ev">Keine Fotos veröffentlicht</td></tr><tr role="row"><td role="cell" class="y">2022–heute</td><td role="cell">Platinen für CNC-Maschinen und Prüfstände: Steuerzentrale, Funksteuerung, MSP430- und SATA-GETAC-Adapter. Layout in Altium, Firmware für PIC/ATmega/Xilinx.</td><td role="cell">Contraut SAS</td><td role="cell" class="ev">Fotos in Vorbereitung</td></tr><tr role="row"><td role="cell" class="y">2022–heute</td><td role="cell">Prüfstände und Messdatenerfassung.</td><td role="cell">FAESA · Astillero Río Santiago</td><td role="cell" class="ev">Keine Fotos veröffentlicht</td></tr><tr role="row"><td role="cell" class="y">2021</td><td role="cell">Inbetriebnahme von 3 CNC-Maschinen: Schaltschrank, PC-Anbindung und Einstellung des Spindelumrichters.</td><td role="cell">Freelance</td><td role="cell" class="ev">Keine Fotos veröffentlicht</td></tr><tr role="row"><td role="cell" class="y">2020</td><td role="cell">Honmaschine für 4- bis 6-Zylinder-LKW-Motoren mit Siemens-S7-200-SPS. KOP-Programm, Schaltschrank, induktive Sensoren und Handbücher.</td><td role="cell">Blockstrong Motors</td><td role="cell" class="ev">Handbücher an den Kunden übergeben</td></tr><tr role="row"><td role="cell" class="y">2020</td><td role="cell">REESpirator, ein Notfall-Beatmungsgerät. Ich habe an der Steuerelektronik und der Dokumentation mitgearbeitet.</td><td role="cell">CovidLab · UNRC</td><td role="cell" class="ev">Keine Fotos veröffentlicht</td></tr><tr role="row"><td role="cell" class="y">2019–2021</td><td role="cell">LED-Kopfhörer für Parkinson-Patienten. Entwickelt mit einem Team von Physiotherapeuten.</td><td role="cell">Freelance</td><td role="cell" class="ev">Keine Fotos veröffentlicht</td></tr></tbody></table></section>
+<section id="experiencia" class="sec wrap" aria-labelledby="h-exp"><div class="sec-h"><p class="net" aria-hidden="true">05</p><h2 id="h-exp">Erfahrung</h2></div><div class="cols"><div><ol class="tl"><li><span class="y">2026–heute</span><div><b>POL S.R.L.</b><p>Praktikant Automatisierung. Abfall und Kreislaufwirtschaft: Kompostierung, Pyrolyse (MixOil) und Pflanzenkohle.</p></div></li><li><span class="y">2022–heute</span><div><b>Contraut SAS</b><p>Junior-Elektronikingenieur. Ich entwickle und fertige eigene Platinen. Ich schreibe die Firmware jeder Platine. Ich liefere schlüsselfertige Automatisierungsprojekte.</p></div></li><li><span class="y">2021</span><div><b>Freelance</b><p>Schaltschränke und Inbetriebnahme von CNC-Maschinen.</p></div></li><li><span class="y">2020</span><div><b>Blockstrong Motors</b><p>SPS-Entwurf und -Programmierung.</p></div></li><li><span class="y">2019–2021</span><div><b>Freelance</b><p>Prototypen für Medizingeräte.</p></div></li></ol></div><div><h3 class="h-sm">Ausbildung</h3><ol class="tl"><li><span class="y">laufend</span><div><b>Studium Elektronik</b><p>FCEFyN — Nationaluniversität Córdoba</p></div></li><li><span class="y">2014–2020</span><div><b>Elektroniktechniker</b><p>Instituto Técnico Salesiano Villada</p></div></li></ol><h3 class="h-sm">Werkzeuge</h3><dl class="tools"><div><dt>Leiterplatten</dt><dd>Altium Designer · ElectronArt · LTspice · Proteus</dd></div><div><dt>Embedded</dt><dd>C · C++ · ESP32 · STM32 · PIC / dsPIC · ATmega · MicroPython · Verilog (Xilinx)</dd></div><div><dt>Automatisierung</dt><dd>Siemens-SPS (KOP) · IEC-Schaltschränke · Frequenzumrichter · CNC Mach3 · QElectroTech</dd></div><div><dt>Software</dt><dd>Python · PySide6 / Qt · NumPy · SciPy · OpenCV · Git</dd></div><div><dt>Mechanik</dt><dd>Fusion 360 · SolidWorks · AutoCAD · 3D-Druck</dd></div></dl></div></div></section>
+<section id="contacto" class="sec contact" aria-labelledby="h-ct"><div class="wrap"><div class="sec-h"><p class="net" aria-hidden="true">06</p><h2 id="h-ct">Kontakt</h2></div><div class="ct-grid"><div><p class="ct-lead">Sie haben eine Maschine, eine Leiterplatte oder einen Schaltschrank zu bauen?</p><p class="ct-sub">Schreiben Sie mir, was das Gerät tun muss, wie viele Stück Sie brauchen und bis wann. Ich antworte mit einem konkreten Angebot.</p><div class="ctas"><a class="btn btn-1" href="https://wa.me/5493512487080?text=Hallo%20Franco%2C%20ich%20schreibe%20dir%20über%20dein%20Portfolio." rel="noopener">Nachricht per WhatsApp</a><a class="btn btn-2" href="mailto:olmedo.franco.fo@gmail.com">E-Mail senden</a></div></div><dl class="ct-list"><div><dt>Mail</dt><dd><a href="mailto:olmedo.franco.fo@gmail.com">olmedo.franco.fo@gmail.com</a></dd></div><div><dt>WhatsApp</dt><dd><a href="https://wa.me/5493512487080?text=Hallo%20Franco%2C%20ich%20schreibe%20dir%20über%20dein%20Portfolio." rel="noopener">+54 9 351 248-7080</a></dd></div><div><dt>Lebenslauf als PDF</dt><dd><a href="../cv-es.pdf" hreflang="es">ES</a> · <a href="../cv-en.pdf" hreflang="en">EN</a> · <a href="../cv-de.pdf" hreflang="de">DE</a></dd></div><div><dt>Außerdem</dt><dd><a href="https://www.linkedin.com/in/franco-olmedo-967405194/" rel="noopener">LinkedIn</a> · <a href="https://electroniklosungen.com.ar" rel="noopener">ElectronArt</a></dd></div></dl></div></div></section>
+</main>
+<footer class="foot wrap"><p>Franco Olmedo · Villa Allende, Córdoba · Rev. 2026-10</p><p>Handgeschriebenes HTML, CSS und JS. Keine Frameworks, keine Tracker.</p></footer>
+<script src="../assets/js/motor.js" defer></script>
+</body>
+</html>
