@@ -3,3 +3,5 @@ agent/
 ORCHESTRATION.md
 Screenshot*.png
 curacion-fotos/
+__pycache__/
+*.pyc
