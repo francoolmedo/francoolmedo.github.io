@@ -26,7 +26,7 @@ Quiere motion graphics, buen diseño, al día, vendedor, ingenieril, curioso, ci
 - Mobile primero: Franco lo mira desde el iPhone.
 
 ## Contenido (hechos reales, no inventar nada más)
-- Franco Olmedo. Técnico electrónico. Estudiante de Ingeniería Electrónica en la FCEFyN (UNC), Córdoba.
+- Franco Olmedo. Técnico electrónico. Estudiante de Ingeniería Electrónica en la UTN FRC, Córdoba.
 - **ElectronArt** (producto propio, a la venta): suite EDA en castellano. Esquemático, simulación SPICE (transitorio,
   AC, FFT con THD/SNR/SINAD/SFDR), PCB multicapa con autoruteo (una ESP32 de 74 conexiones queda 74/74 en menos de 5 s,
   codos a 45°, DRC 0), visor 3D, salida Gerber/Excellon/ODB++/IPC-2581/STEP, tableros IEC con simulación Ladder.

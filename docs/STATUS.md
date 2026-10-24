@@ -1,6 +1,7 @@
 # Estado del portfolio
 
 Última actualización: 2026-10-24 · PR #1 mergeado a `main` (revisado contra la spec: cumple; se sacó `tools/__pycache__`).
+- 24/10: universidad corregida a **UTN FRC** (antes decía FCEFyN–UNC por error) en `tools/build.py` y HTML ES/EN/DE. Los CV en PDF ya decían UTN FRC.
 
 ## Rediseño con motion (spec `specs/rediseno-ingeniero-2026-10.md`)
 Se partió de la rama `rediseno-portfolio` (estética de plano, fotos WebP, ES/EN/DE). Se sumaron 4 animaciones que muestran ingeniería real:
