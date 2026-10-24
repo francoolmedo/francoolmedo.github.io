@@ -1,6 +1,6 @@
 # Estado del portfolio
 
-Última actualización: 2026-10-23 · rama `rediseno-portfolio` · PR #1 (sin mergear: Franco lo revisa)
+Última actualización: 2026-10-24 · PR #1 mergeado a `main` (revisado contra la spec: cumple; se sacó `tools/__pycache__`).
 
 ## Rediseño con motion (spec `specs/rediseno-ingeniero-2026-10.md`)
 Se partió de la rama `rediseno-portfolio` (estética de plano, fotos WebP, ES/EN/DE). Se sumaron 4 animaciones que muestran ingeniería real:
